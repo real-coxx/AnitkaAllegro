@@ -1,0 +1,12 @@
+FEAT 1 (<<non-functional>>) - System jest dostępny w typowych przeglądarkach internetowych (Chrome, InternetExplorer, Firefox, Safari) i przez stronę internetową - brak konieczności instalacji dodatkowego oprogramowania.
+FEAT 2 (<<non-functional>>) - System ma prosty i czytelny dla wszystkich interfejs.
+FEAT 3 (<<non-functional>>) - System jest oparty o relacyjną bazę danych, z którą komunikuje się oprogramowanie przez sterownik JDBC, co zapewnia wydajność rozwiązania.
+FEAT 4 (<<non-functional>>) - System zwraca wyniki wyszukiwania i przeglądania w rozsądnym czasie.
+FEAT 5 (<<non-functional>>) - System jest łatwy w pielęgnacji.
+FEAT 6 (<<non-functional>>) - System musi zapewniać dostępność ciągłą w systemie 24 godziny dziennie, 7 dni w tygodniu.
+FEAT 7 (<<non-functional>>) - System musi zapewnić polskojęzyczny interfejs z użytkownikiem oraz polskojęzyczne wartości danych przechowywanych w systemie (sortowanie, reprezentacja dat, liczb).
+FEAT 8 (<<non-functional>>) - System musi zapewnić zarządzanie prawami dostępu użytkowników do zasobów w oparciu o mechanizm ról systemowych.
+FEAT 9 (<<non-functional>>) - System musi posiadać rozbudowany system uprawnień do danych (użytkownik widzi wyłącznie określone dane do których dostał uprawnienia).
+FEAT 10 (<<non-functional>>) - System musi posiadać rozbudowany system uprawnień do funkcji systemu (użytkownik widzi wyłącznie ekrany i funkcje do których został upoważniony).
+FEAT 11 (<<non-functional>>) - System musi zapewnić bezpieczeństwo danych.
+FEAT 12 (<<non-functional>>) - System zapewnia komunikację użytkownika z systemem wyrażoną za pomocą standardowego zestawu znaków ASCII z standardem kodowania polskich liter ISO 8859-2.
