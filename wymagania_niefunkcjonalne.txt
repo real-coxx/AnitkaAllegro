@@ -4,6 +4,7 @@ FEAT 1 (<<non-functional>>) - System ma prosty i czytelny dla wszystkich interfe
 FEAT 2 (<<non-functional>>) - System jest łatwy w pielęgnacji.
 FEAT 3 (<<non-functional>>) - System musi zapewnić polskojęzyczny interfejs z użytkownikiem oraz polskojęzyczne wartości danych przechowywanych w systemie (sortowanie, reprezentacja dat, liczb).
 FEAT 4 (<<non-functional>>) - System nie wymaga przeprowadzenia wśród użytkowników szkoleń celem nauki obsługi systemu.
+FEAT 5 (<<non-functional>>) - System jest przeznaczony dla ludzi w wieku 15-65 lat.
 
 3.2 Reliability
 [Reliability includes the product and/or system's ability to keep running under stress and adverse conditions. Specify requirements for reliability acceptance levels, and how they will be measured and evaluated. Suggested topics are availability, frequency of severity of failures and recoverability.]
@@ -11,6 +12,7 @@ FEAT 1 (<<non-functional>>) - System jest oparty o relacyjną bazę danych, z kt
 FEAT 2 (<<non-functional>>) - System musi zapewnić bezpieczeństwo danych.
 FEAT 3 (<<non-functional>>) - System zapewnia komunikację użytkownika z systemem wyrażoną za pomocą standardowego zestawu znaków ASCII z standardem kodowania polskich liter ISO 8859-2.
 FEAT 4 (<<non-functional>>) - System musi być napisany w Javie.
+FEAT 5 (<<non-functional>>) - Bezpieczeństwo systemu ma zapewnić korzystanie z protokołu HTTPS.
 
 3.3 Performance
 [The performance characteristics of the system should be outlined in this section. Examples are response time, throughput, capacity and startup or shutdown times.]
@@ -27,3 +29,5 @@ FEAT 2 (<<non-functional>>) - System musi zapewnić zarządzanie prawami dostęp
 FEAT 3 (<<non-functional>>) - System musi posiadać rozbudowany system uprawnień do danych (użytkownik widzi wyłącznie określone dane do których dostał uprawnienia).
 FEAT 4 (<<non-functional>>) - System musi posiadać rozbudowany system uprawnień do funkcji systemu (użytkownik widzi wyłącznie ekrany i funkcje do których został upoważniony).
 FEAT 5 (<<non-functional>>) - System musi umożliwić przywrócenie stanu sprzed awarii.
+FEAT 6 (<<non-functional>>) - System musi działać na systemach: Windows, Linux (i z rodziny Ubuntu) oraz Mac.
+FEAT 7 (<<non-functional>>) - System musi być pokryty testami na poziomie 80%.
