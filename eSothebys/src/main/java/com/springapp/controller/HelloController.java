@@ -2,7 +2,6 @@ package com.springapp.controller;
 
 import com.springapp.model.AdresEntity;
 import com.springapp.model.KrajEntity;
-import com.springapp.service.AdresService;
 import com.springapp.service.KrajService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
