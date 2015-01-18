@@ -11,17 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/aaaa")
-public class HelloController {
+@RequestMapping("/")
+public class SkladanieOfertyController {
 
-    @Autowired
-    private KrajService krajService;
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
-        List<KrajEntity> kraje = krajService.getKraje();
-        KrajEntity kraj = kraje.get(0);
-		model.addAttribute("message", kraj.getNazwa());
-		return "ofertyKupna";
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public String printWelcome(ModelMap model) {
+        return "skladanieOferty";
+    }
 }
