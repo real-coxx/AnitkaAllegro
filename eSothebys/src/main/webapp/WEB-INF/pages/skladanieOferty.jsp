@@ -138,13 +138,50 @@
         </div>
     </div>
 
-    </div>
-    <div class="col-lg-12" style="margin-top: 50px">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">Opis</a></li>
-            <li role="presentation"><a href="#">Dostawa i płatność</a></li>
-            <li role="presentation"><a href="#">Oferty kupna</a></li>
+    <div class="container col-lg-12" style="margin-top: 50px; margin-bottom: 200px">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li role="presentation" class="active"><a href="#opis" aria-controls="opis" role="tab" data-toggle="tab">Opis</a>
+            </li>
+            <li role="presentation"><a href="#dostawaiplatnosc" aria-controls="dostawaiplatnosc" role="tab"
+                                       data-toggle="tab">Dostawa i płatność</a></li>
+            <li role="presentation"><a href="#ofertykupna" aria-controls="ofertykupna" role="tab" data-toggle="tab">Oferty
+                kupna</a></li>
         </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="opis">
+                <h4 >Opis aukcji:</h4>
+                <textarea disabled class="form-control" rows="10" style="width: 70%; margin-left: 15%; resize: none">aaaaaaa opis</textarea>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="dostawaiplatnosc">..1.</div>
+            <div role="tabpanel" class="tab-pane" id="ofertykupna">
+                <table class="table table-bordered" style="width: 80%; margin-left: 10%; margin-top: 10px">
+                    <thead>
+                    <tr>
+                        <th data-field="uzytkownik" style="width: 40%">Użytkownik</th>
+                        <th data-field="cena" style="width: 20%">Cena</th>
+                        <th data-field="sztuk" style="width: 20%">Sztuk</th>
+                        <th data-field="data" style="width: 20%">Data</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>k...a</th>
+                        <th>980 zł</th>
+                        <th>1</th>
+                        <th>07-02-2015 22:01:34</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            $('#myTab a').click(function (e) {
+                e.preventDefault()
+                $(this).tab('show')
+            })
+        </script>
     </div>
 
 </t:layout>

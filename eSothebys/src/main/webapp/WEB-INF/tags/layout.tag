@@ -8,6 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<c:url value='/resources/css/bootstrap.css' />" rel="stylesheet">
+    <script src='/resources/js/jquery-1.11.2.min.js'></script>
+    <script src='/resources/js/bootstrap.min.js'></script>
+
     <div class="jumbotron text-left clearfix" style="background-color: #f5f5f5; background-size: 100%;">
         <div class="container">
             <h1 style="color: #737373; float: left">eSothebys</h1>

@@ -16,6 +16,6 @@ public class SkladanieOfertyController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        return "skladanieOferty";
+        return "potwierdzenieLicytacji";
     }
 }

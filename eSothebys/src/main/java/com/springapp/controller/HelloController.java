@@ -22,6 +22,6 @@ public class HelloController {
         List<KrajEntity> kraje = krajService.getKraje();
         KrajEntity kraj = kraje.get(0);
 		model.addAttribute("message", kraj.getNazwa());
-		return "ofertyKupna";
+		return "skladanieOferty";
 	}
 }
