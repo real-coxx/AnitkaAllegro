@@ -43,7 +43,10 @@
     <tx:annotation-driven />
 
     <bean id="KrajDAO" class="com.springapp.dao.KrajDAOImpl" />
+    <bean id="AukcjaDAO" class="com.springapp.dao.AukcjaDAOImpl" />
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
+    <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />
+
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

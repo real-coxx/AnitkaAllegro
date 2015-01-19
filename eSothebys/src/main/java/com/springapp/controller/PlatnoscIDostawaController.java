@@ -1,7 +1,7 @@
 package com.springapp.controller;
 
-import com.springapp.dto.AukcjaTO;
-import com.springapp.service.AukcjaService;
+import com.springapp.model.KrajEntity;
+import com.springapp.service.KrajService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,16 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
-public class SkladanieOfertyController {
+@RequestMapping("/platnosc")
+public class PlatnoscIDostawaController {
 
-    @Autowired
-    private AukcjaService aukcjaService;
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String zlozOfertę(ModelMap model) {
-        AukcjaTO aukcja = aukcjaService.getAukcjaByIdForSkladanieOferty(0);
-
-        return "skladanieOferty";
+    @RequestMapping(method = RequestMethod.POST)
+    public String potwierdzLicytację(HttpServletRequest request, HttpServletResponse response){
+        return "platnoscIDostawa";
     }
 }
