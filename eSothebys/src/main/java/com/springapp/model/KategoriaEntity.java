@@ -16,6 +16,7 @@ public class KategoriaEntity {
     private boolean dopuszczaAukcje;
     private String formulaWyliczaniaProwizjiOdSprzedaży;
     private String formulaWyliczaniaOplatyPodstawowej;
+    private int kategoria2ID;
 
     @Id
     @Column(name = "ID")
@@ -95,6 +96,16 @@ public class KategoriaEntity {
 
     public void setFormulaWyliczaniaOplatyPodstawowej(String formulaWyliczaniaOplatyPodstawowej) {
         this.formulaWyliczaniaOplatyPodstawowej = formulaWyliczaniaOplatyPodstawowej;
+    }
+
+    @Basic
+    @Column(name = "Kategoria2ID")
+    public int getKategoria2ID() {
+        return kategoria2ID;
+    }
+
+    public void setKategoria2ID(int kategoria2ID) {
+        this.kategoria2ID = kategoria2ID;
     }
 
     @Override

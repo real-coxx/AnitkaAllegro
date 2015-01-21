@@ -7,8 +7,8 @@
 <t:layout>
     <form class="form-horizontal" action="${pageContext.request.contextPath}/checKupna" role="form" method="POST">
         <div class="page-header">
-            <h1 style="color: #f5f5f5">ROWER TREKINGOWY TREK
-                <small style="color: #f5f5f5">(123456)</small>
+            <h1 style="color: #f5f5f5">${aukcjaTO.tytul}
+                <small style="color: #f5f5f5">(${aukcjaTO.numer})</small>
                 <button style="width: 190px" type="button" class="btn btn-default btn-sm pull-right">Obserwuj</button>
             </h1>
 
@@ -22,7 +22,7 @@
 
             <h3 style="display: inline; color: darkred"> - </h3>
 
-            <h3 style="display: inline; color: darkred">Trekingowe</h3>
+            <h3 style="display: inline; color: darkred">${kategoriaTO.nazwa}</h3>
 
             <h3 style="display: inline">
                 <button style="width: 190px" type="button" class="btn btn-default btn-sm pull-right">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <h5 class="pull-right" style="display: inline; margin-right: 20px">30 czerwca, 21:12:25</h5>
+                <h5 class="pull-right" style="display: inline; margin-right: 20px">${aukcjaTO.terminZakonczeniaTekst}</h5>
                 <h5 class="pull-right" style="display: inline; margin-right: 10px">Zakończenie aukcji:</h5>
 
                 <br>
@@ -92,10 +92,10 @@
                             <th class="tg-031e" style="width: 20%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e" style="width: 20%">980 zł</td>
+                            <td class="tg-031e" style="width: 20%">${aukcjaTO.aktualnaCena}</td>
                             <td class="tg-031e" style="width: 20%">1 zł</td>
                             <td class="tg-031e" style="width: 20%">1</td>
-                            <td class="tg-031e" style="width: 20%">1 z 4 sztuk</td>
+                            <td class="tg-031e" style="width: 20%">1 z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
                             <td class="tg-031e" style="width: 20%">
                                 <button style="width: 80px" type="submit" name="licytuj" value="Licytuj" class="btn btn-default btn-sm pull-right">
                                     Licytuj
@@ -124,10 +124,10 @@
                             <th class="tg-031e" style="width: 20%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e" style="width: 20%">1500 zł</td>
+                            <td class="tg-031e" style="width: 20%">${aukcjaTO.cenaKupTeraz}</td>
                             <td class="tg-031e" style="width: 20%"></td>
                             <td class="tg-031e" style="width: 20%">1</td>
-                            <td class="tg-031e" style="width: 20%">1 z 4 sztuk</td>
+                            <td class="tg-031e" style="width: 20%">1 z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
                             <td class="tg-031e" style="width: 20%">
                                 <button style="width: 80px" type="submit" name="kupTeraz" value="KupTeraz" class="btn btn-default btn-sm pull-right">Kup
                                     Teraz
@@ -154,9 +154,9 @@
                 <div role="tabpanel" class="tab-pane active" id="opis">
                     <h4>Opis aukcji:</h4>
                     <textarea disabled class="form-control" rows="10"
-                              style="width: 70%; margin-left: 15%; resize: none">aaaaaaa opis</textarea>
+                              style="width: 70%; margin-left: 15%; resize: none">${aukcjaTO.opisPrzedmiotu}</textarea>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="dostawaiplatnosc">..1.</div>
+                <div role="tabpanel" class="tab-pane" id="dostawaiplatnosc">${aukcjaTO.dodatkoweInformacjeODostawieIPlatnosci}</div>
                 <div role="tabpanel" class="tab-pane" id="ofertykupna">
                     <table class="table table-bordered" style="width: 80%; margin-left: 10%; margin-top: 10px">
                         <thead>

@@ -17,6 +17,11 @@
     <mvc:annotation-driven/>
     <context:annotation-config />
 
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManager" />
+    </bean>
+    <tx:annotation-driven />
+
     <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="com.springapp.model" />
@@ -37,16 +42,24 @@
         <property name="password" value="mojrootek321" />
     </bean>
 
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManager" />
+    <bean id="jpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="database" value="MYSQL"/>
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+        <property name="databasePlatform"
+                  value="org.hibernate.dialect.MySQLDialect"/>
     </bean>
-    <tx:annotation-driven />
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <bean id="KrajDAO" class="com.springapp.dao.KrajDAOImpl" />
     <bean id="AukcjaDAO" class="com.springapp.dao.AukcjaDAOImpl" />
+    <bean id="KategoriaDAO" class="com.springapp.dao.KategoriaDAOImpl" />
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
     <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />
+    <bean id="KategoriaService" class="com.springapp.service.KategoriaServiceImpl" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

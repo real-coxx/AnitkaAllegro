@@ -1,5 +1,10 @@
 package com.springapp.builder;
 
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +24,8 @@ public class AukcjaBuilder {
     private int czasTrwania;
     private double cenaWywolawcza;
     private double cenaMinimalna;
-    private Date terminZakonczenia;
+    private Timestamp terminZakonczenia;
+    private String terminZakonczeniaTekst;
     private String dodatkoweInformacjeODostawieIPlatnosci;
     private boolean kosztPrzesylkiPokrywaKupujacy;
     private boolean wysylkaZaGranice;
@@ -35,6 +41,7 @@ public class AukcjaBuilder {
     private double aktualnaCena;
     private double oplata;
     private double oplataFinalna;
+    private int idKategorii;
 
     public AukcjaBuilder setNumer(int numer) {
         this.numer = numer;
@@ -91,8 +98,13 @@ public class AukcjaBuilder {
         return this;
     }
 
-    public AukcjaBuilder setTerminZakonczenia(Date terminZakonczenia) {
+    public AukcjaBuilder setTerminZakonczenia(Timestamp terminZakonczenia) {
         this.terminZakonczenia = terminZakonczenia;
+        return this;
+    }
+
+    public AukcjaBuilder setTerminZakonczeniaTekst(String terminZakonczeniaTekst) {
+        this.terminZakonczeniaTekst = terminZakonczeniaTekst;
         return this;
     }
 
@@ -171,6 +183,11 @@ public class AukcjaBuilder {
         return this;
     }
 
+    public AukcjaBuilder setIdKategorii(int idKategorii) {
+        this.idKategorii = idKategorii;
+        return this;
+    }
+
     public int getNumer() {
         return numer;
     }
@@ -215,9 +232,11 @@ public class AukcjaBuilder {
         return cenaMinimalna;
     }
 
-    public Date getTerminZakonczenia() {
+    public Timestamp getTerminZakonczenia() {
         return terminZakonczenia;
     }
+
+    public String getTerminZakonczeniaTekst() { return terminZakonczeniaTekst; }
 
     public String getDodatkoweInformacjeODostawieIPlatnosci() {
         return dodatkoweInformacjeODostawieIPlatnosci;
@@ -277,5 +296,9 @@ public class AukcjaBuilder {
 
     public double getOplataFinalna() {
         return oplataFinalna;
+    }
+
+    public int getIdKategorii() {
+        return idKategorii;
     }
 }

@@ -1,351 +1,223 @@
 package com.springapp.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
+
+import javax.ejb.Local;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Alicja on 2015-01-05.
  */
 @Entity
 @javax.persistence.Table(name = "aukcja", schema = "", catalog = "esothebys_db")
-public class AukcjaEntity {
-    private int id;
+public class AukcjaEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @javax.persistence.Column(name = "ID")
+    @Column(name = "ID")
+    private int id;
+
+    @Column(name = "Numer")
+    private Integer numer;
+
+    @Column(name = "Tytul")
+    private String tytul;
+
+    @Column(name = "OpisPrzedmiotu")
+    private String opisPrzedmiotu;
+
+    @Column(name = "RodzajAukcji")
+    private Integer rodzajAukcji;
+
+    @Column(name = "TerminRozpoczecia")
+    private Date terminRozpoczecia;
+
+    @Column(name = "LiczbaPrzedmiotow")
+    private Integer liczbaPrzedmiotow;
+
+    @Column(name = "Jednostka")
+    private Integer jednostka;
+
+    @Column(name = "CenaKupTeraz")
+    private Integer cenaKupTeraz;
+
+    @Column(name = "CzasTrwania")
+    private Integer czasTrwania;
+
+    @Column(name = "CenaWywolawcza")
+    private Integer cenaWywolawcza;
+
+    @Column(name = "CenaMinimalna")
+    private Integer cenaMinimalna;
+
+    @Column(name = "TerminZakonczenia")
+    private Timestamp terminZakonczenia;
+
+    @Column(name = "DodatkoweInformacjeODostawieIPlatnosci")
+    private String dodatkoweInformacjeODostawieIPlatnosci;
+
+    @Column(name = "KosztPrzesylkiPokrywaKupujacy")
+    private Boolean kosztPrzesylkiPokrywaKupujacy;
+
+    @Column(name = "WysylkaZaGranice")
+    private Boolean wysylkaZaGranice;
+
+    @Column(name = "FakturaVAT")
+    private Boolean fakturaVat;
+
+    @Column(name = "TerminWysylki")
+    private Integer terminWysylki;
+
+    @Column(name = "FormaPlatnosci")
+    private int formaPlatnosci;
+
+    @Column(name = "NumerKonta1")
+    private Integer numerKonta1;
+
+    @Column(name = "NumerKonta2")
+    private Integer numerKonta2;
+
+    @Column(name = "Szablon")
+    private Boolean szablon;
+
+    @Column(name = "LiczbaOdwiedzin")
+    private Integer liczbaOdwiedzin;
+
+    @Column(name = "TerminOstatnichOdwiedzin")
+    private Date terminOstatnichOdwiedzin;
+
+    @Column(name = "LiczbaDostepnychPrzedmiotow")
+    private Integer liczbaDostepnychPrzedmiotow;
+
+    @Column(name = "AktualnaCena")
+    private Integer aktualnaCena;
+
+    @Column(name = "Oplata")
+    private Integer oplata;
+
+    @Column(name = "OplataFinalna")
+    private Integer oplataFinalna;
+
+    @Column(name = "Kategoria2ID")
+    private Integer kategoria2ID;
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private Integer numer;
-
-    @Basic
-    @javax.persistence.Column(name = "Numer")
     public Integer getNumer() {
         return numer;
     }
 
-    public void setNumer(Integer numer) {
-        this.numer = numer;
-    }
-
-    private String tytul;
-
-    @Basic
-    @javax.persistence.Column(name = "Tytul")
     public String getTytul() {
         return tytul;
     }
 
-    public void setTytul(String tytul) {
-        this.tytul = tytul;
-    }
-
-    private String opisPrzedmiotu;
-
-    @Basic
-    @javax.persistence.Column(name = "OpisPrzedmiotu")
     public String getOpisPrzedmiotu() {
         return opisPrzedmiotu;
     }
 
-    public void setOpisPrzedmiotu(String opisPrzedmiotu) {
-        this.opisPrzedmiotu = opisPrzedmiotu;
-    }
-
-    private Integer rodzajAukcji;
-
-    @Basic
-    @javax.persistence.Column(name = "RodzajAukcji")
     public Integer getRodzajAukcji() {
         return rodzajAukcji;
     }
 
-    public void setRodzajAukcji(Integer rodzajAukcji) {
-        this.rodzajAukcji = rodzajAukcji;
-    }
-
-    private Date terminRozpoczecia;
-
-    @Basic
-    @javax.persistence.Column(name = "TerminRozpoczecia")
     public Date getTerminRozpoczecia() {
         return terminRozpoczecia;
     }
 
-    public void setTerminRozpoczecia(Date terminRozpoczecia) {
-        this.terminRozpoczecia = terminRozpoczecia;
-    }
-
-    private Integer liczbaPrzedmiotow;
-
-    @Basic
-    @javax.persistence.Column(name = "LiczbaPrzedmiotow")
     public Integer getLiczbaPrzedmiotow() {
         return liczbaPrzedmiotow;
     }
 
-    public void setLiczbaPrzedmiotow(Integer liczbaPrzedmiotow) {
-        this.liczbaPrzedmiotow = liczbaPrzedmiotow;
-    }
-
-    private Integer jednostka;
-
-    @Basic
-    @javax.persistence.Column(name = "Jednostka")
     public Integer getJednostka() {
         return jednostka;
     }
 
-    public void setJednostka(Integer jednostka) {
-        this.jednostka = jednostka;
-    }
-
-    private Integer cenaKupTeraz;
-
-    @Basic
-    @javax.persistence.Column(name = "CenaKupTeraz")
     public Integer getCenaKupTeraz() {
         return cenaKupTeraz;
     }
 
-    public void setCenaKupTeraz(Integer cenaKupTeraz) {
-        this.cenaKupTeraz = cenaKupTeraz;
-    }
-
-    private Integer czasTrwania;
-
-    @Basic
-    @javax.persistence.Column(name = "CzasTrwania")
     public Integer getCzasTrwania() {
         return czasTrwania;
     }
 
-    public void setCzasTrwania(Integer czasTrwania) {
-        this.czasTrwania = czasTrwania;
-    }
-
-    private Integer cenaWywolawcza;
-
-    @Basic
-    @javax.persistence.Column(name = "CenaWywolawcza")
     public Integer getCenaWywolawcza() {
         return cenaWywolawcza;
     }
 
-    public void setCenaWywolawcza(Integer cenaWywolawcza) {
-        this.cenaWywolawcza = cenaWywolawcza;
-    }
-
-    private Integer cenaMinimalna;
-
-    @Basic
-    @javax.persistence.Column(name = "CenaMinimalna")
     public Integer getCenaMinimalna() {
         return cenaMinimalna;
     }
 
-    public void setCenaMinimalna(Integer cenaMinimalna) {
-        this.cenaMinimalna = cenaMinimalna;
-    }
+    public Timestamp getTerminZakonczenia() { return terminZakonczenia; }
 
-    private Date terminZakonczenia;
-
-    @Basic
-    @javax.persistence.Column(name = "TerminZakonczenia")
-    public Date getTerminZakonczenia() {
-        return terminZakonczenia;
-    }
-
-    public void setTerminZakonczenia(Date terminZakonczenia) {
-        this.terminZakonczenia = terminZakonczenia;
-    }
-
-    private String dodatkoweInformacjeODostawieIPlatnosci;
-
-    @Basic
-    @javax.persistence.Column(name = "DodatkoweInformacjeODostawieIPlatnosci")
     public String getDodatkoweInformacjeODostawieIPlatnosci() {
         return dodatkoweInformacjeODostawieIPlatnosci;
     }
 
-    public void setDodatkoweInformacjeODostawieIPlatnosci(String dodatkoweInformacjeODostawieIPlatnosci) {
-        this.dodatkoweInformacjeODostawieIPlatnosci = dodatkoweInformacjeODostawieIPlatnosci;
-    }
-
-    private Boolean kosztPrzesylkiPokrywaKupujacy;
-
-    @Basic
-    @javax.persistence.Column(name = "KosztPrzesylkiPokrywaKupujacy")
     public Boolean getKosztPrzesylkiPokrywaKupujacy() {
         return kosztPrzesylkiPokrywaKupujacy;
     }
 
-    public void setKosztPrzesylkiPokrywaKupujacy(Boolean kosztPrzesylkiPokrywaKupujacy) {
-        this.kosztPrzesylkiPokrywaKupujacy = kosztPrzesylkiPokrywaKupujacy;
-    }
-
-    private Boolean wysylkaZaGranice;
-
-    @Basic
-    @javax.persistence.Column(name = "WysylkaZaGranice")
     public Boolean getWysylkaZaGranice() {
         return wysylkaZaGranice;
     }
 
-    public void setWysylkaZaGranice(Boolean wysylkaZaGranice) {
-        this.wysylkaZaGranice = wysylkaZaGranice;
-    }
-
-    private Boolean fakturaVat;
-
-    @Basic
-    @javax.persistence.Column(name = "FakturaVAT")
     public Boolean getFakturaVat() {
         return fakturaVat;
     }
 
-    public void setFakturaVat(Boolean fakturaVat) {
-        this.fakturaVat = fakturaVat;
-    }
-
-    private Integer terminWysylki;
-
-    @Basic
-    @javax.persistence.Column(name = "TerminWysylki")
     public Integer getTerminWysylki() {
         return terminWysylki;
     }
 
-    public void setTerminWysylki(Integer terminWysylki) {
-        this.terminWysylki = terminWysylki;
-    }
-
-    private int formaPlatnosci;
-
-    @Basic
-    @javax.persistence.Column(name = "FormaPlatnosci")
     public int getFormaPlatnosci() {
         return formaPlatnosci;
     }
 
-    public void setFormaPlatnosci(int formaPlatnosci) {
-        this.formaPlatnosci = formaPlatnosci;
-    }
-
-    private Integer numerKonta1;
-
-    @Basic
-    @javax.persistence.Column(name = "NumerKonta1")
     public Integer getNumerKonta1() {
         return numerKonta1;
     }
 
-    public void setNumerKonta1(Integer numerKonta1) {
-        this.numerKonta1 = numerKonta1;
-    }
-
-    private Integer numerKonta2;
-
-    @Basic
-    @javax.persistence.Column(name = "NumerKonta2")
     public Integer getNumerKonta2() {
         return numerKonta2;
     }
 
-    public void setNumerKonta2(Integer numerKonta2) {
-        this.numerKonta2 = numerKonta2;
-    }
-
-    private Boolean szablon;
-
-    @Basic
-    @javax.persistence.Column(name = "Szablon")
     public Boolean getSzablon() {
         return szablon;
     }
 
-    public void setSzablon(Boolean szablon) {
-        this.szablon = szablon;
-    }
-
-    private Integer liczbaOdwiedzin;
-
-    @Basic
-    @javax.persistence.Column(name = "LiczbaOdwiedzin")
     public Integer getLiczbaOdwiedzin() {
         return liczbaOdwiedzin;
     }
 
-    public void setLiczbaOdwiedzin(Integer liczbaOdwiedzin) {
-        this.liczbaOdwiedzin = liczbaOdwiedzin;
-    }
-
-    private Date terminOstatnichOdwiedzin;
-
-    @Basic
-    @javax.persistence.Column(name = "TerminOstatnichOdwiedzin")
     public Date getTerminOstatnichOdwiedzin() {
         return terminOstatnichOdwiedzin;
     }
 
-    public void setTerminOstatnichOdwiedzin(Date terminOstatnichOdwiedzin) {
-        this.terminOstatnichOdwiedzin = terminOstatnichOdwiedzin;
-    }
-
-    private Integer liczbaDostepnychPrzedmiotow;
-
-    @Basic
-    @javax.persistence.Column(name = "LiczbaDostepnychPrzedmiotow")
     public Integer getLiczbaDostepnychPrzedmiotow() {
         return liczbaDostepnychPrzedmiotow;
     }
 
-    public void setLiczbaDostepnychPrzedmiotow(Integer liczbaDostepnychPrzedmiotow) {
-        this.liczbaDostepnychPrzedmiotow = liczbaDostepnychPrzedmiotow;
-    }
-
-    private Integer aktualnaCena;
-
-    @Basic
-    @javax.persistence.Column(name = "AktualnaCena")
     public Integer getAktualnaCena() {
         return aktualnaCena;
     }
 
-    public void setAktualnaCena(Integer aktualnaCena) {
-        this.aktualnaCena = aktualnaCena;
-    }
-
-    private Integer oplata;
-
-    @Basic
-    @javax.persistence.Column(name = "Oplata")
     public Integer getOplata() {
         return oplata;
     }
 
-    public void setOplata(Integer oplata) {
-        this.oplata = oplata;
-    }
-
-    private Integer oplataFinalna;
-
-    @Basic
-    @javax.persistence.Column(name = "OplataFinalna")
     public Integer getOplataFinalna() {
         return oplataFinalna;
     }
 
-    public void setOplataFinalna(Integer oplataFinalna) {
-        this.oplataFinalna = oplataFinalna;
-    }
+    public Integer getKategoria2ID() { return kategoria2ID; }
 
     @Override
     public boolean equals(Object o) {
@@ -367,6 +239,7 @@ public class AukcjaEntity {
             return false;
         if (fakturaVat != null ? !fakturaVat.equals(that.fakturaVat) : that.fakturaVat != null) return false;
         if (jednostka != null ? !jednostka.equals(that.jednostka) : that.jednostka != null) return false;
+        if (kategoria2ID != null ? !kategoria2ID.equals(that.kategoria2ID) : that.kategoria2ID != null) return false;
         if (kosztPrzesylkiPokrywaKupujacy != null ? !kosztPrzesylkiPokrywaKupujacy.equals(that.kosztPrzesylkiPokrywaKupujacy) : that.kosztPrzesylkiPokrywaKupujacy != null)
             return false;
         if (liczbaDostepnychPrzedmiotow != null ? !liczbaDostepnychPrzedmiotow.equals(that.liczbaDostepnychPrzedmiotow) : that.liczbaDostepnychPrzedmiotow != null)

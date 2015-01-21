@@ -1,7 +1,10 @@
 package com.springapp.dto;
 
 import com.springapp.builder.AukcjaBuilder;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +24,8 @@ public class AukcjaTO {
     private final int czasTrwania;
     private final double cenaWywolawcza;
     private final double cenaMinimalna;
-    private final Date terminZakonczenia;
+    private final Timestamp terminZakonczenia;
+    private final String terminZakonczeniaTekst;
     private final String dodatkoweInformacjeODostawieIPlatnosci;
     private final boolean kosztPrzesylkiPokrywaKupujacy;
     private final boolean wysylkaZaGranice;
@@ -37,6 +41,7 @@ public class AukcjaTO {
     private final double aktualnaCena;
     private final double oplata;
     private final double oplataFinalna;
+    private final int idKategorii;
 
 
     public AukcjaTO(AukcjaBuilder builder) {
@@ -52,6 +57,7 @@ public class AukcjaTO {
         this.cenaWywolawcza = builder.getCenaWywolawcza();
         this.cenaMinimalna = builder.getCenaMinimalna();
         this.terminZakonczenia = builder.getTerminZakonczenia();
+        this.terminZakonczeniaTekst = builder.getTerminZakonczeniaTekst();
         this.dodatkoweInformacjeODostawieIPlatnosci = builder.getDodatkoweInformacjeODostawieIPlatnosci();
         this.kosztPrzesylkiPokrywaKupujacy = builder.isKosztPrzesylkiPokrywaKupujacy();
         this.wysylkaZaGranice = builder.isWysylkaZaGranice();
@@ -67,6 +73,7 @@ public class AukcjaTO {
         this.aktualnaCena = builder.getAktualnaCena();
         this.oplata = builder.getOplata();
         this.oplataFinalna = builder.getOplataFinalna();
+        this.idKategorii = builder.getIdKategorii();
     }
 
     public int getNumer() {
@@ -113,9 +120,9 @@ public class AukcjaTO {
         return cenaMinimalna;
     }
 
-    public Date getTerminZakonczenia() {
-        return terminZakonczenia;
-    }
+    public Timestamp getTerminZakonczenia() { return terminZakonczenia; }
+
+    public String getterminZakonczeniaTekst() { return terminZakonczeniaTekst; }
 
     public String getDodatkoweInformacjeODostawieIPlatnosci() {
         return dodatkoweInformacjeODostawieIPlatnosci;
@@ -175,5 +182,9 @@ public class AukcjaTO {
 
     public double getOplataFinalna() {
         return oplataFinalna;
+    }
+
+    public int getIdKategorii() {
+        return idKategorii;
     }
 }
