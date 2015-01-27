@@ -14,13 +14,10 @@
 
             <h3 style="display: inline; color: darkred">Kategoria: </h3>
 
-            <h3 style="display: inline; color: darkred">Sport</h3>
-
-            <h3 style="display: inline; color: darkred"> - </h3>
-
-            <h3 style="display: inline; color: darkred">Rowery</h3>
-
-            <h3 style="display: inline; color: darkred"> - </h3>
+            <c:forEach var="i" begin="0" end="${nadkategorie.size()-1}">
+                <h3 style="display: inline; color: darkred">${nadkategorie.get(nadkategorie.size()-1-i)}</h3>
+                <h3 style="display: inline; color: darkred"> - </h3>
+            </c:forEach>
 
             <h3 style="display: inline; color: darkred">${kategoriaTO.nazwa}</h3>
 
@@ -35,7 +32,7 @@
         <div>
             <div class="col-lg-6">
                 <div>
-                    <img src="/resources/images/rower.jpg" width="568">
+                    <img src="${zdjecie.attribute}" width="568">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -45,11 +42,12 @@
                 <br>
                 <br>
 
-                <h6 style="display: inline">2 osoby </h6>
-                <h6 style="display: inline">kupiły </h6>
-                <h6 style="display: inline; margin-right: 20px">2 sztuki</h6>
-                <h6 style="display: inline">1 osoba </h6>
-                <h6 style="display: inline">licytuje</h6>
+                <h6 style="display: inline">${kupTeraz.iloscOsob}</h6>
+                <h6 style="display: inline">${kupTeraz.odmianaOsoby}</h6>
+                <h6 style="display: inline">${kupTeraz.iloscSztuk}</h6>
+                <h6 style="display: inline; margin-right: 20px">${kupTeraz.odmianaSztuk}</h6>
+                <h6 style="display: inline">${licytacja.iloscOsob}</h6>
+                <h6 style="display: inline">${licytacja.odmianaOsoby}</h6>
 
                 <br>
                 <br>
@@ -85,18 +83,24 @@
                     </style>
                     <table class="tg">
                         <tr>
-                            <th class="tg-031e" style="width: 20%">Aktualna cena</th>
-                            <th class="tg-031e" style="width: 20%">Twoja oferta</th>
-                            <th class="tg-031e" style="width: 20%">Liczba sztuk</th>
-                            <th class="tg-031e" style="width: 20%"></th>
-                            <th class="tg-031e" style="width: 20%"></th>
+                            <th class="tg-031e" style="width: 23%">Aktualna cena</th>
+                            <th class="tg-031e" style="width: 18%">Twoja oferta</th>
+                            <th class="tg-031e" style="width: 5%"></th>
+                            <th class="tg-031e" style="width: 18%">Liczba sztuk</th>
+                            <th class="tg-031e" style="width: 18%"></th>
+                            <th class="tg-031e" style="width: 18%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e" style="width: 20%">${aukcjaTO.aktualnaCena}</td>
-                            <td class="tg-031e" style="width: 20%">1 zł</td>
-                            <td class="tg-031e" style="width: 20%">1</td>
-                            <td class="tg-031e" style="width: 20%">1 z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
-                            <td class="tg-031e" style="width: 20%">
+                            <td class="tg-031e" style="width: 23%">${aukcjaTO.aktualnaCena}</td>
+                            <td class="tg-031e" style="width: 18%">
+                                <input type="text" class="form-control" id="twojaOferta">
+                            </td>
+                            <td class="tg-031e" style="width: 5%">zł</td>
+                            <td class="tg-031e" style="width: 18%">
+                                <input type="text" class="form-control" id="liczbaSztukLicytacji">
+                            </td>
+                            <td class="tg-031e" style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
+                            <td class="tg-031e" style="width: 18%">
                                 <button style="width: 80px" type="submit" name="licytuj" value="Licytuj" class="btn btn-default btn-sm pull-right">
                                     Licytuj
                                 </button>
@@ -108,6 +112,7 @@
                             <th class="tg-031e"></th>
                             <th class="tg-031e"></th>
                             <th class="tg-031e"></th>
+                            <th class="tg-031e"></th>
                         </tr>
                         <tr>
                             <td class="tg-031e"></td>
@@ -115,20 +120,25 @@
                             <td class="tg-031e"></td>
                             <td class="tg-031e"></td>
                             <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
                         </tr>
                         <tr>
-                            <th class="tg-031e" style="width: 20%">Cena Kup Teraz</th>
-                            <th class="tg-031e" style="width: 20%"></th>
-                            <th class="tg-031e" style="width: 20%">Liczba sztuk</th>
-                            <th class="tg-031e" style="width: 20%"></th>
-                            <th class="tg-031e" style="width: 20%"></th>
+                            <th class="tg-031e" style="width: 23%">Cena Kup Teraz</th>
+                            <th class="tg-031e" style="width: 18%"></th>
+                            <th class="tg-031e" style="width: 5%"></th>
+                            <th class="tg-031e" style="width: 18%">Liczba sztuk</th>
+                            <th class="tg-031e" style="width: 18%"></th>
+                            <th class="tg-031e" style="width: 18%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e" style="width: 20%">${aukcjaTO.cenaKupTeraz}</td>
-                            <td class="tg-031e" style="width: 20%"></td>
-                            <td class="tg-031e" style="width: 20%">1</td>
-                            <td class="tg-031e" style="width: 20%">1 z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
-                            <td class="tg-031e" style="width: 20%">
+                            <td class="tg-031e" style="width: 23%">${aukcjaTO.cenaKupTeraz}</td>
+                            <td class="tg-031e" style="width: 18%"></td>
+                            <td class="tg-031e" style="width: 5%"></td>
+                            <td class="tg-031e" style="width: 18%">
+                                <input type="text" class="form-control" id="liczbaSztukKupTeraz">
+                            </td>
+                            <td class="tg-031e" style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
+                            <td class="tg-031e" style="width: 18%">
                                 <button style="width: 80px" type="submit" name="kupTeraz" value="KupTeraz" class="btn btn-default btn-sm pull-right">Kup
                                     Teraz
                                 </button>
@@ -168,12 +178,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th>k...a</th>
-                            <th>980 zł</th>
-                            <th>1</th>
-                            <th>07-02-2015 22:01:34</th>
-                        </tr>
+                        <c:forEach var="i" begin="0" end="${oferty.size()-1}">
+                            <tr>
+                                <th>${oferty.get(i).uzytkownik.login}</th>
+                                <th>${oferty.get(i).aukcja.cenaKupTeraz} zł</th>
+                                <th>${oferty.get(i).liczbaSztuk}</th>
+                                <th>${oferty.get(i).terminZlozenia}</th>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>

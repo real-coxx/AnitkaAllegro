@@ -3,6 +3,7 @@ package com.springapp.service;
 import com.springapp.builder.KategoriaBuilder;
 import com.springapp.dao.KategoriaDAO;
 import com.springapp.dto.KategoriaTO;
+import com.springapp.helpers.Constants;
 import com.springapp.model.KategoriaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,19 +40,16 @@ public class KategoriaServiceImpl implements KategoriaService {
         int idBiezacejNadkategorii = kategoriaEntity.getKategoria2ID();
         List<String> kategoriaTOList = new ArrayList<String>();
 
-        if (idBiezacejNadkategorii != 0)
+        if (idBiezacejNadkategorii != Constants.ID_GLOWNEJ_NADKATEGORII)
         {
-            return kategoriaTOList;
-        }
-        boolean czyMaNadkategorie = true;
-
-        while (czyMaNadkategorie) {
-            biezacaNadkategoria = kategoriaDAO.getKategoriaById(idKategorii);
-            kategoriaTOList.add(biezacaNadkategoria.getNazwa());
-            idBiezacejNadkategorii = biezacaNadkategoria.getKategoria2ID();
-            if (idBiezacejNadkategorii != 0)
-            {
-                break;
+            while (true) {
+                biezacaNadkategoria = kategoriaDAO.getKategoriaById(idBiezacejNadkategorii);
+                kategoriaTOList.add(biezacaNadkategoria.getNazwa());
+                idBiezacejNadkategorii = biezacaNadkategoria.getKategoria2ID();
+                if (idBiezacejNadkategorii == Constants.ID_GLOWNEJ_NADKATEGORII)
+                {
+                    break;
+                }
             }
         }
         return kategoriaTOList;

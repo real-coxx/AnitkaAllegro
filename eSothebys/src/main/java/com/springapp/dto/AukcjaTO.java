@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class AukcjaTO {
 
+    private final int id;
     private final int numer;
     private final String tytul;
     private final String opisPrzedmiotu;
@@ -42,9 +43,11 @@ public class AukcjaTO {
     private final double oplata;
     private final double oplataFinalna;
     private final int idKategorii;
+    private final int idZdjecia;
 
 
     public AukcjaTO(AukcjaBuilder builder) {
+        this.id = builder.getId();
         this.numer = builder.getNumer();
         this.tytul = builder.getTytul();
         this.opisPrzedmiotu = builder.getOpisPrzedmiotu();
@@ -74,6 +77,7 @@ public class AukcjaTO {
         this.oplata = builder.getOplata();
         this.oplataFinalna = builder.getOplataFinalna();
         this.idKategorii = builder.getIdKategorii();
+        this.idZdjecia = builder.getIdZdjecia();
     }
 
     public int getNumer() {
@@ -186,5 +190,9 @@ public class AukcjaTO {
 
     public int getIdKategorii() {
         return idKategorii;
+    }
+
+    public int getIdZdjecia() {
+        return idZdjecia;
     }
 }

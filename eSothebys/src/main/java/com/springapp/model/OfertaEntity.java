@@ -20,6 +20,10 @@ public class OfertaEntity {
     private Integer aukcja2Index;
     private Integer column;
     private Integer column2;
+    private Integer aukcja;
+    private Integer uzytkownik;
+    private Integer umowa;
+    private int typOferty;
 
     @Id
     @Column(name = "ID")
@@ -131,6 +135,46 @@ public class OfertaEntity {
         this.column2 = column2;
     }
 
+    @Basic
+    @Column(name = "Aukcja2ID")
+    public Integer getAukcja() {
+        return aukcja;
+    }
+
+    public void setAukcja(Integer aukcja) {
+        this.aukcja = aukcja;
+    }
+
+    @Basic
+    @Column(name = "Uzytkownik2ID")
+    public Integer getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(Integer uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
+
+    @Basic
+    @Column(name = "Umowa2ID")
+    public Integer getUmowa() {
+        return umowa;
+    }
+
+    public void setUmowa(Integer umowa) {
+        this.umowa = umowa;
+    }
+
+    @Basic
+    @Column(name = "typOferty")
+    public Integer getTypOferty() {
+        return typOferty;
+    }
+
+    public void setTypOferty(Integer typOferty) {
+        this.typOferty = typOferty;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,6 +198,9 @@ public class OfertaEntity {
             return false;
         if (terminZlozenia != null ? !terminZlozenia.equals(that.terminZlozenia) : that.terminZlozenia != null)
             return false;
+        if (terminZlozenia != null ? !terminZlozenia.equals(that.terminZlozenia) : that.terminZlozenia != null)
+            return false;
+
 
         return true;
     }

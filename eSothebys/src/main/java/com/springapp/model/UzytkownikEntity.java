@@ -26,6 +26,10 @@ public class UzytkownikEntity {
     private Date dataOstatniegoLogowania;
     private Integer punktacja;
     private String discriminator;
+    private Integer ustawieniaSprzedazy;
+    private Integer kontoFakturowe;
+    private Integer subskrypcja;
+    private Integer wniosekRejestracyjny;
 
     @Id
     @Column(name = "ID")
@@ -195,6 +199,46 @@ public class UzytkownikEntity {
 
     public void setDiscriminator(String discriminator) {
         this.discriminator = discriminator;
+    }
+
+    @Basic
+    @Column(name = "UstawieniaSprzedazy2ID")
+    public Integer getUstawieniaSprzedazy() {
+        return ustawieniaSprzedazy;
+    }
+
+    public void setUstawieniaSprzedazy(Integer ustawieniaSprzedazy) {
+        this.ustawieniaSprzedazy = ustawieniaSprzedazy;
+    }
+
+    @Basic
+    @Column(name = "KontoFakturowe2ID")
+    public Integer getKontoFakturowe() {
+        return kontoFakturowe;
+    }
+
+    public void setKontoFakturowe(Integer kontoFakturowe) {
+        this.kontoFakturowe = kontoFakturowe;
+    }
+
+    @Basic
+    @Column(name = "Subskrypcja2ID")
+    public Integer getSubskrypcja() {
+        return subskrypcja;
+    }
+
+    public void setSubskrypcja(Integer subskrypcja) {
+        this.subskrypcja = subskrypcja;
+    }
+
+    @Basic
+    @Column(name = "WniosekRejestracyjny2ID")
+    public Integer getWniosekRejestracyjny() {
+        return wniosekRejestracyjny;
+    }
+
+    public void setWniosekRejestracyjny(Integer wniosekRejestracyjny1) {
+        this.wniosekRejestracyjny = wniosekRejestracyjny;
     }
 
     @Override

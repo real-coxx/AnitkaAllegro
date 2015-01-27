@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ZdjecieEntity {
     private int id;
     private String opis;
-    private Integer attribute;
+    private String attribute;
 
     @Id
     @Column(name = "ID")
@@ -34,11 +34,11 @@ public class ZdjecieEntity {
 
     @Basic
     @Column(name = "Attribute")
-    public Integer getAttribute() {
+    public String getAttribute() {
         return attribute;
     }
 
-    public void setAttribute(Integer attribute) {
+    public void setAttribute(String attribute) {
         this.attribute = attribute;
     }
 
