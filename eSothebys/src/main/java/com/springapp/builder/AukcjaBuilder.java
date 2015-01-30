@@ -44,6 +44,7 @@ public class AukcjaBuilder {
     private double oplataFinalna;
     private int idKategorii;
     private int idZdjecia;
+    private String stan;
 
     public AukcjaBuilder setId(int id) {
         this.id = id;
@@ -200,6 +201,11 @@ public class AukcjaBuilder {
         return this;
     }
 
+    public AukcjaBuilder setStan(String stan) {
+        this.stan = stan;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -320,5 +326,9 @@ public class AukcjaBuilder {
 
     public int getIdZdjecia() {
         return idZdjecia;
+    }
+
+    public String getStan() {
+        return stan;
     }
 }

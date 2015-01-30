@@ -37,7 +37,7 @@ public class SkladanieOfertyController {
     private OfertaService ofertaService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView zlozOfertę(ModelMap model) {
+    public ModelAndView zlozOfertę(HttpServletRequest request, ModelMap model) {
         int idAukcji = 1;
 
         AukcjaTO aukcja = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
@@ -62,6 +62,9 @@ public class SkladanieOfertyController {
         modelAndView.addObject("kupTeraz", kupTeraz);
         modelAndView.addObject("licytacja", licytacja);
         modelAndView.addObject("zdjecie", zdjecie);
+        request.getSession().setAttribute("aukcja", aukcja);
+        request.getSession().setAttribute("liczbaDostepnychSztuk", aukcja.getLiczbaDostepnychPrzedmiotow());
+        request.getSession().setAttribute("stanAukcji", aukcja.getStan());
         return modelAndView;
     }
 }

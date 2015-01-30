@@ -135,7 +135,7 @@
                             <td class="tg-031e" style="width: 18%"></td>
                             <td class="tg-031e" style="width: 5%"></td>
                             <td class="tg-031e" style="width: 18%">
-                                <input type="text" class="form-control" id="liczbaSztukKupTeraz">
+                                <input type="text" name="liczbaSztuk" class="form-control" id="liczbaSztukKupTeraz" path="liczbaSztuk">
                             </td>
                             <td class="tg-031e" style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
                             <td class="tg-031e" style="width: 18%">

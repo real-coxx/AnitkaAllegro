@@ -110,6 +110,9 @@ public class AukcjaEntity implements Serializable {
     @Column(name = "Zdjecie2ID")
     private Integer zdjecie2ID;
 
+    @Column(name = "Stan")
+    private String stan;
+
     public int getId() {
         return id;
     }
@@ -223,6 +226,8 @@ public class AukcjaEntity implements Serializable {
     public Integer getKategoria2ID() { return kategoria2ID; }
 
     public Integer getZdjecie2ID() { return zdjecie2ID; }
+
+    public String getStan() { return stan; }
 
     @Override
     public boolean equals(Object o) {
