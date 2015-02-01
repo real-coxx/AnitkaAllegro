@@ -16,10 +16,10 @@
     <br>
 
     <div style="margin-left: 4%">
-      <h4 style="display: inline">ROWER CROSS MEDIA CROSSWAY 100-V SHIMANO 52cm</h4>
-      <h6 style="display: inline; margin-left: 20px">1 sztuka</h6>
+      <h4 style="display: inline">${aukcja.tytul}</h4>
+      <h6 style="display: inline; margin-left: 20px">${liczbaSztuk}</h6>
       <h4 class="pull-right" style="display: inline; margin-right: 20px"> zł</h4>
-      <h4 class="pull-right" style="display: inline">539,00</h4>
+      <h4 class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
     </div>
 
     <br>
@@ -31,8 +31,11 @@
       <div class="dropdown" style="display: inline; margin-left: 110px">
         <select>
           <option value="" disabled="disabled" selected="selected"></option>
-          <option value="1">Oneaaaaaaaaaaaaaa</option>
-          <option value="2">Two</option>
+          <c:forEach var="i" begin="0" end="${menuSposobuDostawy.size()-1}">
+            <tr>
+              <option value="i">${menuSposobuDostawy.get(i)}</option>
+            </tr>
+          </c:forEach>
         </select>
       </div>
     </div>
@@ -57,8 +60,9 @@
     <div class="dropdown" style="margin-left: 295px">
       <select>
         <option value="" disabled="disabled" selected="selected"></option>
-        <option value="1">Oneaaaaaaaaaaaaaa</option>
-        <option value="2">Two</option>
+        <option value="1">Przelew</option>
+        <option value="2">Karta płatnicza</option>
+        <option value="3">Konto PayU</option>
       </select>
     </div>
   </div>

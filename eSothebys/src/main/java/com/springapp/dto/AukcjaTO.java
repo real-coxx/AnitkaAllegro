@@ -45,6 +45,7 @@ public class AukcjaTO {
     private final int idKategorii;
     private final int idZdjecia;
     private final String stan;
+    private final int idCennikDostaw;
 
 
     public AukcjaTO(AukcjaBuilder builder) {
@@ -80,6 +81,7 @@ public class AukcjaTO {
         this.idKategorii = builder.getIdKategorii();
         this.idZdjecia = builder.getIdZdjecia();
         this.stan = builder.getStan();
+        this.idCennikDostaw = builder.getIdCennikDostaw();
     }
 
     public int getNumer() {
@@ -202,4 +204,7 @@ public class AukcjaTO {
         return stan;
     }
 
+    public int getIdCennikDostaw() {
+        return idCennikDostaw;
+    }
 }

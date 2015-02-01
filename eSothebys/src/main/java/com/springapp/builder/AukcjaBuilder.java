@@ -45,6 +45,7 @@ public class AukcjaBuilder {
     private int idKategorii;
     private int idZdjecia;
     private String stan;
+    private int idCennikDostaw;
 
     public AukcjaBuilder setId(int id) {
         this.id = id;
@@ -206,6 +207,11 @@ public class AukcjaBuilder {
         return this;
     }
 
+    public AukcjaBuilder setIdCennikDostaw(int idCennikDostaw) {
+        this.idCennikDostaw = idCennikDostaw;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -330,5 +336,9 @@ public class AukcjaBuilder {
 
     public String getStan() {
         return stan;
+    }
+
+    public int getIdCennikDostaw() {
+        return idCennikDostaw;
     }
 }

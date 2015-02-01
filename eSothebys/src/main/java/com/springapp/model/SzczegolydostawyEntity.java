@@ -12,6 +12,8 @@ public class SzczegolydostawyEntity {
     private Integer kosztPierwszejSztuki;
     private Integer kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
+    private Integer sposobDostawyID;
+    private Integer cennikDostawID;
 
     @Id
     @Column(name = "ID")
@@ -51,6 +53,26 @@ public class SzczegolydostawyEntity {
 
     public void setLiczbaWPaczce(Integer liczbaWPaczce) {
         this.liczbaWPaczce = liczbaWPaczce;
+    }
+
+    @Basic
+    @Column(name = "SposobDostawyID")
+    public Integer getSposobDostawyID() {
+        return sposobDostawyID;
+    }
+
+    public void setSposobDostawyID(Integer sposobDostawyID) {
+        this.sposobDostawyID = sposobDostawyID;
+    }
+
+    @Basic
+    @Column(name = "CennikDostawID")
+    public Integer getCennikDostawID() {
+        return cennikDostawID;
+    }
+
+    public void setCennikDostawID(Integer cennikDostawID) {
+        this.cennikDostawID = cennikDostawID;
     }
 
     @Override

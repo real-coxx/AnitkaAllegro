@@ -39,6 +39,7 @@ public class AukcjaServiceImpl implements AukcjaService {
                 .setCenaMinimalna(aukcjaEntity.getCenaMinimalna())
                 .setIdZdjecia(aukcjaEntity.getZdjecie2ID())
                 .setStan(aukcjaEntity.getStan())
+                .setIdCennikDostaw(aukcjaEntity.getCennikDostaw2ID())
                 .setIdKategorii(aukcjaEntity.getKategoria2ID());
 
         AukcjaTO aukcjaTO = new AukcjaTO(builder);
