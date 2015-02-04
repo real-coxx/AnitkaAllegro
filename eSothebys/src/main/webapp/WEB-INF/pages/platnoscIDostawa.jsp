@@ -5,6 +5,17 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <t:layout>
+
+  <script>
+    $( document ).ready(function() {
+      $('#przesylkaMenu').on('change', function(){
+        var przesylkaMenuKwota = parseInt($(this).val());
+        $('#razem').text(przesylkaMenuKwota+ parseInt($('#cenaZaSztuki').text()));
+      });
+    });
+
+  </script>
+
   <div class="page-header">
     <h1 style="color: #f5f5f5">Płatność i dostawa</h1>
   </div>
@@ -19,7 +30,7 @@
       <h4 style="display: inline">${aukcja.tytul}</h4>
       <h6 style="display: inline; margin-left: 20px">${liczbaSztuk}</h6>
       <h4 class="pull-right" style="display: inline; margin-right: 20px"> zł</h4>
-      <h4 class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
+      <h4 id="cenaZaSztuki" class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
     </div>
 
     <br>
@@ -29,11 +40,11 @@
       <h4 style="display: inline">Sposób dostawy:</h4>
 
       <div class="dropdown" style="display: inline; margin-left: 110px">
-        <select>
+        <select id="przesylkaMenu" name="menu">
           <option value="" disabled="disabled" selected="selected"></option>
-          <c:forEach var="i" begin="0" end="${menuSposobuDostawy.size()-1}">
+          <c:forEach items="${menuSposobuDostawy}" var="entry">
             <tr>
-              <option value="i">${menuSposobuDostawy.get(i)}</option>
+              <option value=${entry.value}>${entry.key}</option>
             </tr>
           </c:forEach>
         </select>
@@ -79,10 +90,10 @@
     <br>
 
     <div style="margin-left: 4%">
-      <h4>Jan Kowalski</h4>
-      <h4>ul.Zielona 56/4</h4>
-      <h4>22-100 Warszawa</h4>
-      <h4>Polska</h4>
+      <h4>${uzytkownik.imie}  ${uzytkownik.nazwisko}</h4>
+      <h4>${adres.ulicaZNumerem}</h4>
+      <h4>${adres.kodPocztow}  ${adres.miejscowosc}</h4>
+      <h4>${adres.krajEntity.nazwa}</h4>
     </div>
 
     <br>
@@ -92,21 +103,23 @@
     <br>
     <br>
 
-    <h4 style="margin-left: 4%">jan.kowalski@gmail.com</h4>
+    <h4 style="margin-left: 4%">${uzytkownik.email}</h4>
 
     <br>
 
     <div style="margin-left: 4%">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">Telefon</span>
-        <input type="tel" class="form-control" placeholder="numer telefonu" aria-describedby="basic-addon1" style="width: 200px">
+        <input type="tel" class="form-control" placeholder="numer telefonu" aria-describedby="basic-addon1" style="width: 200px; height: 30px">
       </div>
     </div>
 
   </div>
 
   <div style="margin-right: 20%">
-    <h4 class="pull-right" style="display: inline">razem: <big>600 zł</big></h4>
+    <h4 class="pull-right" style="display: inline; margin-left: 10px">zł</h4>
+    <h4 id="razem" class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
+    <h4 class="pull-right" style="display: inline; margin-right: 10px">razem: </h4>
   </div>
 
   <br>
@@ -116,4 +129,5 @@
   <div style="margin-right: 20%">
     <button style="width: 115px" type="button" class="btn btn-default btn-lg pull-right">Zapłać</button>
   </div>
+
 </t:layout>

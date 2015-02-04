@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Table(name = "szczegolydostawy", schema = "", catalog = "esothebys_db")
 public class SzczegolydostawyEntity {
     private int id;
-    private Integer kosztPierwszejSztuki;
-    private Integer kosztKolejnejSztuki;
+    private Double kosztPierwszejSztuki;
+    private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
     private Integer sposobDostawyID;
     private Integer cennikDostawID;
@@ -27,21 +27,21 @@ public class SzczegolydostawyEntity {
 
     @Basic
     @Column(name = "KosztPierwszejSztuki")
-    public Integer getKosztPierwszejSztuki() {
+    public Double getKosztPierwszejSztuki() {
         return kosztPierwszejSztuki;
     }
 
-    public void setKosztPierwszejSztuki(Integer kosztPierwszejSztuki) {
+    public void setKosztPierwszejSztuki(Double kosztPierwszejSztuki) {
         this.kosztPierwszejSztuki = kosztPierwszejSztuki;
     }
 
     @Basic
     @Column(name = "KosztKolejnejSztuki")
-    public Integer getKosztKolejnejSztuki() {
+    public Double getKosztKolejnejSztuki() {
         return kosztKolejnejSztuki;
     }
 
-    public void setKosztKolejnejSztuki(Integer kosztKolejnejSztuki) {
+    public void setKosztKolejnejSztuki(Double kosztKolejnejSztuki) {
         this.kosztKolejnejSztuki = kosztKolejnejSztuki;
     }
 

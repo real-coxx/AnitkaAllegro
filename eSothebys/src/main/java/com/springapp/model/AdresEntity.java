@@ -12,6 +12,8 @@ public class AdresEntity {
     private String ulicaZNumerem;
     private String kodPocztow;
     private String miejscowosc;
+    private Integer uzytkownik2ID;
+    private Integer kraj2ID;
 
     @Id
     @Column(name = "ID")
@@ -51,6 +53,26 @@ public class AdresEntity {
 
     public void setMiejscowosc(String miejscowosc) {
         this.miejscowosc = miejscowosc;
+    }
+
+    @Basic
+    @Column(name = "Uzytkownik2ID")
+    public Integer getUzytkownik2ID() {
+        return uzytkownik2ID;
+    }
+
+    public void setUzytkownik2ID(Integer uzytkownik2ID) {
+        this.uzytkownik2ID = uzytkownik2ID;
+    }
+
+    @Basic
+    @Column(name = "kraj2ID")
+    public Integer getKraj2ID() {
+        return kraj2ID;
+    }
+
+    public void setKraj2ID(Integer kraj2ID) {
+        this.kraj2ID = kraj2ID;
     }
 
     @Override

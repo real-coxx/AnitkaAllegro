@@ -39,6 +39,7 @@ public class SkladanieOfertyController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView zlozOfertę(HttpServletRequest request, ModelMap model) {
         int idAukcji = 1;
+        int idZalogowanegoUzytkownika = 4;
 
         AukcjaTO aukcja = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
 
@@ -65,6 +66,7 @@ public class SkladanieOfertyController {
         request.getSession().setAttribute("aukcja", aukcja);
         request.getSession().setAttribute("liczbaDostepnychSztuk", aukcja.getLiczbaDostepnychPrzedmiotow());
         request.getSession().setAttribute("stanAukcji", aukcja.getStan());
+        request.getSession().setAttribute("idZalogowanegoUzytkownika", idZalogowanegoUzytkownika);
         return modelAndView;
     }
 }

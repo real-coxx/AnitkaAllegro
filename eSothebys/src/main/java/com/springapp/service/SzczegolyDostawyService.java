@@ -2,6 +2,7 @@ package com.springapp.service;
 
 import com.springapp.dto.SzczegolyDostawyTO;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -10,5 +11,5 @@ import java.util.List;
 public interface SzczegolyDostawyService {
 
     public List<SzczegolyDostawyTO> getSzczegolyDostawyByCennikDostaw(int idCennikDostaw);
-    public List<String> getMenuWyboruSposobuDostawy (int idCennikDostaw, int iloscSztuk);
+    public HashMap<String, Double> getMenuWyboruSposobuDostawy (int idCennikDostaw, int iloscSztuk);
 }

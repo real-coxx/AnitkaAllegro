@@ -61,6 +61,7 @@
     <bean id="ZdjecieDAO" class="com.springapp.dao.ZdjecieDAOImpl" />
     <bean id="SposobDostawyDAO" class="com.springapp.dao.SposobDostawyDAOImpl" />
     <bean id="SzczegolyDostawyDAO" class="com.springapp.dao.SzczegolyDostawyDAOImpl" />
+    <bean id="AdresDAO" class="com.springapp.dao.AdresDAOImpl" />
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
     <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />
@@ -69,6 +70,8 @@
     <bean id="ZdjecieService" class="com.springapp.service.ZdjecieServiceImpl" />
     <bean id="SposobDostawyService" class="com.springapp.service.SposobDostawyServiceImpl" />
     <bean id="SzczegolyDostawyService" class="com.springapp.service.SzczegolyDostawyServiceImpl" />
+    <bean id="UzytkownikService" class="com.springapp.service.UzytkownikServiceImpl" />
+    <bean id="AdresService" class="com.springapp.service.AdresServiceImpl" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

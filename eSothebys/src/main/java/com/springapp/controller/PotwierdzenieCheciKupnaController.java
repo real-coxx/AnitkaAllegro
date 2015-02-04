@@ -27,6 +27,7 @@ public class PotwierdzenieCheciKupnaController {
     @RequestMapping(params = "kupTeraz", method = RequestMethod.POST)
     public ModelAndView potwierdzKupTeraz(HttpServletRequest request, HttpServletResponse response){
         ModelAndView modelAndView = new ModelAndView();
+        int idZalogowanegoUzytkownika = (Integer) request.getSession().getAttribute("idZalogowanegoUzytkownika");
         AukcjaTO aukcjaTO = (AukcjaTO) request.getSession().getAttribute("aukcja");
         int liczbaDOstepnychSztuk = aukcjaTO.getLiczbaDostepnychPrzedmiotow();
         String stanAukcji = aukcjaTO.getStan();
@@ -62,6 +63,7 @@ public class PotwierdzenieCheciKupnaController {
             modelAndView.addObject("aukcja", aukcjaTO);
             request.getSession().setAttribute("liczbaSztuk", liczbaSztuk);
             request.getSession().setAttribute("aukcja", aukcjaTO);
+            request.getSession().setAttribute("idZalogowanegoUzytkownika", idZalogowanegoUzytkownika);
         }
 
         return modelAndView;

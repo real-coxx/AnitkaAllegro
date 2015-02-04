@@ -8,8 +8,8 @@ import com.springapp.dto.SposobDostawyTO;
 public class SzczegolyDostawyBuilder {
 
     private int id;
-    private Integer kosztPierwszejSztuki;
-    private Integer kosztKolejnejSztuki;
+    private Double kosztPierwszejSztuki;
+    private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
     private Integer sposobDostawyID;
     private Integer cennikDostawID;
@@ -20,12 +20,12 @@ public class SzczegolyDostawyBuilder {
         return this;
     }
 
-    public SzczegolyDostawyBuilder setKosztPierwszejSztuki(Integer kosztPierwszejSztuki) {
+    public SzczegolyDostawyBuilder setKosztPierwszejSztuki(Double kosztPierwszejSztuki) {
         this.kosztPierwszejSztuki = kosztPierwszejSztuki;
         return this;
     }
 
-    public SzczegolyDostawyBuilder setKosztKolejnejSztuki(Integer kosztKolejnejSztuki) {
+    public SzczegolyDostawyBuilder setKosztKolejnejSztuki(Double kosztKolejnejSztuki) {
         this.kosztKolejnejSztuki = kosztKolejnejSztuki;
         return this;
     }
@@ -54,11 +54,11 @@ public class SzczegolyDostawyBuilder {
         return id;
     }
 
-    public Integer getKosztPierwszejSztuki() {
+    public Double getKosztPierwszejSztuki() {
         return kosztPierwszejSztuki;
     }
 
-    public Integer getKosztKolejnejSztuki() {
+    public Double getKosztKolejnejSztuki() {
         return kosztKolejnejSztuki;
     }
 

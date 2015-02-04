@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -50,29 +51,43 @@ public class SzczegolyDostawyServiceImpl implements SzczegolyDostawyService {
     }
 
     @Override
-    public List<String> getMenuWyboruSposobuDostawy(int idCennikDostaw, int iloscSztuk) {
+    public HashMap<String, Double> getMenuWyboruSposobuDostawy(int idCennikDostaw, int iloscSztuk) {
 
-        List<String> menu = new ArrayList<String>();
+        HashMap<String, Double> menu = new HashMap<String, Double>();
         List<SzczegolyDostawyTO> szczegolyDostawyTOs = getSzczegolyDostawyByCennikDostaw(idCennikDostaw);
 
         for (SzczegolyDostawyTO szczeolyDostawyTO : szczegolyDostawyTOs) {
             String rodzajPlatnosci = RodzajPlatnosci.getPelnaNazwa(szczeolyDostawyTO.getSposobDostawyTO().getRodzajPlatnosci());
             String sposobDostawy = szczeolyDostawyTO.getSposobDostawyTO().getNazwa();
-            String kosztWysylki = getKosztWysylki(iloscSztuk, szczeolyDostawyTO);
-            String wpis = rodzajPlatnosci + ": " + sposobDostawy + " " + kosztWysylki + " zł";
-            menu.add(wpis);
+            double kosztWysylki = getKosztWysylki(iloscSztuk, szczeolyDostawyTO);
+            String kosztWysylkiString = Double.toString(kosztWysylki);
+            String wpis = rodzajPlatnosci + ": " + sposobDostawy + " " + kosztWysylkiString + " zł";
+
+            menu.put(wpis, kosztWysylki);
         }
         return menu;
     }
 
-    private String getKosztWysylki(int iloscSztuk, SzczegolyDostawyTO szczegolyDostawyTO) {
+    private double getKosztWysylki(int iloscSztuk, SzczegolyDostawyTO szczegolyDostawyTO) {
+        double kosztWysylki = 0;
         if (iloscSztuk == 1) {
-            return Double.toString(szczegolyDostawyTO.getKosztPierwszejSztuki());
+            return szczegolyDostawyTO.getKosztPierwszejSztuki();
         }
-        double kosztWysylki = szczegolyDostawyTO.getKosztPierwszejSztuki();
-        for (int i=0; i<iloscSztuk-1; i++) {
-            kosztWysylki += szczegolyDostawyTO.getKosztKolejnejSztuki();
+        int liczbaPaczek = (int) iloscSztuk/szczegolyDostawyTO.getLiczbaWPaczce();
+        for (int i=0; i<liczbaPaczek; i++){
+            kosztWysylki += szczegolyDostawyTO.getKosztPierwszejSztuki();
+            for (int j=0; j<iloscSztuk-1; j++) {
+                kosztWysylki += szczegolyDostawyTO.getKosztKolejnejSztuki();
+            }
         }
-        return Double.toString(kosztWysylki);
+        int pozostaleSztuki = iloscSztuk%szczegolyDostawyTO.getLiczbaWPaczce();
+        if (pozostaleSztuki != 0) {
+            kosztWysylki += szczegolyDostawyTO.getKosztPierwszejSztuki();
+            for (int j=0; j<pozostaleSztuki-1; j++) {
+                kosztWysylki += szczegolyDostawyTO.getKosztKolejnejSztuki();
+            }
+        }
+
+        return kosztWysylki;
     }
 }

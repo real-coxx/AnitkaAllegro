@@ -8,8 +8,8 @@ import com.springapp.builder.SzczegolyDostawyBuilder;
 public class SzczegolyDostawyTO {
 
     private int id;
-    private Integer kosztPierwszejSztuki;
-    private Integer kosztKolejnejSztuki;
+    private Double kosztPierwszejSztuki;
+    private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
     private Integer sposobDostawyID;
     private Integer cennikDostawID;
@@ -29,11 +29,11 @@ public class SzczegolyDostawyTO {
         return id;
     }
 
-    public Integer getKosztPierwszejSztuki() {
+    public Double getKosztPierwszejSztuki() {
         return kosztPierwszejSztuki;
     }
 
-    public Integer getKosztKolejnejSztuki() {
+    public Double getKosztKolejnejSztuki() {
         return kosztKolejnejSztuki;
     }
 
