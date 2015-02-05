@@ -66,28 +66,22 @@ public class OfertaServiceImpl implements OfertaService {
     public List<OfertaTO> findOfertyByAukcjaDoOfertKupna(int idAukcji) {
         List<OfertaEntity> ofertaEntities = ofertaDAO.findOfertyByAukcja(idAukcji);
         List<OfertaTO> oferty = new ArrayList<OfertaTO>();
+        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(idAukcji);
 
         for (OfertaEntity ofertaEntity : ofertaEntities) {
 
-            AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja().getId());
-            UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getKupujacy().getId());
-
-            AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
-            aukcjaBuilder.setId(aukcjaEntity.getId())
-                    .setCenaKupTeraz(aukcjaEntity.getCenaKupTeraz());
-            AukcjaTO aukcjaTO = new AukcjaTO(aukcjaBuilder);
-
-            String logigKupujacego = uzytkownikEntity.getLogin();
-            String zamaskowanyUzytkownik = logigKupujacego.charAt(0)+"..."+logigKupujacego.charAt(logigKupujacego.length()-1);
-            uzytkownikEntity.setLogin(zamaskowanyUzytkownik);
+            UzytkownikEntity kupujacyEntity = ofertaEntity.getKupujacy();
+            String loginKupujacego = kupujacyEntity.getLogin();
+            String zamaskowanyUzytkownik = loginKupujacego.charAt(0)+"..."+loginKupujacego.charAt(loginKupujacego.length()-1);
+            kupujacyEntity.setLogin(zamaskowanyUzytkownik);
 
             OfertaBuilder builder = new OfertaBuilder();
             builder.setId(ofertaEntity.getId())
                     .setLiczbaSztuk(ofertaEntity.getLiczbaSztuk())
                     .setTerminZlozenia(ofertaEntity.getTerminZlozenia())
                     .setTypOferty(ofertaEntity.getTypOferty())
-                    .setAukcja(aukcjaEntity);
-                    //.setUzytkownik(uzytkownikEntity);
+                    .setAukcja(aukcjaEntity)
+                    .setKupujacy(kupujacyEntity);
 
             OfertaTO ofertaTO = new OfertaTO(builder);
             oferty.add(ofertaTO);

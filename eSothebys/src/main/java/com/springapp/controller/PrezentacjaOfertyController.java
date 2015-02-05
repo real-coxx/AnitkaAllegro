@@ -5,6 +5,8 @@ import com.springapp.dto.KategoriaTO;
 import com.springapp.dto.OfertaTO;
 import com.springapp.dto.ZdjecieTO;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
+import com.springapp.model.KategoriaEntity;
+import com.springapp.model.ZdjecieEntity;
 import com.springapp.service.AukcjaService;
 import com.springapp.service.KategoriaService;
 import com.springapp.service.OfertaService;
@@ -22,7 +24,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
-public class SkladanieOfertyController {
+public class PrezentacjaOfertyController {
 
     @Autowired
     private ZdjecieService zdjecieService;
@@ -41,14 +43,12 @@ public class SkladanieOfertyController {
         int idAukcji = 1;
         int idZalogowanegoUzytkownika = 4;
 
-        AukcjaTO aukcja = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
+        AukcjaTO aukcjaTO = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
 
-        ZdjecieTO zdjecie = zdjecieService.getZdjecieById(aukcja.getMiniatura().getId());
+//        ZdjecieEntity miniaturaEntity = aukcjaTO.getMiniatura();
 
-        int idKategorii = aukcja.getKategoria().getId();
-        KategoriaTO kategoria = kategoriaService.getKategoriaById(idKategorii);
-
-        List<String> nadkategorie = kategoriaService.getNazwyNadkategorii(idKategorii);
+//        KategoriaEntity kategoriaEntity = aukcjaTO.getKategoria();
+        List<String> nadkategorie = kategoriaService.getNazwyNadkategorii(aukcjaTO.getKategoria().getId());
 
         List<OfertaTO> oferty = ofertaService.findOfertyByAukcjaDoOfertKupna(idAukcji);
 
@@ -56,16 +56,16 @@ public class SkladanieOfertyController {
         LicytacjaWOsobachISztukach licytacja = ofertaService.getLicytacja(idAukcji);
 
         ModelAndView modelAndView = new ModelAndView("skladanieOferty");
-        modelAndView.addObject("aukcjaTO", aukcja);
-        modelAndView.addObject("kategoriaTO", kategoria);
+        modelAndView.addObject("aukcjaTO", aukcjaTO);
+//        modelAndView.addObject("kategoriaTO", aukcjaTO.getKategoria());
         modelAndView.addObject("nadkategorie", nadkategorie);
         modelAndView.addObject("oferty", oferty);
         modelAndView.addObject("kupTeraz", kupTeraz);
         modelAndView.addObject("licytacja", licytacja);
-        modelAndView.addObject("zdjecie", zdjecie);
-        request.getSession().setAttribute("aukcja", aukcja);
-        request.getSession().setAttribute("liczbaDostepnychSztuk", aukcja.getLiczbaDostepnychPrzedmiotow());
-        request.getSession().setAttribute("stanAukcji", aukcja.getStan());
+//        modelAndView.addObject("zdjecie", aukcjaTO.getMiniatura());
+        request.getSession().setAttribute("aukcja", aukcjaTO);
+//        request.getSession().setAttribute("liczbaDostepnychSztuk", aukcja.getLiczbaDostepnychPrzedmiotow());
+//        request.getSession().setAttribute("stanAukcji", aukcja.getStan());
         request.getSession().setAttribute("idZalogowanegoUzytkownika", idZalogowanegoUzytkownika);
         return modelAndView;
     }

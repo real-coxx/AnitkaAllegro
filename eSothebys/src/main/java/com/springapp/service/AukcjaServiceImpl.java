@@ -22,7 +22,7 @@ public class AukcjaServiceImpl implements AukcjaService {
     public AukcjaTO getAukcjaByIdForSkladanieOferty(int idAukcji) {
         AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(idAukcji);
 
-        String terminZakonczenia = new SimpleDateFormat("MM/dd/yyyy ,  HH:mm:ss").format(aukcjaEntity.getTerminZakonczenia());
+        String terminZakonczenia = new SimpleDateFormat("dd/MM/yyyy ,  HH:mm:ss").format(aukcjaEntity.getTerminZakonczenia());
 
         AukcjaBuilder builder = new AukcjaBuilder();
         builder.setTytul(aukcjaEntity.getTytul())

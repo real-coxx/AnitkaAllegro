@@ -19,7 +19,7 @@
                 <h3 style="display: inline; color: darkred"> - </h3>
             </c:forEach>
 
-            <h3 style="display: inline; color: darkred">${kategoriaTO.nazwa}</h3>
+            <h3 style="display: inline; color: darkred">${aukcjaTO.kategoria.nazwa}</h3>
 
             <h3 style="display: inline">
                 <button style="width: 190px" type="button" class="btn btn-default btn-sm pull-right">
@@ -32,7 +32,7 @@
         <div>
             <div class="col-lg-6">
                 <div>
-                    <img src="${zdjecie.attribute}" width="568">
+                    <img src="${aukcjaTO.miniatura.attribute}" width="568">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -180,7 +180,7 @@
                         <tbody>
                         <c:forEach var="i" begin="0" end="${oferty.size()-1}">
                             <tr>
-                                <th>${oferty.get(i).uzytkownik.login}</th>
+                                <th>${oferty.get(i).kupujacy.login}</th>
                                 <th>${oferty.get(i).aukcja.cenaKupTeraz} zł</th>
                                 <th>${oferty.get(i).liczbaSztuk}</th>
                                 <th>${oferty.get(i).terminZlozenia}</th>
