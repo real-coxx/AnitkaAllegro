@@ -91,10 +91,10 @@
             <br>
 
             <div style="margin-left: 4%">
-                <h4>${uzytkownik.imie} ${uzytkownik.nazwisko}</h4>
-                <h4>${adres.ulicaZNumerem}</h4>
-                <h4>${adres.kodPocztow} ${adres.miejscowosc}</h4>
-                <h4>${adres.krajEntity.nazwa}</h4>
+                <h4>${kupujacy.imie} ${kupujacy.nazwisko}</h4>
+                <h4>${kupujacy.adres.ulicaZNumerem}</h4>
+                <h4>${kupujacy.adres.kodPocztow} ${kupujacy.adres.miejscowosc}</h4>
+                <h4>${kupujacy.adres.kraj.nazwa}</h4>
             </div>
 
             <br>
@@ -104,7 +104,7 @@
             <br>
             <br>
 
-            <h4 style="margin-left: 4%">${uzytkownik.email}</h4>
+            <h4 style="margin-left: 4%">${kupujacy.email}</h4>
 
             <br>
 

@@ -26,6 +26,7 @@ public class AukcjaServiceImpl implements AukcjaService {
 
         AukcjaBuilder builder = new AukcjaBuilder();
         builder.setTytul(aukcjaEntity.getTytul())
+                .setId(aukcjaEntity.getId())
                 .setNumer(aukcjaEntity.getNumer())
                 .setTerminZakonczenia(aukcjaEntity.getTerminZakonczenia())
                 .setTerminZakonczeniaTekst(terminZakonczenia)
@@ -40,7 +41,8 @@ public class AukcjaServiceImpl implements AukcjaService {
                 .setMiniatura(aukcjaEntity.getMiniatura())
                 .setStan(aukcjaEntity.getStan())
                 .setCennikDostaw(aukcjaEntity.getCennikDostaw())
-                .setKategoria(aukcjaEntity.getKategoria());
+                .setKategoria(aukcjaEntity.getKategoria())
+                .setSprzedawca(aukcjaEntity.getSprzedawca());
 
         AukcjaTO aukcjaTO = new AukcjaTO(builder);
         return aukcjaTO;

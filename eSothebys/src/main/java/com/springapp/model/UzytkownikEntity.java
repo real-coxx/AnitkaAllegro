@@ -228,7 +228,7 @@ public class UzytkownikEntity {
         return wniosekRejestracyjny;
     }
 
-    public void setWniosekRejestracyjny(WniosekrejestracyjnyEntity wniosekRejestracyjny1) {
+    public void setWniosekRejestracyjny(WniosekrejestracyjnyEntity wniosekRejestracyjny) {
         this.wniosekRejestracyjny = wniosekRejestracyjny;
     }
 

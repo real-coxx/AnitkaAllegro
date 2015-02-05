@@ -18,6 +18,7 @@ public class UmowaEntity {
     private DanedowysylkiEntity daneDoWysylki;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     public int getId() {
         return id;

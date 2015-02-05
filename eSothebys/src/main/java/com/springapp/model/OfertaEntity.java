@@ -2,6 +2,7 @@ package com.springapp.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Alicja on 2015-01-05.
@@ -11,7 +12,7 @@ import java.sql.Date;
 public class OfertaEntity {
     private int id;
     private Integer liczbaSztuk;
-    private Date terminZlozenia;
+    private Timestamp terminZlozenia;
     private Date terminOdrzucenia;
     private String powodOdrzucenia;
     private Double oferta;
@@ -22,6 +23,7 @@ public class OfertaEntity {
     private int typOferty;
 
     @Id
+    @GeneratedValue
     @Column(name = "ID")
     public int getId() {
         return id;
@@ -43,11 +45,11 @@ public class OfertaEntity {
 
     @Basic
     @Column(name = "TerminZlozenia")
-    public Date getTerminZlozenia() {
+    public Timestamp getTerminZlozenia() {
         return terminZlozenia;
     }
 
-    public void setTerminZlozenia(Date terminZlozenia) {
+    public void setTerminZlozenia(Timestamp terminZlozenia) {
         this.terminZlozenia = terminZlozenia;
     }
 

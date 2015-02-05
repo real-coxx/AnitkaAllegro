@@ -5,6 +5,7 @@ import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.SzczegolyDostawyTO;
 import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
+import com.springapp.model.AdresEntity;
 import com.springapp.model.KrajEntity;
 import com.springapp.service.AdresService;
 import com.springapp.service.KrajService;
@@ -41,10 +42,9 @@ public class PlatnoscIDostawaController {
 
         AukcjaTO aukcjaTO = (AukcjaTO) request.getSession().getAttribute("aukcja");
         int liczbaSztuk = (Integer) request.getSession().getAttribute("liczbaSztuk");
-
         int idZalogowanegoUzytkownika = (Integer) request.getSession().getAttribute("idZalogowanegoUzytkownika");
-        UzytkownikTO uzytkownikTO = uzytkownikService.getUzytkownikById(idZalogowanegoUzytkownika);
-        AdresTO adresZalogowanego = adresService.getAdresByIdUzytkownika(idZalogowanegoUzytkownika);
+
+        UzytkownikTO kupujacyTO = uzytkownikService.getUzytkownikById(idZalogowanegoUzytkownika);
 
         LicytacjaWOsobachISztukach licytacjaWOsobachISztukach = new LicytacjaWOsobachISztukach();
         licytacjaWOsobachISztukach.setIloscSztuk(liczbaSztuk);
@@ -58,15 +58,14 @@ public class PlatnoscIDostawaController {
 
         request.getSession().setAttribute("aukcja", aukcjaTO);
         request.getSession().setAttribute("liczbaSztuk", liczbaSztuk);
-        request.getSession().setAttribute("kupujacy", uzytkownikTO);
+        request.getSession().setAttribute("kupujacy", kupujacyTO);
 
         ModelAndView modelAndView = new ModelAndView("platnoscIDostawa");
         modelAndView.addObject("liczbaSztuk", odmiana);
         modelAndView.addObject("aukcja", aukcjaTO);
         modelAndView.addObject("cenaZaSztuki", cenaZaSztuki);
         modelAndView.addObject("menuSposobuDostawy", menuSposobuDostawy);
-        modelAndView.addObject("uzytkownik", uzytkownikTO);
-        modelAndView.addObject("adres", adresZalogowanego);
+        modelAndView.addObject("kupujacy", kupujacyTO);
 
         return modelAndView;
     }

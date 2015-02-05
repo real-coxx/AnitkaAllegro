@@ -3,22 +3,20 @@ package com.springapp.service;
 import com.springapp.builder.AukcjaBuilder;
 import com.springapp.builder.OfertaBuilder;
 import com.springapp.builder.UzytkownikBuilder;
-import com.springapp.dao.AukcjaDAO;
-import com.springapp.dao.OfertaDAO;
-import com.springapp.dao.UzytkownikDAO;
+import com.springapp.dao.*;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.OfertaTO;
 import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.Constants;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
-import com.springapp.model.AukcjaEntity;
-import com.springapp.model.OfertaEntity;
-import com.springapp.model.UzytkownikEntity;
+import com.springapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +35,12 @@ public class OfertaServiceImpl implements OfertaService {
 
     @Autowired
     UzytkownikDAO uzytkownikDAO;
+
+    @Autowired
+    DaneDoWysylkiDAO daneDoWysylkiDAO;
+
+    @Autowired
+    UmowaDAO umowaDAO;
 
     @Override
     public OfertaTO getOfertaByIdDoOfertKupna(int idOferty) {
@@ -121,14 +125,36 @@ public class OfertaServiceImpl implements OfertaService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void dodajOferte(OfertaTO ofertaTO) {
+    public void dodajOferte(AukcjaTO aukcjaTO, int liczbaSztuk, UzytkownikTO kupujacy) {
+
+        UmowaEntity umowaEntity = new UmowaEntity();
         OfertaEntity ofertaEntity = new OfertaEntity();
-        ofertaEntity.setLiczbaSztuk(ofertaTO.getLiczbaSztuk());
-        ofertaEntity.setTerminZlozenia(ofertaEntity.getTerminZlozenia());
-        ofertaEntity.setTypOferty(ofertaTO.getTypOferty());
 
+        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(aukcjaTO.getId());
+        UzytkownikEntity kupujacyEntity = uzytkownikDAO.getUzytkownikById(kupujacy.getId());
 
+        DanedowysylkiEntity danedowysylkiEntity = daneDoWysylkiDAO.getDaneDoWysylkiById(4);
+
+        java.util.Date date= new java.util.Date();
+        Timestamp terminZlozenia = new Timestamp(date.getTime());
+
+        ofertaEntity.setAukcja(aukcjaEntity);
+        ofertaEntity.setKupujacy(kupujacyEntity);
+//        ofertaEntity.setUmowa(umowaEntity);
+        ofertaEntity.setLiczbaSztuk(liczbaSztuk);
+        ofertaEntity.setTerminZlozenia(terminZlozenia);
+        ofertaEntity.setTypOferty(2);
 
         ofertaDAO.dodajOferte(ofertaEntity);
+
+        umowaEntity.setAukcja(aukcjaEntity);
+        umowaEntity.setSprzedajacy(aukcjaEntity.getSprzedawca());
+        umowaEntity.setKupujacy(kupujacyEntity);
+        umowaEntity.setZwyciezkaOferta(ofertaEntity);
+        umowaEntity.setLiczbaSztuk(liczbaSztuk);
+        umowaEntity.setProwizja(10.25);
+        umowaEntity.setDaneDoWysylki(danedowysylkiEntity);
+
+        umowaDAO.dodajUmowe(umowaEntity);
     }
 }

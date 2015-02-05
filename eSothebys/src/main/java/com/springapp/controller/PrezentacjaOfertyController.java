@@ -45,9 +45,6 @@ public class PrezentacjaOfertyController {
 
         AukcjaTO aukcjaTO = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
 
-//        ZdjecieEntity miniaturaEntity = aukcjaTO.getMiniatura();
-
-//        KategoriaEntity kategoriaEntity = aukcjaTO.getKategoria();
         List<String> nadkategorie = kategoriaService.getNazwyNadkategorii(aukcjaTO.getKategoria().getId());
 
         List<OfertaTO> oferty = ofertaService.findOfertyByAukcjaDoOfertKupna(idAukcji);
@@ -57,16 +54,14 @@ public class PrezentacjaOfertyController {
 
         ModelAndView modelAndView = new ModelAndView("skladanieOferty");
         modelAndView.addObject("aukcjaTO", aukcjaTO);
-//        modelAndView.addObject("kategoriaTO", aukcjaTO.getKategoria());
         modelAndView.addObject("nadkategorie", nadkategorie);
         modelAndView.addObject("oferty", oferty);
         modelAndView.addObject("kupTeraz", kupTeraz);
         modelAndView.addObject("licytacja", licytacja);
-//        modelAndView.addObject("zdjecie", aukcjaTO.getMiniatura());
+
         request.getSession().setAttribute("aukcja", aukcjaTO);
-//        request.getSession().setAttribute("liczbaDostepnychSztuk", aukcja.getLiczbaDostepnychPrzedmiotow());
-//        request.getSession().setAttribute("stanAukcji", aukcja.getStan());
         request.getSession().setAttribute("idZalogowanegoUzytkownika", idZalogowanegoUzytkownika);
+
         return modelAndView;
     }
 }

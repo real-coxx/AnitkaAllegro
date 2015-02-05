@@ -7,6 +7,7 @@ import com.springapp.model.UmowaEntity;
 import com.springapp.model.UzytkownikEntity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class OfertaBuilder {
 
     private int id;
     private Integer liczbaSztuk;
-    private Date terminZlozenia;
+    private Timestamp terminZlozenia;
     private Date terminOdrzucenia;
     private String powodOdrzucenia;
     private Double oferta;
@@ -36,7 +37,7 @@ public class OfertaBuilder {
         return this;
     }
 
-    public OfertaBuilder setTerminZlozenia(Date terminZlozenia) {
+    public OfertaBuilder setTerminZlozenia(Timestamp terminZlozenia) {
         this.terminZlozenia = terminZlozenia;
         return this;
     }
@@ -89,7 +90,7 @@ public class OfertaBuilder {
         return liczbaSztuk;
     }
 
-    public Date getTerminZlozenia() {
+    public Timestamp getTerminZlozenia() {
         return terminZlozenia;
     }
 

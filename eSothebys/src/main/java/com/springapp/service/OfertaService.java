@@ -1,6 +1,8 @@
 package com.springapp.service;
 
+import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.OfertaTO;
+import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
 import com.springapp.model.OfertaEntity;
 
@@ -19,5 +21,5 @@ public interface OfertaService {
 
     public LicytacjaWOsobachISztukach getLicytacja(int idAukcji);
 
-    public void dodajOferte(OfertaTO ofertaTO);
+    public void dodajOferte(AukcjaTO aukcjaTO, int liczbaSztuk, UzytkownikTO kupujacy);
 }

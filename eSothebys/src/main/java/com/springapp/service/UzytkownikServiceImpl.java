@@ -24,7 +24,9 @@ public class UzytkownikServiceImpl implements UzytkownikService {
         builder.setId(entity.getId())
                 .setImie(entity.getImie())
                 .setNazwisko(entity.getNazwisko())
-                .setEmail(entity.getEmail());
+                .setEmail(entity.getEmail())
+                .setWniosekRejestracyjny(entity.getWniosekRejestracyjny())
+                .setAdres(entity.getAdres());
 
         UzytkownikTO uzytkownikTO = new UzytkownikTO(builder);
         return uzytkownikTO;

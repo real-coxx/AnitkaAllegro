@@ -40,20 +40,7 @@ public class ResultatKupnaController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        UmowaEntity umowaEntity = new UmowaEntity();
-        umowaEntity.setLiczbaSztuk(liczbaSztuk);
-
-        UzytkownikEntity uzytkownikEntity = new UzytkownikEntity();
-
-        OfertaBuilder builder = new OfertaBuilder();
-        builder.setLiczbaSztuk(liczbaSztuk);
-        builder.setTerminZlozenia(new Date(5));
-        builder.setTypOferty(2);
-        builder.setUmowa(umowaEntity);
-//        builder.setAukcja(aukcjaTO);
-        OfertaTO ofertaTO = new OfertaTO(builder);
-
-       // ofertaService.dodajOferte(ofertaTO);
+        ofertaService.dodajOferte(aukcjaTO, liczbaSztuk, kupujacy);
 
         boolean udaloSie = true;
 

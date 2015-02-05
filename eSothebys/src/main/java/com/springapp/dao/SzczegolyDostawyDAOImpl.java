@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class SzczegolyDostawyDAOImpl implements SzczegolyDostawyDAO {
 
-    private static final String SELECT_SZCZEGOLY_DOSTAWY_BY_CENNIK = "select sd from SzczegolydostawyEntity sd where sd.cennikDostawID = :id_cennik_dostaw";
+    private static final String SELECT_SZCZEGOLY_DOSTAWY_BY_CENNIK = "select sd from SzczegolydostawyEntity sd where sd.cennikDostaw.id = :id_cennik_dostaw";
 
     @PersistenceContext
     private EntityManager entityManager;

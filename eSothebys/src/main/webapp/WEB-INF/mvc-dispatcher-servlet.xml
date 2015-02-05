@@ -62,6 +62,8 @@
     <bean id="SposobDostawyDAO" class="com.springapp.dao.SposobDostawyDAOImpl" />
     <bean id="SzczegolyDostawyDAO" class="com.springapp.dao.SzczegolyDostawyDAOImpl" />
     <bean id="AdresDAO" class="com.springapp.dao.AdresDAOImpl" />
+    <bean id="DaneDoWysylkiDAO" class="com.springapp.dao.DaneDoWysylkiDAOImpl" />
+    <bean id="UmowaDAO" class="com.springapp.dao.UmowaDAOImpl" />
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
     <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />

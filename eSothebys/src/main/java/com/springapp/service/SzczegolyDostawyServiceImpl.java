@@ -37,7 +37,6 @@ public class SzczegolyDostawyServiceImpl implements SzczegolyDostawyService {
 
         for (SzczegolydostawyEntity szczegolydostawyEntity : szczegolydostawyEntities) {
 
-            sposobDostawyTO = sposobDostawyService.getSposobDostawyById(szczegolydostawyEntity.getSposobDostawy().getId());
             builder.setId(szczegolydostawyEntity.getId())
                     .setKosztPierwszejSztuki(szczegolydostawyEntity.getKosztPierwszejSztuki())
                     .setKosztKolejnejSztuki(szczegolydostawyEntity.getKosztKolejnejSztuki())
