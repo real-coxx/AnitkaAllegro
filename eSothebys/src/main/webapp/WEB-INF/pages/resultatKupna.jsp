@@ -6,15 +6,15 @@
 
 <t:layout>
   <div class="page-header">
-    <h1 style="color: #f5f5f5">Niepowodzenie</h1>
+    <h1 style="color: #f5f5f5">${skutek}</h1>
   </div>
 
   <div>
-    <div class="alert alert-danger" role="alert" style="width: 50%; margin-left: 25%; margin-right: 25%; margin-top: 50px">${informacja}</div>
+    <div class="alert alert-info" role="alert" style="width: 50%; margin-left: 25%; margin-right: 25%; margin-top: 50px">${informacja}</div>
   </div>
   <div>
     <form class="form-horizontal" action="/" role="form" method="GET">
-      <button style="width: 100px; margin-left: 25%" type="submit" class="btn btn-default pull-left">Wróć</button>
+      <button style="width: 120px; margin-left: 25%" type="submit" class="btn btn-default pull-left">Wróć do aukcji</button>
     </form>
   </div>
 </t:layout>

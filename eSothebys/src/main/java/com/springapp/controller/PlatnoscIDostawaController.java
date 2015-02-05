@@ -56,6 +56,10 @@ public class PlatnoscIDostawaController {
         int cennikDostawID = aukcjaTO.getIdCennikDostaw();
         HashMap<String, Double> menuSposobuDostawy = szczegolyDostawyService.getMenuWyboruSposobuDostawy(cennikDostawID, liczbaSztuk);
 
+        request.getSession().setAttribute("aukcja", aukcjaTO);
+        request.getSession().setAttribute("liczbaSztuk", liczbaSztuk);
+        request.getSession().setAttribute("kupujacy", uzytkownikTO);
+
         ModelAndView modelAndView = new ModelAndView("platnoscIDostawa");
         modelAndView.addObject("liczbaSztuk", odmiana);
         modelAndView.addObject("aukcja", aukcjaTO);

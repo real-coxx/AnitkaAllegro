@@ -16,13 +16,9 @@ public class OfertaEntity {
     private String powodOdrzucenia;
     private Integer oferta;
     private Integer maksymalnaKwota;
-    private String discriminator;
-    private Integer aukcja2Index;
-    private Integer column;
-    private Integer column2;
-    private Integer aukcja;
-    private Integer uzytkownik;
-    private Integer umowa;
+    private AukcjaEntity aukcja;
+    private UzytkownikEntity kupujacy;
+    private UmowaEntity umowa;
     private int typOferty;
 
     @Id
@@ -95,73 +91,33 @@ public class OfertaEntity {
         this.maksymalnaKwota = maksymalnaKwota;
     }
 
-    @Basic
-    @Column(name = "Discriminator")
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public void setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
-    }
-
-    @Basic
-    @Column(name = "Aukcja2Index")
-    public Integer getAukcja2Index() {
-        return aukcja2Index;
-    }
-
-    public void setAukcja2Index(Integer aukcja2Index) {
-        this.aukcja2Index = aukcja2Index;
-    }
-
-    @Basic
-    @Column(name = "Column")
-    public Integer getColumn() {
-        return column;
-    }
-
-    public void setColumn(Integer column) {
-        this.column = column;
-    }
-
-    @Basic
-    @Column(name = "Column2")
-    public Integer getColumn2() {
-        return column2;
-    }
-
-    public void setColumn2(Integer column2) {
-        this.column2 = column2;
-    }
-
-    @Basic
-    @Column(name = "Aukcja2ID")
-    public Integer getAukcja() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Aukcja")
+    public AukcjaEntity getAukcja() {
         return aukcja;
     }
 
-    public void setAukcja(Integer aukcja) {
+    public void setAukcja(AukcjaEntity aukcja) {
         this.aukcja = aukcja;
     }
 
-    @Basic
-    @Column(name = "Uzytkownik2ID")
-    public Integer getUzytkownik() {
-        return uzytkownik;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Kupujacy")
+    public UzytkownikEntity getKupujacy() {
+        return kupujacy;
     }
 
-    public void setUzytkownik(Integer uzytkownik) {
-        this.uzytkownik = uzytkownik;
+    public void setKupujacy(UzytkownikEntity kupujacy) {
+        this.kupujacy = kupujacy;
     }
 
-    @Basic
-    @Column(name = "Umowa2ID")
-    public Integer getUmowa() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Umowa")
+    public UmowaEntity getUmowa() {
         return umowa;
     }
 
-    public void setUmowa(Integer umowa) {
+    public void setUmowa(UmowaEntity umowa) {
         this.umowa = umowa;
     }
 
@@ -183,11 +139,6 @@ public class OfertaEntity {
         OfertaEntity that = (OfertaEntity) o;
 
         if (id != that.id) return false;
-        if (aukcja2Index != null ? !aukcja2Index.equals(that.aukcja2Index) : that.aukcja2Index != null) return false;
-        if (column != null ? !column.equals(that.column) : that.column != null) return false;
-        if (column2 != null ? !column2.equals(that.column2) : that.column2 != null) return false;
-        if (discriminator != null ? !discriminator.equals(that.discriminator) : that.discriminator != null)
-            return false;
         if (liczbaSztuk != null ? !liczbaSztuk.equals(that.liczbaSztuk) : that.liczbaSztuk != null) return false;
         if (maksymalnaKwota != null ? !maksymalnaKwota.equals(that.maksymalnaKwota) : that.maksymalnaKwota != null)
             return false;
@@ -214,10 +165,6 @@ public class OfertaEntity {
         result = 31 * result + (powodOdrzucenia != null ? powodOdrzucenia.hashCode() : 0);
         result = 31 * result + (oferta != null ? oferta.hashCode() : 0);
         result = 31 * result + (maksymalnaKwota != null ? maksymalnaKwota.hashCode() : 0);
-        result = 31 * result + (discriminator != null ? discriminator.hashCode() : 0);
-        result = 31 * result + (aukcja2Index != null ? aukcja2Index.hashCode() : 0);
-        result = 31 * result + (column != null ? column.hashCode() : 0);
-        result = 31 * result + (column2 != null ? column2.hashCode() : 0);
         return result;
     }
 }

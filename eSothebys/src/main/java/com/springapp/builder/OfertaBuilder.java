@@ -163,4 +163,5 @@ public class OfertaBuilder {
     public int getTypOferty() {
         return typOferty;
     }
+
 }

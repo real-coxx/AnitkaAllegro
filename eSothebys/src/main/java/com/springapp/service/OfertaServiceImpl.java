@@ -14,6 +14,8 @@ import com.springapp.model.OfertaEntity;
 import com.springapp.model.UzytkownikEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.List;
  * Created by Alicja on 2015-01-22.
  */
 @Service
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class OfertaServiceImpl implements OfertaService {
 
     @Autowired
@@ -36,8 +39,8 @@ public class OfertaServiceImpl implements OfertaService {
     @Override
     public OfertaTO getOfertaByIdDoOfertKupna(int idOferty) {
         OfertaEntity ofertaEntity = ofertaDAO.getOfertaById(idOferty);
-        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja());
-        UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getUzytkownik());
+        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja().getId());
+        UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getKupujacy().getId());
 
         AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
         aukcjaBuilder.setId(aukcjaEntity.getId())
@@ -61,8 +64,8 @@ public class OfertaServiceImpl implements OfertaService {
 
         for (OfertaEntity ofertaEntity : ofertaEntities) {
 
-            AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja());
-            UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getUzytkownik());
+            AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja().getId());
+            UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getKupujacy().getId());
 
             AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
             aukcjaBuilder.setId(aukcjaEntity.getId())
@@ -115,5 +118,19 @@ public class OfertaServiceImpl implements OfertaService {
         }
         licytacjaWLiczbach.sprawdzOdmianeOsobDlaLicytacji();
         return licytacjaWLiczbach;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    public void dodajOferte(OfertaTO ofertaTO) {
+        OfertaEntity ofertaEntity = new OfertaEntity();
+        ofertaEntity.setLiczbaSztuk(ofertaTO.getLiczbaSztuk());
+        ofertaEntity.setTerminZlozenia(ofertaEntity.getTerminZlozenia());
+        ofertaEntity.setTypOferty(ofertaTO.getTypOferty());
+        ofertaEntity.setKupujacy(ofertaTO.getUzytkownik());
+
+
+
+        ofertaDAO.dodajOferte(ofertaEntity);
     }
 }

@@ -84,6 +84,14 @@ public class AukcjaTO {
         this.idCennikDostaw = builder.getIdCennikDostaw();
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getTerminZakonczeniaTekst() {
+        return terminZakonczeniaTekst;
+    }
+
     public int getNumer() {
         return numer;
     }
