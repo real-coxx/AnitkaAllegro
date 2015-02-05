@@ -104,17 +104,28 @@ public class AukcjaEntity implements Serializable {
     @Column(name = "OplataFinalna")
     private Integer oplataFinalna;
 
-    @Column(name = "Kategoria2ID")
-    private Integer kategoria2ID;
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Kategoria")
+    private KategoriaEntity kategoria;
 
-    @Column(name = "Zdjecie2ID")
-    private Integer zdjecie2ID;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Miniatura")
+    private ZdjecieEntity miniatura;
+
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Sprzedawca")
+    private UzytkownikEntity sprzedawca;
+
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Adres")
+    private AdresEntity adres;
 
     @Column(name = "Stan")
     private String stan;
 
-    @Column(name = "CennikDostaw2ID")
-    private Integer cennikDostaw2ID;
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="CennikDostaw")
+    private CennikdostawEntity cennikDostaw;
 
     public int getId() {
         return id;
@@ -226,13 +237,17 @@ public class AukcjaEntity implements Serializable {
         return oplataFinalna;
     }
 
-    public Integer getKategoria2ID() { return kategoria2ID; }
+    public KategoriaEntity getKategoria() { return kategoria; }
 
-    public Integer getZdjecie2ID() { return zdjecie2ID; }
+    public ZdjecieEntity getMiniatura() { return miniatura; }
 
     public String getStan() { return stan; }
 
-    public Integer getCennikDostaw2ID() { return cennikDostaw2ID; }
+    public CennikdostawEntity getCennikDostaw() { return cennikDostaw; }
+
+    public UzytkownikEntity getSprzedawca() { return sprzedawca; }
+
+    public AdresEntity getAdres() { return adres; }
 
     @Override
     public boolean equals(Object o) {
@@ -254,7 +269,7 @@ public class AukcjaEntity implements Serializable {
             return false;
         if (fakturaVat != null ? !fakturaVat.equals(that.fakturaVat) : that.fakturaVat != null) return false;
         if (jednostka != null ? !jednostka.equals(that.jednostka) : that.jednostka != null) return false;
-        if (kategoria2ID != null ? !kategoria2ID.equals(that.kategoria2ID) : that.kategoria2ID != null) return false;
+        if (kategoria != null ? !kategoria.equals(that.kategoria) : that.kategoria != null) return false;
         if (kosztPrzesylkiPokrywaKupujacy != null ? !kosztPrzesylkiPokrywaKupujacy.equals(that.kosztPrzesylkiPokrywaKupujacy) : that.kosztPrzesylkiPokrywaKupujacy != null)
             return false;
         if (liczbaDostepnychPrzedmiotow != null ? !liczbaDostepnychPrzedmiotow.equals(that.liczbaDostepnychPrzedmiotow) : that.liczbaDostepnychPrzedmiotow != null)

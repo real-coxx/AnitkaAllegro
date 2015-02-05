@@ -53,7 +53,7 @@ public class PlatnoscIDostawaController {
 
         double cenaZaSztuki = liczbaSztuk * aukcjaTO.getCenaKupTeraz();
 
-        int cennikDostawID = aukcjaTO.getIdCennikDostaw();
+        int cennikDostawID = aukcjaTO.getCennikDostaw().getId();
         HashMap<String, Double> menuSposobuDostawy = szczegolyDostawyService.getMenuWyboruSposobuDostawy(cennikDostawID, liczbaSztuk);
 
         request.getSession().setAttribute("aukcja", aukcjaTO);

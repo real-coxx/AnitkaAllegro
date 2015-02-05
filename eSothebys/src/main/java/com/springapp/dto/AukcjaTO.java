@@ -1,6 +1,7 @@
 package com.springapp.dto;
 
 import com.springapp.builder.AukcjaBuilder;
+import com.springapp.model.*;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
@@ -42,10 +43,12 @@ public class AukcjaTO {
     private final double aktualnaCena;
     private final double oplata;
     private final double oplataFinalna;
-    private final int idKategorii;
-    private final int idZdjecia;
+    private final KategoriaEntity kategoria;
+    private final ZdjecieEntity miniatura;
     private final String stan;
-    private final int idCennikDostaw;
+    private final CennikdostawEntity cennikDostaw;
+    private final UzytkownikEntity sprzedawca;
+    private final AdresEntity adres;
 
 
     public AukcjaTO(AukcjaBuilder builder) {
@@ -78,10 +81,12 @@ public class AukcjaTO {
         this.aktualnaCena = builder.getAktualnaCena();
         this.oplata = builder.getOplata();
         this.oplataFinalna = builder.getOplataFinalna();
-        this.idKategorii = builder.getIdKategorii();
-        this.idZdjecia = builder.getIdZdjecia();
+        this.kategoria = builder.getKategoria();
+        this.miniatura = builder.getMiniatura();
         this.stan = builder.getStan();
-        this.idCennikDostaw = builder.getIdCennikDostaw();
+        this.cennikDostaw = builder.getCennikDostaw();
+        this.sprzedawca = builder.getSprzeawca();
+        this.adres = builder.getAdres();
     }
 
     public int getId() {
@@ -200,19 +205,25 @@ public class AukcjaTO {
         return oplataFinalna;
     }
 
-    public int getIdKategorii() {
-        return idKategorii;
+    public KategoriaEntity getKategoria() {
+        return kategoria;
     }
 
-    public int getIdZdjecia() {
-        return idZdjecia;
+    public ZdjecieEntity getMiniatura() {
+        return miniatura;
     }
 
     public String getStan() {
         return stan;
     }
 
-    public int getIdCennikDostaw() {
-        return idCennikDostaw;
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
+    }
+    public UzytkownikEntity getSprzedawca() {
+        return sprzedawca;
+    }
+    public AdresEntity getAdres() {
+        return adres;
     }
 }

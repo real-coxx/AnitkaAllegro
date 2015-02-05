@@ -98,7 +98,7 @@ public class KategoriaEntity {
         this.formulaWyliczaniaOplatyPodstawowej = formulaWyliczaniaOplatyPodstawowej;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="Nadrzedna")
     public KategoriaEntity getNadrzedna() {
         return nadrzedna;

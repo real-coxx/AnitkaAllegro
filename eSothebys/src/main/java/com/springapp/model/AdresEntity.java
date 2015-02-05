@@ -77,7 +77,7 @@ public class AdresEntity {
         this.kraj = kraj;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="Wojewodztwo")
     public WojewodztwoEntity getWojewodztwo() {
         return wojewodztwo;
@@ -87,7 +87,7 @@ public class AdresEntity {
         this.wojewodztwo = wojewodztwo;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="DaneDoWysylki")
     public DanedowysylkiEntity getDaneDoWysylki() {
         return daneDoWysylki;

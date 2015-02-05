@@ -43,7 +43,7 @@ public class ZdjecieEntity {
         this.attribute = attribute;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="Aukcja")
     public AukcjaEntity getAukcja() {
         return aukcja;

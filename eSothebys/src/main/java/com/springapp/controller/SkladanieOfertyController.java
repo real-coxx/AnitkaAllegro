@@ -43,9 +43,9 @@ public class SkladanieOfertyController {
 
         AukcjaTO aukcja = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
 
-        ZdjecieTO zdjecie = zdjecieService.getZdjecieById(aukcja.getIdZdjecia());
+        ZdjecieTO zdjecie = zdjecieService.getZdjecieById(aukcja.getMiniatura().getId());
 
-        int idKategorii = aukcja.getIdKategorii();
+        int idKategorii = aukcja.getKategoria().getId();
         KategoriaTO kategoria = kategoriaService.getKategoriaById(idKategorii);
 
         List<String> nadkategorie = kategoriaService.getNazwyNadkategorii(idKategorii);

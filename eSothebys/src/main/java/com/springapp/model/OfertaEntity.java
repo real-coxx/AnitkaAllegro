@@ -91,7 +91,7 @@ public class OfertaEntity {
         this.maksymalnaKwota = maksymalnaKwota;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="Aukcja")
     public AukcjaEntity getAukcja() {
         return aukcja;
@@ -101,7 +101,7 @@ public class OfertaEntity {
         this.aukcja = aukcja;
     }
 
-    @OneToOne (cascade=CascadeType.ALL)
+    @ManyToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="Kupujacy")
     public UzytkownikEntity getKupujacy() {
         return kupujacy;

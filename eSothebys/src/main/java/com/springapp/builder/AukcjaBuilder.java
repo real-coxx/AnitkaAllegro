@@ -1,5 +1,6 @@
 package com.springapp.builder;
 
+import com.springapp.model.*;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
@@ -42,10 +43,12 @@ public class AukcjaBuilder {
     private double aktualnaCena;
     private double oplata;
     private double oplataFinalna;
-    private int idKategorii;
-    private int idZdjecia;
+    private KategoriaEntity kategoria;
+    private ZdjecieEntity miniatura;
     private String stan;
-    private int idCennikDostaw;
+    private CennikdostawEntity cennikDostaw;
+    private UzytkownikEntity sprzedawca;
+    private AdresEntity adres;
 
     public AukcjaBuilder setId(int id) {
         this.id = id;
@@ -192,13 +195,13 @@ public class AukcjaBuilder {
         return this;
     }
 
-    public AukcjaBuilder setIdKategorii(int idKategorii) {
-        this.idKategorii = idKategorii;
+    public AukcjaBuilder setKategoria(KategoriaEntity kategoria) {
+        this.kategoria = kategoria;
         return this;
     }
 
-    public AukcjaBuilder setIdZdjecia(int idZdjecia) {
-        this.idZdjecia = idZdjecia;
+    public AukcjaBuilder setMiniatura(ZdjecieEntity miniatura) {
+        this.miniatura = miniatura;
         return this;
     }
 
@@ -207,8 +210,18 @@ public class AukcjaBuilder {
         return this;
     }
 
-    public AukcjaBuilder setIdCennikDostaw(int idCennikDostaw) {
-        this.idCennikDostaw = idCennikDostaw;
+    public AukcjaBuilder setCennikDostaw(CennikdostawEntity cennikDostaw) {
+        this.cennikDostaw = cennikDostaw;
+        return this;
+    }
+
+    public AukcjaBuilder setSprzedawca(UzytkownikEntity sprzedawca) {
+        this.sprzedawca = sprzedawca;
+        return this;
+    }
+
+    public AukcjaBuilder setAdres(AdresEntity adres) {
+        this.adres = adres;
         return this;
     }
 
@@ -326,19 +339,26 @@ public class AukcjaBuilder {
         return oplataFinalna;
     }
 
-    public int getIdKategorii() {
-        return idKategorii;
+    public KategoriaEntity getKategoria() {
+        return kategoria;
     }
 
-    public int getIdZdjecia() {
-        return idZdjecia;
+    public ZdjecieEntity getMiniatura() {
+        return miniatura;
     }
 
     public String getStan() {
         return stan;
     }
 
-    public int getIdCennikDostaw() {
-        return idCennikDostaw;
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
+    }
+
+    public UzytkownikEntity getSprzeawca() {
+        return sprzedawca;
+    }
+    public AdresEntity getAdres() {
+        return adres;
     }
 }
