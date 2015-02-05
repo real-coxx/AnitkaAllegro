@@ -1,6 +1,8 @@
 package com.springapp.builder;
 
 import com.springapp.dto.SposobDostawyTO;
+import com.springapp.model.CennikdostawEntity;
+import com.springapp.model.SposobdostawyEntity;
 
 /**
  * Created by Alicja on 2015-02-01.
@@ -11,9 +13,8 @@ public class SzczegolyDostawyBuilder {
     private Double kosztPierwszejSztuki;
     private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
-    private Integer sposobDostawyID;
-    private Integer cennikDostawID;
-    private SposobDostawyTO sposobDostawyTO;
+    private SposobdostawyEntity sposobDostawy;
+    private CennikdostawEntity cennikDostaw;
 
     public SzczegolyDostawyBuilder setId(int id) {
         this.id = id;
@@ -35,18 +36,13 @@ public class SzczegolyDostawyBuilder {
         return this;
     }
 
-    public SzczegolyDostawyBuilder setSposobDostawyID(Integer sposobDostawyID) {
-        this.sposobDostawyID = sposobDostawyID;
+    public SzczegolyDostawyBuilder setSposobDostawy(SposobdostawyEntity sposobDostawy) {
+        this.sposobDostawy = sposobDostawy;
         return this;
     }
 
-    public SzczegolyDostawyBuilder setCennikDostawID(Integer cennikDostawID) {
-        this.cennikDostawID = cennikDostawID;
-        return this;
-    }
-
-    public SzczegolyDostawyBuilder setSposobDostawyTO(SposobDostawyTO sposobDostawyTO) {
-        this.sposobDostawyTO = sposobDostawyTO;
+    public SzczegolyDostawyBuilder setCennikDostaw(CennikdostawEntity cennikDostaw) {
+        this.cennikDostaw = cennikDostaw;
         return this;
     }
 
@@ -66,15 +62,11 @@ public class SzczegolyDostawyBuilder {
         return liczbaWPaczce;
     }
 
-    public Integer getSposobDostawyID() {
-        return sposobDostawyID;
+    public SposobdostawyEntity getSposobDostawy() {
+        return sposobDostawy;
     }
 
-    public Integer getCennikDostawID() {
-        return cennikDostawID;
-    }
-
-    public SposobDostawyTO getSposobDostawyTO() {
-        return sposobDostawyTO;
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
     }
 }

@@ -50,9 +50,7 @@ public class ResultatKupnaController {
         builder.setTerminZlozenia(new Date(5));
         builder.setTypOferty(2);
         builder.setUmowa(umowaEntity);
-        builder.setUzytkownik(uzytkownikEntity);
-        builder.setAukcja(aukcjaTO);
-        builder.setAukcja2Index(aukcjaTO.getId());
+//        builder.setAukcja(aukcjaTO);
         OfertaTO ofertaTO = new OfertaTO(builder);
 
        // ofertaService.dodajOferte(ofertaTO);

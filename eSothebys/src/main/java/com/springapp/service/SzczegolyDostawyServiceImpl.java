@@ -37,12 +37,12 @@ public class SzczegolyDostawyServiceImpl implements SzczegolyDostawyService {
 
         for (SzczegolydostawyEntity szczegolydostawyEntity : szczegolydostawyEntities) {
 
-            sposobDostawyTO = sposobDostawyService.getSposobDostawyById(szczegolydostawyEntity.getSposobDostawyID());
+            sposobDostawyTO = sposobDostawyService.getSposobDostawyById(szczegolydostawyEntity.getSposobDostawy().getId());
             builder.setId(szczegolydostawyEntity.getId())
                     .setKosztPierwszejSztuki(szczegolydostawyEntity.getKosztPierwszejSztuki())
                     .setKosztKolejnejSztuki(szczegolydostawyEntity.getKosztKolejnejSztuki())
                     .setLiczbaWPaczce(szczegolydostawyEntity.getLiczbaWPaczce())
-                    .setSposobDostawyTO(sposobDostawyTO);
+                    .setSposobDostawy(szczegolydostawyEntity.getSposobDostawy());
 
             SzczegolyDostawyTO szczegolyDostawyTO = new SzczegolyDostawyTO(builder);
             szczegolyDostawyTOs.add(szczegolyDostawyTO);
@@ -57,8 +57,8 @@ public class SzczegolyDostawyServiceImpl implements SzczegolyDostawyService {
         List<SzczegolyDostawyTO> szczegolyDostawyTOs = getSzczegolyDostawyByCennikDostaw(idCennikDostaw);
 
         for (SzczegolyDostawyTO szczeolyDostawyTO : szczegolyDostawyTOs) {
-            String rodzajPlatnosci = RodzajPlatnosci.getPelnaNazwa(szczeolyDostawyTO.getSposobDostawyTO().getRodzajPlatnosci());
-            String sposobDostawy = szczeolyDostawyTO.getSposobDostawyTO().getNazwa();
+            String rodzajPlatnosci = RodzajPlatnosci.getPelnaNazwa(szczeolyDostawyTO.getSposobDostawy().getRodzajPlatnosci());
+            String sposobDostawy = szczeolyDostawyTO.getSposobDostawy().getNazwa();
             double kosztWysylki = getKosztWysylki(iloscSztuk, szczeolyDostawyTO);
             String kosztWysylkiString = Double.toString(kosztWysylki);
             String wpis = rodzajPlatnosci + ": " + sposobDostawy + " " + kosztWysylkiString + " zł";

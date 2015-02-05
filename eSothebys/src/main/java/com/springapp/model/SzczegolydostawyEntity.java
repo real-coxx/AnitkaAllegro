@@ -12,8 +12,8 @@ public class SzczegolydostawyEntity {
     private Double kosztPierwszejSztuki;
     private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
-    private Integer sposobDostawyID;
-    private Integer cennikDostawID;
+    private SposobdostawyEntity sposobDostawy;
+    private CennikdostawEntity cennikDostaw;
 
     @Id
     @Column(name = "ID")
@@ -55,24 +55,24 @@ public class SzczegolydostawyEntity {
         this.liczbaWPaczce = liczbaWPaczce;
     }
 
-    @Basic
-    @Column(name = "SposobDostawyID")
-    public Integer getSposobDostawyID() {
-        return sposobDostawyID;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="SposobDostawy")
+    public SposobdostawyEntity getSposobDostawy() {
+        return sposobDostawy;
     }
 
-    public void setSposobDostawyID(Integer sposobDostawyID) {
-        this.sposobDostawyID = sposobDostawyID;
+    public void setSposobDostawy(SposobdostawyEntity sposobDostawy) {
+        this.sposobDostawy = sposobDostawy;
     }
 
-    @Basic
-    @Column(name = "CennikDostawID")
-    public Integer getCennikDostawID() {
-        return cennikDostawID;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="CennikDostaw")
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
     }
 
-    public void setCennikDostawID(Integer cennikDostawID) {
-        this.cennikDostawID = cennikDostawID;
+    public void setCennikDostaw(CennikdostawEntity cennikDostaw) {
+        this.cennikDostaw = cennikDostaw;
     }
 
     @Override

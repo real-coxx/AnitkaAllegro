@@ -1,5 +1,7 @@
 package com.springapp.builder;
 
+import com.springapp.model.AukcjaEntity;
+
 /**
  * Created by Alicja on 2015-01-26.
  */
@@ -8,6 +10,7 @@ public class ZdjecieBuilder {
     private int id;
     private String opis;
     private String attribute;
+    private AukcjaEntity aukcja;
 
     public ZdjecieBuilder setId(int id) {
         this.id = id;
@@ -24,6 +27,11 @@ public class ZdjecieBuilder {
         return this;
     }
 
+    public ZdjecieBuilder setAukcja(AukcjaEntity aukcja) {
+        this.aukcja = aukcja;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -34,5 +42,8 @@ public class ZdjecieBuilder {
 
     public String getAttribute() {
         return attribute;
+    }
+    public AukcjaEntity getAukcja() {
+        return aukcja;
     }
 }

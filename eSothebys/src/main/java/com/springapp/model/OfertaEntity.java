@@ -14,8 +14,8 @@ public class OfertaEntity {
     private Date terminZlozenia;
     private Date terminOdrzucenia;
     private String powodOdrzucenia;
-    private Integer oferta;
-    private Integer maksymalnaKwota;
+    private Double oferta;
+    private Double maksymalnaKwota;
     private AukcjaEntity aukcja;
     private UzytkownikEntity kupujacy;
     private UmowaEntity umowa;
@@ -73,21 +73,21 @@ public class OfertaEntity {
 
     @Basic
     @Column(name = "Oferta")
-    public Integer getOferta() {
+    public Double getOferta() {
         return oferta;
     }
 
-    public void setOferta(Integer oferta) {
+    public void setOferta(Double oferta) {
         this.oferta = oferta;
     }
 
     @Basic
     @Column(name = "MaksymalnaKwota")
-    public Integer getMaksymalnaKwota() {
+    public Double getMaksymalnaKwota() {
         return maksymalnaKwota;
     }
 
-    public void setMaksymalnaKwota(Integer maksymalnaKwota) {
+    public void setMaksymalnaKwota(Double maksymalnaKwota) {
         this.maksymalnaKwota = maksymalnaKwota;
     }
 

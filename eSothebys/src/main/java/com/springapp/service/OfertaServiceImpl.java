@@ -2,11 +2,13 @@ package com.springapp.service;
 
 import com.springapp.builder.AukcjaBuilder;
 import com.springapp.builder.OfertaBuilder;
+import com.springapp.builder.UzytkownikBuilder;
 import com.springapp.dao.AukcjaDAO;
 import com.springapp.dao.OfertaDAO;
 import com.springapp.dao.UzytkownikDAO;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.OfertaTO;
+import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.Constants;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
 import com.springapp.model.AukcjaEntity;
@@ -42,6 +44,9 @@ public class OfertaServiceImpl implements OfertaService {
         AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja().getId());
         UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getKupujacy().getId());
 
+        UzytkownikBuilder uzytkownikBuilder = new UzytkownikBuilder();
+        UzytkownikTO uzytkownikTO = new UzytkownikTO(uzytkownikBuilder);
+
         AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
         aukcjaBuilder.setId(aukcjaEntity.getId())
                 .setCenaKupTeraz(aukcjaEntity.getCenaKupTeraz());
@@ -50,8 +55,8 @@ public class OfertaServiceImpl implements OfertaService {
 
         OfertaBuilder builder = new OfertaBuilder();
         builder.setId(ofertaEntity.getId())
-                .setAukcja(aukcjaTO)
-                .setUzytkownik(uzytkownikEntity);
+                .setAukcja(aukcjaEntity)
+                .setKupujacy(uzytkownikEntity);
 
         OfertaTO ofertaTO = new OfertaTO(builder);
         return ofertaTO;
@@ -81,8 +86,8 @@ public class OfertaServiceImpl implements OfertaService {
                     .setLiczbaSztuk(ofertaEntity.getLiczbaSztuk())
                     .setTerminZlozenia(ofertaEntity.getTerminZlozenia())
                     .setTypOferty(ofertaEntity.getTypOferty())
-                    .setAukcja(aukcjaTO)
-                    .setUzytkownik(uzytkownikEntity);
+                    .setAukcja(aukcjaEntity);
+                    //.setUzytkownik(uzytkownikEntity);
 
             OfertaTO ofertaTO = new OfertaTO(builder);
             oferty.add(ofertaTO);
@@ -127,7 +132,6 @@ public class OfertaServiceImpl implements OfertaService {
         ofertaEntity.setLiczbaSztuk(ofertaTO.getLiczbaSztuk());
         ofertaEntity.setTerminZlozenia(ofertaEntity.getTerminZlozenia());
         ofertaEntity.setTypOferty(ofertaTO.getTypOferty());
-        ofertaEntity.setKupujacy(ofertaTO.getUzytkownik());
 
 
 

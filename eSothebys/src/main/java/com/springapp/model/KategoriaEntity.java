@@ -10,13 +10,13 @@ import javax.persistence.*;
 public class KategoriaEntity {
     private int id;
     private String nazwa;
-    private boolean aukcjeJednoprzedmiotowe;
-    private Boolean dostepnaPlatnoscKarta;
-    private Boolean dostepnaPlatnoscPrzezPayU;
+    private boolean aukcjeJednoprzedmiotowe = false;
+    private Boolean dostepnaPlatnoscKarta = true;
+    private Boolean dostepnaPlatnoscPrzezPayU = true;
     private boolean dopuszczaAukcje;
     private String formulaWyliczaniaProwizjiOdSprzedaży;
     private String formulaWyliczaniaOplatyPodstawowej;
-    private int kategoria2ID;
+    private KategoriaEntity nadrzedna;
 
     @Id
     @Column(name = "ID")
@@ -98,14 +98,14 @@ public class KategoriaEntity {
         this.formulaWyliczaniaOplatyPodstawowej = formulaWyliczaniaOplatyPodstawowej;
     }
 
-    @Basic
-    @Column(name = "Kategoria2ID")
-    public int getKategoria2ID() {
-        return kategoria2ID;
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Nadrzedna")
+    public KategoriaEntity getNadrzedna() {
+        return nadrzedna;
     }
 
-    public void setKategoria2ID(int kategoria2ID) {
-        this.kategoria2ID = kategoria2ID;
+    public void setNadrzedna(KategoriaEntity nadrzedna) {
+        this.nadrzedna = nadrzedna;
     }
 
     @Override

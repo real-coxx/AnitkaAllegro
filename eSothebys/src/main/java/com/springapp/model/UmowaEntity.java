@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class UmowaEntity {
     private int id;
     private Integer liczbaSztuk;
-    private Integer prowizja;
+    private Double prowizja;
     private AukcjaEntity aukcja;
     private UzytkownikEntity sprzedajacy;
     private UzytkownikEntity kupujacy;
@@ -89,11 +89,11 @@ public class UmowaEntity {
 
     @Basic
     @Column(name = "Prowizja")
-    public Integer getProwizja() {
+    public Double getProwizja() {
         return prowizja;
     }
 
-    public void setProwizja(Integer prowizja) {
+    public void setProwizja(Double prowizja) {
         this.prowizja = prowizja;
     }
 

@@ -2,6 +2,7 @@ package com.springapp.dto;
 
 import com.springapp.builder.OfertaBuilder;
 import com.springapp.builder.UzytkownikBuilder;
+import com.springapp.model.*;
 
 import java.sql.Date;
 
@@ -27,10 +28,11 @@ public class UzytkownikTO {
     private Date dataOstatniegoLogowania;
     private Integer punktacja;
     private String discriminator;
-    private Integer ustawieniaSprzedazy;
-    private Integer kontoFakturowe;
-    private Integer subskrypcja;
-    private Integer wniosekRejestracyjny;
+    private UstawieniasprzedazyEntity ustawieniaSprzedazy;
+    private KontofakturoweEntity kontoFakturowe;
+    private SubskrypcjaEntity subskrypcja;
+    private WniosekrejestracyjnyEntity wniosekRejestracyjny;
+    private AdresEntity adres;
 
     public UzytkownikTO(UzytkownikBuilder builder) {
         this.id = builder.getId();
@@ -54,6 +56,7 @@ public class UzytkownikTO {
         this.kontoFakturowe = builder.getKontoFakturowe();
         this.subskrypcja = builder.getSubskrypcja();
         this.wniosekRejestracyjny = builder.getWniosekRejestracyjny();
+        this.adres= builder.getAdres();
     }
 
     public int getId() {
@@ -124,19 +127,22 @@ public class UzytkownikTO {
         return discriminator;
     }
 
-    public Integer getUstawieniaSprzedazy() {
+    public UstawieniasprzedazyEntity getUstawieniaSprzedazy() {
         return ustawieniaSprzedazy;
     }
 
-    public Integer getKontoFakturowe() {
+    public KontofakturoweEntity getKontoFakturowe() {
         return kontoFakturowe;
     }
 
-    public Integer getSubskrypcja() {
+    public SubskrypcjaEntity getSubskrypcja() {
         return subskrypcja;
     }
 
-    public Integer getWniosekRejestracyjny() {
+    public WniosekrejestracyjnyEntity getWniosekRejestracyjny() {
         return wniosekRejestracyjny;
+    }
+    public AdresEntity getAdres() {
+        return adres;
     }
 }

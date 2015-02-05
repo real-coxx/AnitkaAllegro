@@ -29,7 +29,7 @@ public class AdresServiceImpl implements AdresService {
                 .setUlicaZNumerem(entity.getUlicaZNumerem())
                 .setKodPocztow(entity.getKodPocztow())
                 .setMiejscowosc(entity.getMiejscowosc())
-                .setKrajEntity(krajDAO.getKrajById(entity.getKraj2ID()))
+//                .setKraj(krajDAO.getKrajById(entity))
                 .setUzytkownik2ID(entity.getUzytkownik2ID());
 
         AdresTO adresTO = new AdresTO(builder);

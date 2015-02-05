@@ -11,6 +11,7 @@ public class ZdjecieEntity {
     private int id;
     private String opis;
     private String attribute;
+    private AukcjaEntity aukcja;
 
     @Id
     @Column(name = "ID")
@@ -40,6 +41,16 @@ public class ZdjecieEntity {
 
     public void setAttribute(String attribute) {
         this.attribute = attribute;
+    }
+
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Aukcja")
+    public AukcjaEntity getAukcja() {
+        return aukcja;
+    }
+
+    public void setAukcja(AukcjaEntity aukcja) {
+        this.aukcja = aukcja;
     }
 
     @Override

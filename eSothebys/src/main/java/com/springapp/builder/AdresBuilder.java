@@ -1,6 +1,8 @@
 package com.springapp.builder;
 
+import com.springapp.model.DanedowysylkiEntity;
 import com.springapp.model.KrajEntity;
+import com.springapp.model.WojewodztwoEntity;
 
 /**
  * Created by Alicja on 2015-02-02.
@@ -12,8 +14,9 @@ public class AdresBuilder {
     private String kodPocztow;
     private String miejscowosc;
     private Integer uzytkownik2ID;
-    private Integer kraj2ID;
-    private KrajEntity krajEntity;
+    private KrajEntity kraj;
+    private DanedowysylkiEntity daneDoWysylki;
+    private WojewodztwoEntity wojewodztwo;
 
     public AdresBuilder setId(int id) {
         this.id = id;
@@ -40,13 +43,18 @@ public class AdresBuilder {
         return this;
     }
 
-    public AdresBuilder setKraj2ID(Integer kraj2ID) {
-        this.kraj2ID = kraj2ID;
+    public AdresBuilder setKraj(KrajEntity kraj) {
+        this.kraj = kraj;
         return this;
     }
 
-    public AdresBuilder setKrajEntity(KrajEntity krajEntity) {
-        this.krajEntity = krajEntity;
+    public AdresBuilder setDaneDoWysylki(DanedowysylkiEntity daneDoWysylki) {
+        this.daneDoWysylki = daneDoWysylki;
+        return this;
+    }
+
+    public AdresBuilder setWojewodztwo(WojewodztwoEntity wojewodztwo) {
+        this.wojewodztwo = wojewodztwo;
         return this;
     }
 
@@ -70,11 +78,15 @@ public class AdresBuilder {
         return uzytkownik2ID;
     }
 
-    public Integer getKraj2ID() {
-        return kraj2ID;
+    public KrajEntity getKraj() {
+        return kraj;
     }
 
-    public KrajEntity getKrajEntity() {
-        return krajEntity;
+    public DanedowysylkiEntity getDaneDoWysylki() {
+        return daneDoWysylki;
+    }
+
+    public WojewodztwoEntity getWojewodztwo() {
+        return wojewodztwo;
     }
 }

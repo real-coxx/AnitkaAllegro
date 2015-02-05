@@ -18,14 +18,10 @@ public class OfertaTO {
     private Date terminZlozenia;
     private Date terminOdrzucenia;
     private String powodOdrzucenia;
-    private Integer oferta;
-    private Integer maksymalnaKwota;
-    private String discriminator;
-    private Integer aukcja2Index;
-    private Integer column;
-    private Integer column2;
-    private AukcjaTO aukcja;
-    private UzytkownikEntity uzytkownik;
+    private Double oferta;
+    private Double maksymalnaKwota;
+    private AukcjaEntity aukcja;
+    private UzytkownikEntity kupujacy;
     private UmowaEntity umowa;
     private int typOferty;
 
@@ -37,12 +33,8 @@ public class OfertaTO {
         this.powodOdrzucenia = builder.getPowodOdrzucenia();
         this.oferta = builder.getOferta();
         this.maksymalnaKwota = builder.getMaksymalnaKwota();
-        this.discriminator = builder.getDiscriminator();
-        this.aukcja2Index = builder.getAukcja2Index();
-        this.column = builder.getColumn();
-        this.column2 = builder.getColumn2();
         this.aukcja = builder.getAukcja();
-        this.uzytkownik = builder.getUzytkownik();
+        this.kupujacy = builder.getKupujacy();
         this.umowa = builder.getUmowa();
         this.typOferty = builder.getTypOferty();
     }
@@ -67,36 +59,20 @@ public class OfertaTO {
         return powodOdrzucenia;
     }
 
-    public Integer getOferta() {
+    public Double getOferta() {
         return oferta;
     }
 
-    public Integer getMaksymalnaKwota() {
+    public Double getMaksymalnaKwota() {
         return maksymalnaKwota;
     }
 
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public Integer getAukcja2Index() {
-        return aukcja2Index;
-    }
-
-    public Integer getColumn() {
-        return column;
-    }
-
-    public Integer getColumn2() {
-        return column2;
-    }
-
-    public AukcjaTO getAukcja() {
+    public AukcjaEntity getAukcja() {
         return aukcja;
     }
 
-    public UzytkownikEntity getUzytkownik() {
-        return uzytkownik;
+    public UzytkownikEntity getKupujacy() {
+        return kupujacy;
     }
 
     public UmowaEntity getUmowa() {

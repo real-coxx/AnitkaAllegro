@@ -45,16 +45,16 @@ public class AukcjaEntity implements Serializable {
     private Integer jednostka;
 
     @Column(name = "CenaKupTeraz")
-    private Integer cenaKupTeraz;
+    private Double cenaKupTeraz;
 
     @Column(name = "CzasTrwania")
     private Integer czasTrwania;
 
     @Column(name = "CenaWywolawcza")
-    private Integer cenaWywolawcza;
+    private Double cenaWywolawcza;
 
     @Column(name = "CenaMinimalna")
-    private Integer cenaMinimalna;
+    private Double cenaMinimalna;
 
     @Column(name = "TerminZakonczenia")
     private Timestamp terminZakonczenia;
@@ -84,10 +84,10 @@ public class AukcjaEntity implements Serializable {
     private Integer numerKonta2;
 
     @Column(name = "Szablon")
-    private Boolean szablon;
+    private Boolean szablon = false;
 
     @Column(name = "LiczbaOdwiedzin")
-    private Integer liczbaOdwiedzin;
+    private Integer liczbaOdwiedzin = 0;
 
     @Column(name = "TerminOstatnichOdwiedzin")
     private Date terminOstatnichOdwiedzin;
@@ -148,7 +148,7 @@ public class AukcjaEntity implements Serializable {
         return jednostka;
     }
 
-    public Integer getCenaKupTeraz() {
+    public Double getCenaKupTeraz() {
         return cenaKupTeraz;
     }
 
@@ -156,11 +156,11 @@ public class AukcjaEntity implements Serializable {
         return czasTrwania;
     }
 
-    public Integer getCenaWywolawcza() {
+    public Double getCenaWywolawcza() {
         return cenaWywolawcza;
     }
 
-    public Integer getCenaMinimalna() {
+    public Double getCenaMinimalna() {
         return cenaMinimalna;
     }
 

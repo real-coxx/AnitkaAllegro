@@ -12,7 +12,7 @@ public class SposobdostawyEntity {
     private String nazwa;
     private Integer czasDostawy;
     private String rodzajPlatnosci;
-    private Boolean edytowalny;
+    private Boolean edytowalny = true;
 
     @Id
     @Column(name = "ID")

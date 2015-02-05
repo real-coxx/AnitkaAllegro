@@ -1,6 +1,7 @@
 package com.springapp.dto;
 
 import com.springapp.builder.KategoriaBuilder;
+import com.springapp.model.KategoriaEntity;
 
 /**
  * Created by Alicja on 2015-01-21.
@@ -15,7 +16,7 @@ public class KategoriaTO {
     private boolean dopuszczaAukcje;
     private String formulaWyliczaniaProwizjiOdSprzedaży;
     private String formulaWyliczaniaOplatyPodstawowej;
-    private int kategoria2ID;
+    private KategoriaEntity nadrzedna;
 
     public KategoriaTO(KategoriaBuilder builder) {
         this.id = builder.getId();
@@ -26,7 +27,7 @@ public class KategoriaTO {
         this.dopuszczaAukcje = builder.isDopuszczaAukcje();
         this.formulaWyliczaniaProwizjiOdSprzedaży = builder.getFormulaWyliczaniaProwizjiOdSprzedaży();
         this.formulaWyliczaniaOplatyPodstawowej = builder.getFormulaWyliczaniaOplatyPodstawowej();
-        this.kategoria2ID = builder.getKategoria2ID();
+        this.nadrzedna = builder.getNadrzedna();
     }
 
     public int getId() {
@@ -61,7 +62,7 @@ public class KategoriaTO {
         return formulaWyliczaniaOplatyPodstawowej;
     }
 
-    public int getKategoria2ID() {
-        return kategoria2ID;
+    public KategoriaEntity getNadrzedna() {
+        return nadrzedna;
     }
 }

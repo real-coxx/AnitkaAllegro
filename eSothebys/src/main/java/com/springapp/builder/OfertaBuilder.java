@@ -1,6 +1,7 @@
 package com.springapp.builder;
 
 import com.springapp.dto.AukcjaTO;
+import com.springapp.dto.UzytkownikTO;
 import com.springapp.model.AukcjaEntity;
 import com.springapp.model.UmowaEntity;
 import com.springapp.model.UzytkownikEntity;
@@ -18,14 +19,10 @@ public class OfertaBuilder {
     private Date terminZlozenia;
     private Date terminOdrzucenia;
     private String powodOdrzucenia;
-    private Integer oferta;
-    private Integer maksymalnaKwota;
-    private String discriminator;
-    private Integer aukcja2Index;
-    private Integer column;
-    private Integer column2;
-    private AukcjaTO aukcja;
-    private UzytkownikEntity uzytkownik;
+    private Double oferta;
+    private Double maksymalnaKwota;
+    private AukcjaEntity aukcja;
+    private UzytkownikEntity kupujacy;
     private UmowaEntity umowa;
     private int typOferty;
 
@@ -54,43 +51,23 @@ public class OfertaBuilder {
         return this;
     }
 
-    public OfertaBuilder setOferta(Integer oferta) {
+    public OfertaBuilder setOferta(Double oferta) {
         this.oferta = oferta;
         return this;
     }
 
-    public OfertaBuilder setMaksymalnaKwota(Integer maksymalnaKwota) {
+    public OfertaBuilder setMaksymalnaKwota(Double maksymalnaKwota) {
         this.maksymalnaKwota = maksymalnaKwota;
         return this;
     }
 
-    public OfertaBuilder setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
-        return this;
-    }
-
-    public OfertaBuilder setAukcja2Index(Integer aukcja2Index) {
-        this.aukcja2Index = aukcja2Index;
-        return this;
-    }
-
-    public OfertaBuilder setColumn(Integer column) {
-        this.column = column;
-        return this;
-    }
-
-    public OfertaBuilder setColumn2(Integer column2) {
-        this.column2 = column2;
-        return this;
-    }
-
-    public OfertaBuilder setAukcja(AukcjaTO aukcja) {
+    public OfertaBuilder setAukcja(AukcjaEntity aukcja) {
         this.aukcja = aukcja;
         return this;
     }
 
-    public OfertaBuilder setUzytkownik(UzytkownikEntity uzytkownik) {
-        this.uzytkownik = uzytkownik;
+    public OfertaBuilder setKupujacy(UzytkownikEntity kupujacy) {
+        this.kupujacy = kupujacy;
         return this;
     }
 
@@ -124,36 +101,20 @@ public class OfertaBuilder {
         return powodOdrzucenia;
     }
 
-    public Integer getOferta() {
+    public Double getOferta() {
         return oferta;
     }
 
-    public Integer getMaksymalnaKwota() {
+    public Double getMaksymalnaKwota() {
         return maksymalnaKwota;
     }
 
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public Integer getAukcja2Index() {
-        return aukcja2Index;
-    }
-
-    public Integer getColumn() {
-        return column;
-    }
-
-    public Integer getColumn2() {
-        return column2;
-    }
-
-    public AukcjaTO getAukcja() {
+    public AukcjaEntity getAukcja() {
         return aukcja;
     }
 
-    public UzytkownikEntity getUzytkownik() {
-        return uzytkownik;
+    public UzytkownikEntity getKupujacy() {
+        return kupujacy;
     }
 
     public UmowaEntity getUmowa() {

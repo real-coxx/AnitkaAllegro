@@ -1,5 +1,7 @@
 package com.springapp.builder;
 
+import com.springapp.model.*;
+
 import java.sql.Date;
 
 /**
@@ -24,10 +26,11 @@ public class UzytkownikBuilder {
     private Date dataOstatniegoLogowania;
     private Integer punktacja;
     private String discriminator;
-    private Integer ustawieniaSprzedazy;
-    private Integer kontoFakturowe;
-    private Integer subskrypcja;
-    private Integer wniosekRejestracyjny;
+    private UstawieniasprzedazyEntity ustawieniaSprzedazy;
+    private KontofakturoweEntity kontoFakturowe;
+    private SubskrypcjaEntity subskrypcja;
+    private WniosekrejestracyjnyEntity wniosekRejestracyjny;
+    private AdresEntity adres;
 
     public UzytkownikBuilder setId(int id) {
         this.id = id;
@@ -114,23 +117,28 @@ public class UzytkownikBuilder {
         return this;
     }
 
-    public UzytkownikBuilder setUstawieniaSprzedazy(Integer ustawieniaSprzedazy) {
+    public UzytkownikBuilder setUstawieniaSprzedazy(UstawieniasprzedazyEntity ustawieniaSprzedazy) {
         this.ustawieniaSprzedazy = ustawieniaSprzedazy;
         return this;
     }
 
-    public UzytkownikBuilder setKontoFakturowe(Integer kontoFakturowe) {
+    public UzytkownikBuilder setKontoFakturowe(KontofakturoweEntity kontoFakturowe) {
         this.kontoFakturowe = kontoFakturowe;
         return this;
     }
 
-    public UzytkownikBuilder setSubskrypcja(Integer subskrypcja) {
+    public UzytkownikBuilder setSubskrypcja(SubskrypcjaEntity subskrypcja) {
         this.subskrypcja = subskrypcja;
         return this;
     }
 
-    public UzytkownikBuilder setWniosekRejestracyjny(Integer wniosekRejestracyjny) {
+    public UzytkownikBuilder setWniosekRejestracyjny(WniosekrejestracyjnyEntity wniosekRejestracyjny) {
         this.wniosekRejestracyjny = wniosekRejestracyjny;
+        return this;
+    }
+
+    public UzytkownikBuilder setAdres(AdresEntity adres) {
+        this.adres = adres;
         return this;
     }
 
@@ -202,19 +210,22 @@ public class UzytkownikBuilder {
         return discriminator;
     }
 
-    public Integer getUstawieniaSprzedazy() {
+    public UstawieniasprzedazyEntity getUstawieniaSprzedazy() {
         return ustawieniaSprzedazy;
     }
 
-    public Integer getKontoFakturowe() {
+    public KontofakturoweEntity getKontoFakturowe() {
         return kontoFakturowe;
     }
 
-    public Integer getSubskrypcja() {
+    public SubskrypcjaEntity getSubskrypcja() {
         return subskrypcja;
     }
 
-    public Integer getWniosekRejestracyjny() {
+    public WniosekrejestracyjnyEntity getWniosekRejestracyjny() {
         return wniosekRejestracyjny;
+    }
+    public AdresEntity getAdres() {
+        return adres;
     }
 }

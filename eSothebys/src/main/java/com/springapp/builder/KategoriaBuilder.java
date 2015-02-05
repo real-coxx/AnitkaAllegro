@@ -1,5 +1,7 @@
 package com.springapp.builder;
 
+import com.springapp.model.KategoriaEntity;
+
 /**
  * Created by Alicja on 2015-01-21.
  */
@@ -13,7 +15,7 @@ public class KategoriaBuilder {
     private boolean dopuszczaAukcje;
     private String formulaWyliczaniaProwizjiOdSprzedaży;
     private String formulaWyliczaniaOplatyPodstawowej;
-    private int kategoria2ID;
+    private KategoriaEntity nadrzedna;
 
     public KategoriaBuilder setId(int id) {
         this.id = id;
@@ -55,8 +57,8 @@ public class KategoriaBuilder {
         return this;
     }
 
-    public KategoriaBuilder setKategoria2ID(int kategoria2ID) {
-        this.kategoria2ID = kategoria2ID;
+    public KategoriaBuilder setNadrzedna(KategoriaEntity nadrzedna) {
+        this.nadrzedna = nadrzedna;
         return this;
     }
 
@@ -92,7 +94,7 @@ public class KategoriaBuilder {
         return formulaWyliczaniaOplatyPodstawowej;
     }
 
-    public int getKategoria2ID() {
-        return kategoria2ID;
+    public KategoriaEntity getNadrzedna() {
+        return nadrzedna;
     }
 }

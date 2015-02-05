@@ -1,6 +1,8 @@
 package com.springapp.dto;
 
 import com.springapp.builder.SzczegolyDostawyBuilder;
+import com.springapp.model.CennikdostawEntity;
+import com.springapp.model.SposobdostawyEntity;
 
 /**
  * Created by Alicja on 2015-02-01.
@@ -11,18 +13,16 @@ public class SzczegolyDostawyTO {
     private Double kosztPierwszejSztuki;
     private Double kosztKolejnejSztuki;
     private Integer liczbaWPaczce;
-    private Integer sposobDostawyID;
-    private Integer cennikDostawID;
-    private SposobDostawyTO sposobDostawyTO;
+    private SposobdostawyEntity sposobDostawy;
+    private CennikdostawEntity cennikDostaw;
 
     public SzczegolyDostawyTO(SzczegolyDostawyBuilder builder) {
         this.id = builder.getId();
         this.kosztPierwszejSztuki = builder.getKosztPierwszejSztuki();
         this.kosztKolejnejSztuki = builder.getKosztKolejnejSztuki();
         this.liczbaWPaczce = builder.getLiczbaWPaczce();
-        this.sposobDostawyID = builder.getSposobDostawyID();
-        this.cennikDostawID = builder.getCennikDostawID();
-        this.sposobDostawyTO = builder.getSposobDostawyTO();
+        this.sposobDostawy = builder.getSposobDostawy();
+        this.cennikDostaw = builder.getCennikDostaw();
     }
 
     public int getId() {
@@ -41,15 +41,10 @@ public class SzczegolyDostawyTO {
         return liczbaWPaczce;
     }
 
-    public Integer getSposobDostawyID() {
-        return sposobDostawyID;
+    public SposobdostawyEntity getSposobDostawy() {
+        return sposobDostawy;
     }
-
-    public Integer getCennikDostawID() {
-        return cennikDostawID;
-    }
-
-    public SposobDostawyTO getSposobDostawyTO() {
-        return sposobDostawyTO;
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
     }
 }
