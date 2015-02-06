@@ -20,6 +20,7 @@ public class AukcjaBuilder {
     private String opisPrzedmiotu;
     private int rodzajAukcji;
     private Date terminRozpoczecia;
+    private String terminRozpoczeciaTekst;
     private int liczbaPrzedmiotow;
     private String jednostka;
     private double cenaKupTeraz;
@@ -225,6 +226,11 @@ public class AukcjaBuilder {
         return this;
     }
 
+    public AukcjaBuilder setTerminRozpoczeciaTekst(String terminRozpoczeciaTekst) {
+        this.terminRozpoczeciaTekst = terminRozpoczeciaTekst;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -358,7 +364,12 @@ public class AukcjaBuilder {
     public UzytkownikEntity getSprzeawca() {
         return sprzedawca;
     }
+
     public AdresEntity getAdres() {
         return adres;
+    }
+
+    public String getTerminRozpoczeciaTekst() {
+        return terminRozpoczeciaTekst;
     }
 }

@@ -3,6 +3,7 @@ package com.springapp.service;
 import com.springapp.builder.AukcjaBuilder;
 import com.springapp.dao.AukcjaDAO;
 import com.springapp.dto.AukcjaTO;
+import com.springapp.helpers.StanAukcji;
 import com.springapp.model.AukcjaEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ public class AukcjaServiceImpl implements AukcjaService {
         AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(idAukcji);
 
         String terminZakonczenia = new SimpleDateFormat("dd/MM/yyyy ,  HH:mm:ss").format(aukcjaEntity.getTerminZakonczenia());
+        String terminRozpoczecia = new SimpleDateFormat("dd/MM/yyyy ,  HH:mm:ss").format(aukcjaEntity.getTerminRozpoczecia());
 
         AukcjaBuilder builder = new AukcjaBuilder();
         builder.setTytul(aukcjaEntity.getTytul())
@@ -42,9 +44,27 @@ public class AukcjaServiceImpl implements AukcjaService {
                 .setStan(aukcjaEntity.getStan())
                 .setCennikDostaw(aukcjaEntity.getCennikDostaw())
                 .setKategoria(aukcjaEntity.getKategoria())
+                .setWysylkaZaGranice(aukcjaEntity.getWysylkaZaGranice())
+                .setTerminRozpoczeciaTekst(terminRozpoczecia)
+                .setLiczbaOdwiedzin(aukcjaEntity.getLiczbaOdwiedzin())
                 .setSprzedawca(aukcjaEntity.getSprzedawca());
 
         AukcjaTO aukcjaTO = new AukcjaTO(builder);
         return aukcjaTO;
+    }
+
+    @Override
+    public void modyfikujAukcjePoKupnie(AukcjaEntity aukcjaEntity, int liczbaSztuk) {
+        aukcjaDAO.modyfikujAukcjePoKupnie(aukcjaEntity, liczbaSztuk);
+
+        if (aukcjaEntity.getLiczbaDostepnychPrzedmiotow() - liczbaSztuk == 0)
+        {
+            aukcjaDAO.zmienStanAukcji(aukcjaEntity, StanAukcji.ZamknietaPrzedCzasem.toString());
+        }
+    }
+
+    @Override
+    public void zwiekszLiczbeOdwiedzin(int idAukcji) {
+        aukcjaDAO.zwiekszLiczbeOdwiedzin(idAukcji);
     }
 }

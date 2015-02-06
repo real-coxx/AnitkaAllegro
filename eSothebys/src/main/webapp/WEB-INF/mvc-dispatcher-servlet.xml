@@ -74,6 +74,8 @@
     <bean id="SzczegolyDostawyService" class="com.springapp.service.SzczegolyDostawyServiceImpl" />
     <bean id="UzytkownikService" class="com.springapp.service.UzytkownikServiceImpl" />
     <bean id="AdresService" class="com.springapp.service.AdresServiceImpl" />
+    <bean id="OgolnyService" class="com.springapp.service.OgolnyServiceImpl" />
+    <bean id="UmowaService" class="com.springapp.service.UmowaServiceImpl" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

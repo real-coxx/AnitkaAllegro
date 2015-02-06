@@ -1,16 +1,11 @@
 package com.springapp.controller;
 
-import com.springapp.dto.AukcjaTO;
-import com.springapp.dto.KategoriaTO;
-import com.springapp.dto.OfertaTO;
-import com.springapp.dto.ZdjecieTO;
+import com.springapp.dto.*;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
 import com.springapp.model.KategoriaEntity;
+import com.springapp.model.SzczegolydostawyEntity;
 import com.springapp.model.ZdjecieEntity;
-import com.springapp.service.AukcjaService;
-import com.springapp.service.KategoriaService;
-import com.springapp.service.OfertaService;
-import com.springapp.service.ZdjecieService;
+import com.springapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +22,7 @@ import java.util.List;
 public class PrezentacjaOfertyController {
 
     @Autowired
-    private ZdjecieService zdjecieService;
+    private SzczegolyDostawyService szczegolyDostawyService;
 
     @Autowired
     private AukcjaService aukcjaService;
@@ -38,12 +33,20 @@ public class PrezentacjaOfertyController {
     @Autowired
     private OfertaService ofertaService;
 
+    @Autowired
+    OgolnyService ogolnyService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView zlozOfertę(HttpServletRequest request, ModelMap model) {
         int idAukcji = 1;
         int idZalogowanegoUzytkownika = 4;
 
+        ogolnyService.zwiekszLiczbeOdwiedzin(idAukcji);
+
         AukcjaTO aukcjaTO = aukcjaService.getAukcjaByIdForSkladanieOferty(idAukcji);
+
+        List<SzczegolyDostawyTO> szczegolydostawyTOs = szczegolyDostawyService
+                .getSzczegolyDostawyByCennikDostaw(aukcjaTO.getCennikDostaw().getId());
 
         List<String> nadkategorie = kategoriaService.getNazwyNadkategorii(aukcjaTO.getKategoria().getId());
 
@@ -58,6 +61,7 @@ public class PrezentacjaOfertyController {
         modelAndView.addObject("oferty", oferty);
         modelAndView.addObject("kupTeraz", kupTeraz);
         modelAndView.addObject("licytacja", licytacja);
+        modelAndView.addObject("szczegolydostawyTOs", szczegolydostawyTOs);
 
         request.getSession().setAttribute("aukcja", aukcjaTO);
         request.getSession().setAttribute("idZalogowanegoUzytkownika", idZalogowanegoUzytkownika);

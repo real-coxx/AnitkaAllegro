@@ -17,7 +17,7 @@ public class OfertaTO {
     private int id;
     private Integer liczbaSztuk;
     private Timestamp terminZlozenia;
-    private Date terminOdrzucenia;
+    private Timestamp terminOdrzucenia;
     private String powodOdrzucenia;
     private Double oferta;
     private Double maksymalnaKwota;
@@ -52,7 +52,7 @@ public class OfertaTO {
         return terminZlozenia;
     }
 
-    public Date getTerminOdrzucenia() {
+    public Timestamp getTerminOdrzucenia() {
         return terminOdrzucenia;
     }
 

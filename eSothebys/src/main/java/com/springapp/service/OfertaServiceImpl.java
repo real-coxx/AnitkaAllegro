@@ -24,7 +24,6 @@ import java.util.List;
  * Created by Alicja on 2015-01-22.
  */
 @Service
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class OfertaServiceImpl implements OfertaService {
 
     @Autowired
@@ -97,11 +96,14 @@ public class OfertaServiceImpl implements OfertaService {
     public LicytacjaWOsobachISztukach getKupTerazISztuki(int idAukcji) {
         List<OfertaTO> wszystkieOferty =  findOfertyByAukcjaDoOfertKupna(idAukcji);
         LicytacjaWOsobachISztukach kupTerazWLiczbach = new LicytacjaWOsobachISztukach();
+        String terminOdrzuceniaDefalt = new Timestamp(1970,01,01,01,00,01,0).toString();
 
         for (OfertaTO ofertaTO : wszystkieOferty) {
             if(ofertaTO.getTypOferty() == Constants.KUP_TERAZ) {
-                kupTerazWLiczbach.setIloscOsob(kupTerazWLiczbach.getIloscOsob() + 1);
-                kupTerazWLiczbach.setIloscSztuk(kupTerazWLiczbach.getIloscSztuk() + ofertaTO.getLiczbaSztuk());
+                if(null == ofertaTO.getTerminOdrzucenia() || ofertaTO.getTerminOdrzucenia().equals(terminOdrzuceniaDefalt)){
+                    kupTerazWLiczbach.setIloscOsob(kupTerazWLiczbach.getIloscOsob() + 1);
+                    kupTerazWLiczbach.setIloscSztuk(kupTerazWLiczbach.getIloscSztuk() + ofertaTO.getLiczbaSztuk());
+                }
             }
         }
         kupTerazWLiczbach.sprawdzOdmianeOsobDlaKupTeraz();
@@ -124,37 +126,16 @@ public class OfertaServiceImpl implements OfertaService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void dodajOferte(AukcjaTO aukcjaTO, int liczbaSztuk, UzytkownikTO kupujacy) {
-
-        UmowaEntity umowaEntity = new UmowaEntity();
-        OfertaEntity ofertaEntity = new OfertaEntity();
-
-        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(aukcjaTO.getId());
-        UzytkownikEntity kupujacyEntity = uzytkownikDAO.getUzytkownikById(kupujacy.getId());
-
-        DanedowysylkiEntity danedowysylkiEntity = daneDoWysylkiDAO.getDaneDoWysylkiById(4);
-
+    public void dodajOferte(OfertaEntity ofertaEntity, AukcjaEntity aukcjaEntity, UzytkownikEntity kupujacyEntity, int liczbaSztuk) {
         java.util.Date date= new java.util.Date();
         Timestamp terminZlozenia = new Timestamp(date.getTime());
 
         ofertaEntity.setAukcja(aukcjaEntity);
         ofertaEntity.setKupujacy(kupujacyEntity);
-//        ofertaEntity.setUmowa(umowaEntity);
         ofertaEntity.setLiczbaSztuk(liczbaSztuk);
         ofertaEntity.setTerminZlozenia(terminZlozenia);
         ofertaEntity.setTypOferty(2);
 
         ofertaDAO.dodajOferte(ofertaEntity);
-
-        umowaEntity.setAukcja(aukcjaEntity);
-        umowaEntity.setSprzedajacy(aukcjaEntity.getSprzedawca());
-        umowaEntity.setKupujacy(kupujacyEntity);
-        umowaEntity.setZwyciezkaOferta(ofertaEntity);
-        umowaEntity.setLiczbaSztuk(liczbaSztuk);
-        umowaEntity.setProwizja(10.25);
-        umowaEntity.setDaneDoWysylki(danedowysylkiEntity);
-
-        umowaDAO.dodajUmowe(umowaEntity);
     }
 }

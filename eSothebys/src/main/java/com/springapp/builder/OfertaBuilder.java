@@ -18,7 +18,7 @@ public class OfertaBuilder {
     private int id;
     private Integer liczbaSztuk;
     private Timestamp terminZlozenia;
-    private Date terminOdrzucenia;
+    private Timestamp terminOdrzucenia;
     private String powodOdrzucenia;
     private Double oferta;
     private Double maksymalnaKwota;
@@ -42,7 +42,7 @@ public class OfertaBuilder {
         return this;
     }
 
-    public OfertaBuilder setTerminOdrzucenia(Date terminOdrzucenia) {
+    public OfertaBuilder setTerminOdrzucenia(Timestamp terminOdrzucenia) {
         this.terminOdrzucenia = terminOdrzucenia;
         return this;
     }
@@ -94,7 +94,7 @@ public class OfertaBuilder {
         return terminZlozenia;
     }
 
-    public Date getTerminOdrzucenia() {
+    public Timestamp getTerminOdrzucenia() {
         return terminOdrzucenia;
     }
 

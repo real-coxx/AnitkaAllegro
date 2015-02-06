@@ -20,6 +20,7 @@ public class AukcjaTO {
     private final String opisPrzedmiotu;
     private final int rodzajAukcji;
     private final Date terminRozpoczecia;
+    private final String terminRozpoczeciaTekst;
     private final int liczbaPrzedmiotow;
     private final String jednostka;
     private final double cenaKupTeraz;
@@ -87,6 +88,7 @@ public class AukcjaTO {
         this.cennikDostaw = builder.getCennikDostaw();
         this.sprzedawca = builder.getSprzeawca();
         this.adres = builder.getAdres();
+        this.terminRozpoczeciaTekst = builder.getTerminRozpoczeciaTekst();
     }
 
     public int getId() {
@@ -220,10 +222,16 @@ public class AukcjaTO {
     public CennikdostawEntity getCennikDostaw() {
         return cennikDostaw;
     }
+
     public UzytkownikEntity getSprzedawca() {
         return sprzedawca;
     }
+
     public AdresEntity getAdres() {
         return adres;
+    }
+
+    public String getTerminRozpoczeciaTekst() {
+        return terminRozpoczeciaTekst;
     }
 }

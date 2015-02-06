@@ -13,7 +13,7 @@ public class OfertaEntity {
     private int id;
     private Integer liczbaSztuk;
     private Timestamp terminZlozenia;
-    private Date terminOdrzucenia;
+    private Timestamp terminOdrzucenia;
     private String powodOdrzucenia;
     private Double oferta;
     private Double maksymalnaKwota;
@@ -55,11 +55,11 @@ public class OfertaEntity {
 
     @Basic
     @Column(name = "TerminOdrzucenia")
-    public Date getTerminOdrzucenia() {
+    public Timestamp getTerminOdrzucenia() {
         return terminOdrzucenia;
     }
 
-    public void setTerminOdrzucenia(Date terminOdrzucenia) {
+    public void setTerminOdrzucenia(Timestamp terminOdrzucenia) {
         this.terminOdrzucenia = terminOdrzucenia;
     }
 

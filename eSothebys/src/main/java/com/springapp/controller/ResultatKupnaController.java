@@ -10,6 +10,7 @@ import com.springapp.model.UmowaEntity;
 import com.springapp.model.UzytkownikEntity;
 import com.springapp.service.KrajService;
 import com.springapp.service.OfertaService;
+import com.springapp.service.OgolnyService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ import java.util.List;
 public class ResultatKupnaController {
 
     @Autowired
-    OfertaService ofertaService;
+    OgolnyService ogolnyService;
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView zatwierdzZakup(HttpServletRequest request, HttpServletResponse response){
@@ -40,7 +41,7 @@ public class ResultatKupnaController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        ofertaService.dodajOferte(aukcjaTO, liczbaSztuk, kupujacy);
+        ogolnyService.potwierdzKupno(aukcjaTO, kupujacy, liczbaSztuk);
 
         boolean udaloSie = true;
 

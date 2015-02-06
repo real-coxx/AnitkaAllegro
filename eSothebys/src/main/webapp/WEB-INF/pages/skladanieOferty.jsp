@@ -5,6 +5,12 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <t:layout>
+    <script>
+        $('#myTab a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+    </script>
     <form class="form-horizontal" action="${pageContext.request.contextPath}/checKupna" role="form" method="POST">
         <div class="page-header">
             <h1 style="color: #f5f5f5">${aukcjaTO.tytul}
@@ -36,8 +42,14 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <h5 class="pull-right" style="display: inline; margin-right: 20px">${aukcjaTO.terminZakonczeniaTekst}</h5>
-                <h5 class="pull-right" style="display: inline; margin-right: 10px">Zakończenie aukcji:</h5>
+                <c:choose>
+                    <c:when test="${aukcjaTO.stan.equals('Aktywna')}">
+                    <h5 class="pull-right" style="margin-right: 20px">Zakończenie aukcji: ${aukcjaTO.terminZakonczeniaTekst}</h5>
+                    </c:when>
+                    <c:otherwise>
+                        <h5 class="pull-right" style="margin-right: 20px">Aukcja zakończona</h5>
+                    </c:otherwise>
+                </c:choose>
 
                 <br>
                 <br>
@@ -54,91 +66,52 @@
                 <br>
 
                 <div>
-                    <style type="text/css">
-                        .tg {
-                            border-collapse: collapse;
-                            border-spacing: 0;
-                        }
-
-                        .tg td {
-                            font-family: Arial, sans-serif;
-                            font-size: 14px;
-                            padding: 10px 5px;
-                            border-style: solid;
-                            border-width: 1px;
-                            overflow: hidden;
-                            word-break: normal;
-                        }
-
-                        .tg th {
-                            font-family: Arial, sans-serif;
-                            font-size: 14px;
-                            font-weight: normal;
-                            padding: 10px 5px;
-                            border-style: solid;
-                            border-width: 1px;
-                            overflow: hidden;
-                            word-break: normal;
-                        }
-                    </style>
-                    <table class="tg">
+                    <table>
                         <tr>
-                            <th class="tg-031e" style="width: 23%">Aktualna cena</th>
-                            <th class="tg-031e" style="width: 18%">Twoja oferta</th>
-                            <th class="tg-031e" style="width: 5%"></th>
-                            <th class="tg-031e" style="width: 18%">Liczba sztuk</th>
-                            <th class="tg-031e" style="width: 18%"></th>
-                            <th class="tg-031e" style="width: 18%"></th>
+                            <th style="width: 23%">Aktualna cena</th>
+                            <th style="width: 18%">Twoja oferta</th>
+                            <th style="width: 5%"></th>
+                            <th style="width: 18%">Liczba sztuk</th>
+                            <th style="width: 18%"></th>
+                            <th style="width: 18%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e" style="width: 23%">${aukcjaTO.aktualnaCena}</td>
-                            <td class="tg-031e" style="width: 18%">
+                            <td style="width: 23%">${aukcjaTO.aktualnaCena}</td>
+                            <td style="width: 18%">
                                 <input type="text" class="form-control" id="twojaOferta">
                             </td>
-                            <td class="tg-031e" style="width: 5%">zł</td>
-                            <td class="tg-031e" style="width: 18%">
+                            <td style="width: 5%">zł</td>
+                            <td style="width: 18%">
                                 <input type="text" class="form-control" id="liczbaSztukLicytacji">
                             </td>
-                            <td class="tg-031e" style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
-                            <td class="tg-031e" style="width: 18%">
+                            <td style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
+                            <td style="width: 18%">
                                 <button style="width: 80px" type="submit" name="licytuj" value="Licytuj" class="btn btn-default btn-sm pull-right">
                                     Licytuj
                                 </button>
                             </td>
                         </tr>
+                    </table>
+                    <br>
+                    <br>
+                    <table>
                         <tr>
-                            <th class="tg-031e"></th>
-                            <th class="tg-031e"></th>
-                            <th class="tg-031e"></th>
-                            <th class="tg-031e"></th>
-                            <th class="tg-031e"></th>
-                            <th class="tg-031e"></th>
+                            <th style="width: 23%">Cena Kup Teraz</th>
+                            <th style="width: 18%"></th>
+                            <th style="width: 5%"></th>
+                            <th style="width: 18%">Liczba sztuk</th>
+                            <th style="width: 18%"></th>
+                            <th style="width: 18%"></th>
                         </tr>
                         <tr>
-                            <td class="tg-031e"></td>
-                            <td class="tg-031e"></td>
-                            <td class="tg-031e"></td>
-                            <td class="tg-031e"></td>
-                            <td class="tg-031e"></td>
-                            <td class="tg-031e"></td>
-                        </tr>
-                        <tr>
-                            <th class="tg-031e" style="width: 23%">Cena Kup Teraz</th>
-                            <th class="tg-031e" style="width: 18%"></th>
-                            <th class="tg-031e" style="width: 5%"></th>
-                            <th class="tg-031e" style="width: 18%">Liczba sztuk</th>
-                            <th class="tg-031e" style="width: 18%"></th>
-                            <th class="tg-031e" style="width: 18%"></th>
-                        </tr>
-                        <tr>
-                            <td class="tg-031e" style="width: 23%">${aukcjaTO.cenaKupTeraz}</td>
-                            <td class="tg-031e" style="width: 18%"></td>
-                            <td class="tg-031e" style="width: 5%"></td>
-                            <td class="tg-031e" style="width: 18%">
+                            <td style="width: 23%">${aukcjaTO.cenaKupTeraz}</td>
+                            <td style="width: 18%"></td>
+                            <td style="width: 5%"></td>
+                            <td style="width: 18%">
                                 <input type="text" name="liczbaSztuk" class="form-control" id="liczbaSztukKupTeraz" path="liczbaSztuk">
                             </td>
-                            <td class="tg-031e" style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
-                            <td class="tg-031e" style="width: 18%">
+                            <td style="width: 18%">z ${aukcjaTO.liczbaDostepnychPrzedmiotow} sztuk</td>
+                            <td style="width: 18%">
                                 <button style="width: 80px" type="submit" name="kupTeraz" value="KupTeraz" class="btn btn-default btn-sm pull-right">Kup
                                     Teraz
                                 </button>
@@ -166,7 +139,34 @@
                     <textarea disabled class="form-control" rows="10"
                               style="width: 70%; margin-left: 15%; resize: none">${aukcjaTO.opisPrzedmiotu}</textarea>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="dostawaiplatnosc">${aukcjaTO.dodatkoweInformacjeODostawieIPlatnosci}</div>
+                <div role="tabpanel" class="tab-pane" id="dostawaiplatnosc">
+                    <h4>${aukcjaTO.dodatkoweInformacjeODostawieIPlatnosci}</h4>
+                    <br>
+                    <h4>Wysyłka za granicę: ${aukcjaTO.wysylkaZaGranice ? "Tak" : "Nie"}</h4>
+                    <br>
+                    <br>
+                    <h4>Koszty przesyłki:</h4>
+                    <div class="panel panel-default" style="width: 80%; margin-left: 10%; margin-top: 10px">
+                        <table class="table">
+                            <tr>
+                                <th></th>
+                                <th>Sposób dostawy</th>
+                                <th>Liczba sztuk w paczce</th>
+                                <th>Cena pierwszej sztuki</th>
+                                <th>Cena za kolejną sztukę</th>
+                            </tr>
+                            <c:forEach var="i" begin="0" end="${szczegolydostawyTOs.size()-1}">
+                                <tr>
+                                    <th>#</th>
+                                    <th>${szczegolydostawyTOs.get(i).sposobDostawy.nazwa}</th>
+                                    <th>${szczegolydostawyTOs.get(i).liczbaWPaczce}</th>
+                                    <th>${szczegolydostawyTOs.get(i).kosztPierwszejSztuki} zł</th>
+                                    <th>${szczegolydostawyTOs.get(i).kosztKolejnejSztuki} zł</th>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
                 <div role="tabpanel" class="tab-pane" id="ofertykupna">
                     <table class="table table-bordered" style="width: 80%; margin-left: 10%; margin-top: 10px">
                         <thead>
@@ -190,13 +190,17 @@
                     </table>
                 </div>
             </div>
-
-            <script>
-                $('#myTab a').click(function (e) {
-                    e.preventDefault()
-                    $(this).tab('show')
-                })
-            </script>
         </div>
+
+        <div>
+            <h5 class="pull-left" style="display: inline; margin-left: 20px">Liczba odwiedzin:</h5>
+            <h5 class="pull-left" style="display: inline; margin-left: 10px">${aukcjaTO.liczbaOdwiedzin}</h5>
+        </div>
+        <div>
+            <h5 class="pull-right" style="display: inline; margin-right: 20px">${aukcjaTO.terminRozpoczeciaTekst}</h5>
+            <h5 class="pull-right" style="display: inline; margin-right: 10px">Rozpoczęcie aukcji:</h5>
+        </div>
+
+
     </form>
 </t:layout>
