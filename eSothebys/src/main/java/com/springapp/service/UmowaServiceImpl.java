@@ -22,9 +22,16 @@ public class UmowaServiceImpl implements UmowaService {
         umowaEntity.setKupujacy(kupujacyEntity);
         umowaEntity.setZwyciezkaOferta(ofertaEntity);
         umowaEntity.setLiczbaSztuk(liczbaSztuk);
-        umowaEntity.setProwizja(10.25);
+        umowaEntity.setProwizja(obliczProwizje(aukcjaEntity.getCenaKupTeraz(), liczbaSztuk));
         umowaEntity.setDaneDoWysylki(danedowysylkiEntity);
 
         umowaDAO.dodajUmowe(umowaEntity);
+    }
+
+    private double obliczProwizje(double cenaTowaru, int liczbaSztuk){
+        double prowizja = 0.06;
+        double calkowitaCenaTowaru = cenaTowaru * liczbaSztuk;
+        return calkowitaCenaTowaru * prowizja;
+
     }
 }
