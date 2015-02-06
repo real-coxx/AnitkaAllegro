@@ -134,7 +134,7 @@ public class OfertaServiceImpl implements OfertaService {
         ofertaEntity.setKupujacy(kupujacyEntity);
         ofertaEntity.setLiczbaSztuk(liczbaSztuk);
         ofertaEntity.setTerminZlozenia(terminZlozenia);
-        ofertaEntity.setTypOferty(2);
+        ofertaEntity.setTypOferty(Constants.KUP_TERAZ);
 
         ofertaDAO.dodajOferte(ofertaEntity);
     }
