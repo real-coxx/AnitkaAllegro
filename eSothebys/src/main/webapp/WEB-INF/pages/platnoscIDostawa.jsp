@@ -9,8 +9,9 @@
     <script>
         $(document).ready(function () {
             $('#przesylkaMenu').on('change', function () {
-                var przesylkaMenuKwota = parseInt($(this).val());
-                $('#razem').text(przesylkaMenuKwota + parseInt($('#cenaZaSztuki').text()));
+                var przesylkaMenuKwota = parseFloat($(this).val());
+                $('#razem').text(przesylkaMenuKwota + parseFloat($('#cenaZaSztuki').text()));
+                $("#hiddenRazem").val(przesylkaMenuKwota + parseFloat($('#cenaZaSztuki').text()));
             });
         });
 
@@ -41,8 +42,8 @@
                 <h4 style="display: inline">Sposób dostawy:</h4>
 
                 <div class="dropdown" style="display: inline; margin-left: 110px">
-                    <select id="przesylkaMenu" name="menu">
-                        <option value="" disabled="disabled" selected="selected"></option>
+                    <select id="przesylkaMenu" name="przesylkaMenu" path="przesylkaMenu">
+                        <option value="null" selected="selected"></option>
                         <c:forEach items="${menuSposobuDostawy}" var="entry">
                             <tr>
                                 <option value=${entry.value}>${entry.key}</option>
@@ -57,7 +58,7 @@
 
             <div style="margin-left: 4%">
                 <h4>Wiadomość dla sprzedającego:</h4>
-                <textarea class="form-control" rows="4" style="resize: none; width: 50%; margin-left: 250px"></textarea>
+                <textarea class="form-control" rows="4" style="resize: none; width: 50%; margin-left: 250px" name="wiadomosc" path="wiadomosc"></textarea>
             </div>
         </div>
 
@@ -150,7 +151,7 @@
             <div style="margin-left: 4%">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1">Telefon</span>
-                    <input type="tel" class="form-control" placeholder="numer telefonu" aria-describedby="basic-addon1"
+                    <input type="tel" class="form-control" placeholder="numer telefonu" name="telefon" path="telefon" aria-describedby="basic-addon1"
                            style="width: 200px; height: 30px">
                 </div>
             </div>
@@ -159,8 +160,15 @@
 
         <div style="margin-right: 20%">
             <h4 class="pull-right" style="display: inline; margin-left: 10px">zł</h4>
-            <h4 id="razem" class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
+            <h4 id="razem" name="razem" path="razem" aria-describedby="razem" class="pull-right" style="display: inline">${cenaZaSztuki}</h4>
             <h4 class="pull-right" style="display: inline; margin-right: 10px">razem: </h4>
+        </div>
+
+        <div>
+            <div class="input-group">
+                <%--<span class="input-group-addon" id="hiddenSpan">Telefon</span>--%>
+                <input type="hidden" id="hiddenRazem" name="hiddenRazem" path="hiddenRazem">
+            </div>
         </div>
 
         <br>

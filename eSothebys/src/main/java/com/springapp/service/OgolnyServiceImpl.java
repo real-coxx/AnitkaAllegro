@@ -1,17 +1,18 @@
 package com.springapp.service;
 
-import com.springapp.dao.AdresDAO;
-import com.springapp.dao.AukcjaDAO;
-import com.springapp.dao.DaneDoWysylkiDAO;
-import com.springapp.dao.UzytkownikDAO;
+import com.springapp.dao.*;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.UzytkownikTO;
+import com.springapp.helpers.Constants;
+import com.springapp.mailSending.MailPreparation;
+import com.springapp.mailSending.TrescWiadomosciEmail;
 import com.springapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 
 /**
@@ -42,10 +43,13 @@ public class OgolnyServiceImpl implements OgolnyService {
     @Autowired
     DaneDoWysylkiDAO daneDoWysylkiDAO;
 
+    @Autowired
+    KrajDAO krajDAO;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk,String imie, String nazwisko,
-                               String ulica, String kod, String miejscowosc, String kraj, String firma) {
+    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk ,String imie, String nazwisko, String ulica, String kod,
+                               String miejscowosc, String kraj, String firma, String telefon, String cenaCalkowita, String wiadomosc) throws IOException {
         UmowaEntity umowaEntity = new UmowaEntity();
         OfertaEntity ofertaEntity = new OfertaEntity();
 
@@ -53,11 +57,17 @@ public class OgolnyServiceImpl implements OgolnyService {
         UzytkownikEntity kupujacyEntity = uzytkownikDAO.getUzytkownikById(kupujacy.getId());
 
         DanedowysylkiEntity danedowysylkiEntity = ustawDaneDoWysylki(imie, nazwisko, ulica, kod, miejscowosc,
-                kraj, firma, kupujacyEntity);
+                kraj, firma, kupujacyEntity, aukcjaEntity.getWysylkaZaGranice());
 
         ofertaService.dodajOferte(ofertaEntity, aukcjaEntity, kupujacyEntity, liczbaSztuk);
         umowaService.dodajUmowe(umowaEntity, aukcjaEntity, kupujacyEntity, ofertaEntity, liczbaSztuk, danedowysylkiEntity);
         aukcjaService.modyfikujAukcjePoKupnie(aukcjaEntity, liczbaSztuk);
+
+        String trescEmailDlaKupujacego = TrescWiadomosciEmail.wiadomoscDlaKupujacego(aukcjaTO, liczbaSztuk, cenaCalkowita);
+        MailPreparation.sendEmail(Constants.E_MAIL_SYSTEMU, kupujacyEntity.getEmail(), Constants.TYTUL_E_MAIL_DLA_KUPUJACEGO, trescEmailDlaKupujacego);
+
+        String trescEmailDlaSprzedajacego = TrescWiadomosciEmail.wiadomoscDlaSprzedajacego(aukcjaTO, danedowysylkiEntity, liczbaSztuk, cenaCalkowita, telefon, wiadomosc);
+        MailPreparation.sendEmail(Constants.E_MAIL_SYSTEMU, aukcjaEntity.getSprzedawca().getEmail(), Constants.TYTUL_E_MAIL_DLA_SPRZEDAJACEGO, trescEmailDlaSprzedajacego);
     }
 
     @Override
@@ -67,12 +77,30 @@ public class OgolnyServiceImpl implements OgolnyService {
     }
 
     private DanedowysylkiEntity ustawDaneDoWysylki(String imie, String nazwisko, String ulica, String kod, String miejscowosc,
-                                   String kraj, String firma, UzytkownikEntity kupujacy) {
+                                   String kraj, String firma, UzytkownikEntity kupujacy, boolean czyZaGranice) throws IOException {
         DanedowysylkiEntity danedowysylkiEntity = daneDoWysylkiDAO.getDaneOInnymAdresieNizZamieszkania(kupujacy);
 
         daneDoWysylkiDAO.modyfikujDaneDoWysylki(imie, nazwisko, firma, danedowysylkiEntity.getId());
 
         adresDAO.modyfikujAdres(danedowysylkiEntity, ulica, kod, miejscowosc, danedowysylkiEntity.getAdresDoWysylki().getId());
+
+        danedowysylkiEntity.setImie(imie);
+        danedowysylkiEntity.setNazwisko(nazwisko);
+        danedowysylkiEntity.setFirma(firma);
+        danedowysylkiEntity.getAdresDoWysylki().setUlicaZNumerem(ulica);
+        danedowysylkiEntity.getAdresDoWysylki().setMiejscowosc(miejscowosc);
+        danedowysylkiEntity.getAdresDoWysylki().setKodPocztow(kod);
+//        danedowysylkiEntity.getAdresDoWysylki().getKraj().setNazwa(kraj);
+
+        KrajEntity krajEntity = krajDAO.getKrajByNazwa(kraj);
+        if (null == krajEntity) {
+            throw new IOException("Kraj podany przez Ciebie nie istnieje.");
+        }
+        else if (!krajEntity.getNazwa().equals("Polska")) {
+            if (!czyZaGranice) {
+                throw new IOException("Wysyłka za granicę nie jest możliwa.");
+            }
+        }
 
         return danedowysylkiEntity;
 
