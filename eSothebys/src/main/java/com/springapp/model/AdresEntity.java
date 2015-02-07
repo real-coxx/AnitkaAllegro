@@ -87,7 +87,7 @@ public class AdresEntity {
         this.wojewodztwo = wojewodztwo;
     }
 
-    @ManyToOne (cascade=CascadeType.ALL)
+    @OneToOne (cascade=CascadeType.ALL)
     @JoinColumn(name="DaneDoWysylki")
     public DanedowysylkiEntity getDaneDoWysylki() {
         return daneDoWysylki;

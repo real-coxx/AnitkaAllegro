@@ -8,6 +8,7 @@ import com.springapp.dto.UzytkownikTO;
  */
 public interface OgolnyService {
 
-    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk);
+    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk,String imie, String nazwisko,
+                               String ulica, String kod, String miejscowosc, String kraj, String firma);
     public void zwiekszLiczbeOdwiedzin(int idAukcji);
 }

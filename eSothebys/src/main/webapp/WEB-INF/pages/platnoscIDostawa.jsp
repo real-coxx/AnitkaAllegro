@@ -98,8 +98,47 @@
             </div>
 
             <br>
+            <br>
 
-            <a href="podsatwić okienko" style="margin-left: 4%">inny adres</a>
+            <h5>Wpisz adres wysyłki jeśli chcesz, by był inny niż powyższy:</h5>
+
+            <div style="margin-left: 4%">
+                <div class="input-group">
+                    <span class="input-group-addon" id="firmaWysylka">Firma</span>
+                    <input type="text" class="form-control" name="firmaWysylka" path="firmaWysylka" aria-describedby="firmaWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="imieWysylka">Imię</span>
+                    <input type="text" class="form-control" name="imieWysylka" path="imieWysylka" aria-describedby="imieWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="nazwiskoWysylka">Nazwisko</span>
+                    <input type="text" class="form-control" name="nazwiskoWysylka" path="nazwiskoWysylka" aria-describedby="nazwiskoWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="ulicaWysylka">Ulica i nr domu</span>
+                    <input type="text" class="form-control" name="ulicaWysylka" path="ulicaWysylka" aria-describedby="ulicaWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="kodWysylka">Kod pocztowy</span>
+                    <input type="text" class="form-control" name="kodWysylka" path="kodWysylka" aria-describedby="kodWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="miejscowoscWysylka">Miejscowość</span>
+                    <input type="text" class="form-control" name="miejscowoscWysylka" path="miejscowoscWysylka" aria-describedby="miejscowoscWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="krajWysylka">Kraj</span>
+                    <input type="text" class="form-control" name="krajWysylka" path="krajWysylka" aria-describedby="krajWysylka"
+                           style="width: 200px; height: 30px">
+                </div>
+            </div>
 
             <br>
             <br>

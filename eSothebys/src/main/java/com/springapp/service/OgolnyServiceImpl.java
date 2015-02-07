@@ -1,5 +1,6 @@
 package com.springapp.service;
 
+import com.springapp.dao.AdresDAO;
 import com.springapp.dao.AukcjaDAO;
 import com.springapp.dao.DaneDoWysylkiDAO;
 import com.springapp.dao.UzytkownikDAO;
@@ -33,6 +34,9 @@ public class OgolnyServiceImpl implements OgolnyService {
     AukcjaDAO aukcjaDAO;
 
     @Autowired
+    AdresDAO adresDAO;
+
+    @Autowired
     UzytkownikDAO uzytkownikDAO;
 
     @Autowired
@@ -40,14 +44,16 @@ public class OgolnyServiceImpl implements OgolnyService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk) {
+    public void potwierdzKupno(AukcjaTO aukcjaTO, UzytkownikTO kupujacy, int liczbaSztuk,String imie, String nazwisko,
+                               String ulica, String kod, String miejscowosc, String kraj, String firma) {
         UmowaEntity umowaEntity = new UmowaEntity();
         OfertaEntity ofertaEntity = new OfertaEntity();
 
         AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(aukcjaTO.getId());
         UzytkownikEntity kupujacyEntity = uzytkownikDAO.getUzytkownikById(kupujacy.getId());
 
-        DanedowysylkiEntity danedowysylkiEntity = daneDoWysylkiDAO.getDaneDoWysylkiById(4);
+        DanedowysylkiEntity danedowysylkiEntity = ustawDaneDoWysylki(imie, nazwisko, ulica, kod, miejscowosc,
+                kraj, firma, kupujacyEntity);
 
         ofertaService.dodajOferte(ofertaEntity, aukcjaEntity, kupujacyEntity, liczbaSztuk);
         umowaService.dodajUmowe(umowaEntity, aukcjaEntity, kupujacyEntity, ofertaEntity, liczbaSztuk, danedowysylkiEntity);
@@ -58,5 +64,17 @@ public class OgolnyServiceImpl implements OgolnyService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     public void zwiekszLiczbeOdwiedzin(int idAukcji) {
         aukcjaService.zwiekszLiczbeOdwiedzin(idAukcji);
+    }
+
+    private DanedowysylkiEntity ustawDaneDoWysylki(String imie, String nazwisko, String ulica, String kod, String miejscowosc,
+                                   String kraj, String firma, UzytkownikEntity kupujacy) {
+        DanedowysylkiEntity danedowysylkiEntity = daneDoWysylkiDAO.getDaneOInnymAdresieNizZamieszkania(kupujacy);
+
+        daneDoWysylkiDAO.modyfikujDaneDoWysylki(imie, nazwisko, firma, danedowysylkiEntity.getId());
+
+        adresDAO.modyfikujAdres(danedowysylkiEntity, ulica, kod, miejscowosc, danedowysylkiEntity.getAdresDoWysylki().getId());
+
+        return danedowysylkiEntity;
+
     }
 }

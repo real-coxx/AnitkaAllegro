@@ -7,5 +7,5 @@ import com.springapp.dto.AdresTO;
  */
 public interface AdresService {
 
-    public AdresTO getAdresByIdUzytkownika(int idUzytkownika);
+    public AdresTO getAdresDoWysylkiByIdUzytkownika(int idUzytkownika, int adresZamieszkaniaId);
 }

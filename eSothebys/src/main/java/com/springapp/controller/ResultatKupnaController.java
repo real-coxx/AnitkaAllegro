@@ -41,27 +41,63 @@ public class ResultatKupnaController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        ogolnyService.potwierdzKupno(aukcjaTO, kupujacy, liczbaSztuk);
+        String firma = request.getParameter("firmaWysylka");
+        String imie = request.getParameter("imieWysylka");
+        String nazwisko = request.getParameter("nazwiskoWysylka");
+        String ulica = request.getParameter("ulicaWysylka");
+        String kod = request.getParameter("kodWysylka");
+        String miejscowosc = request.getParameter("miejscowoscWysylka");
+        String kraj = request.getParameter("krajWysylka");
 
-        boolean udaloSie = true;
+        if (!ifAllFieldsAreEmpty(imie, nazwisko, ulica, kod, miejscowosc, kraj, firma) &&
+                ifAnyFieldIsEmpty(imie, nazwisko, ulica, kod, miejscowosc, kraj, firma)) {
+            String informacja = "Jeśli chcesz podać inny adres wysyłki, musisz uzupełnić wszystkie pola. W przeciwnym wypadku wyczyść je.";
+            String skutek = "Błędne dane!";
+            String strona = "niepoprawnyAdresWysylki";
+            modelAndView = getModelAndView(modelAndView, informacja, skutek, strona);
+            return modelAndView;
+        }
 
-        if (udaloSie) {
+        try {
+            ogolnyService.potwierdzKupno(aukcjaTO, kupujacy, liczbaSztuk, imie, nazwisko, ulica, kod, miejscowosc, kraj, firma );
             String informacja = "Transakcja przebiegła pomyślnie. Przedmiot został zakupiony.";
             String skutek = "Udało się!";
-            modelAndView = getModelAndView(modelAndView, informacja, skutek);
-        } else {
+            String strona = "resultatKupna";
+            modelAndView = getModelAndView(modelAndView, informacja, skutek, strona);
+        } catch (Exception ex) {
             String informacja = "Transakcja się nie powiodła. Spróbuj ponownie.";
             String skutek = "Wystąpił błąd!";
-            modelAndView = getModelAndView(modelAndView, informacja, skutek);
+            String strona ="resultatKupna";
+            modelAndView = getModelAndView(modelAndView, informacja, skutek, strona);
         }
 
         return modelAndView;
     }
 
-    private ModelAndView getModelAndView(ModelAndView modelAndView, String informacja, String skutek) {
-        modelAndView = new ModelAndView("resultatKupna");
+    private ModelAndView getModelAndView(ModelAndView modelAndView, String informacja, String skutek, String strona) {
+        modelAndView = new ModelAndView(strona);
         modelAndView.addObject("informacja", informacja);
         modelAndView.addObject("skutek", skutek);
         return modelAndView;
+    }
+
+    private boolean ifAnyFieldIsEmpty(String imie, String nazwisko, String ulica, String kod, String miejscowosc, String kraj, String firma) {
+        return firma.trim().equals("")
+                || imie.trim().equals("")
+                || nazwisko.trim().equals("")
+                || ulica.trim().equals("")
+                || kod.trim().equals("")
+                || miejscowosc.trim().equals("")
+                || kraj.trim().equals("");
+    }
+
+    private boolean ifAllFieldsAreEmpty(String imie, String nazwisko, String ulica, String kod, String miejscowosc, String kraj, String firma) {
+        return firma.trim().equals("")
+                && imie.trim().equals("")
+                && nazwisko.trim().equals("")
+                && ulica.trim().equals("")
+                && kod.trim().equals("")
+                && miejscowosc.trim().equals("")
+                && kraj.trim().equals("");
     }
 }

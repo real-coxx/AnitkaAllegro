@@ -21,18 +21,19 @@ public class AdresServiceImpl implements AdresService {
     KrajDAO krajDAO;
 
     @Override
-    public AdresTO getAdresByIdUzytkownika(int idUzytkownika) {
-        AdresEntity entity = adresDAO.getAdresByUzytkownikId(idUzytkownika);
+    public AdresTO getAdresDoWysylkiByIdUzytkownika(int idUzytkownika, int adresZamieszkaniaId) {
+        AdresEntity entity = adresDAO.getAdresDoWysylkiByIdUzytkownika(idUzytkownika, adresZamieszkaniaId);
 
-        AdresBuilder builder = new AdresBuilder();
-        builder.setId(entity.getId())
-                .setUlicaZNumerem(entity.getUlicaZNumerem())
-                .setKodPocztow(entity.getKodPocztow())
-                .setMiejscowosc(entity.getMiejscowosc())
-//                .setKraj(krajDAO.getKrajById(entity))
-                .setUzytkownik2ID(entity.getUzytkownik2ID());
-
-        AdresTO adresTO = new AdresTO(builder);
-        return adresTO;
+//        AdresBuilder builder = new AdresBuilder();
+//        builder.setId(entity.getId())
+//                .setUlicaZNumerem(entity.getUlicaZNumerem())
+//                .setKodPocztow(entity.getKodPocztow())
+//                .setMiejscowosc(entity.getMiejscowosc())
+////                .setKraj(krajDAO.getKrajById(entity))
+//                .setUzytkownik2ID(entity.getUzytkownik2ID());
+//
+//        AdresTO adresTO = new AdresTO(builder);
+//        return adresTO;
+        return null;
     }
 }
