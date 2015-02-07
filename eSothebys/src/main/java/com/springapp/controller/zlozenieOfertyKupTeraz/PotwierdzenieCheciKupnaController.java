@@ -1,19 +1,14 @@
-package com.springapp.controller;
+package com.springapp.controller.zlozenieOfertyKupTeraz;
 
         import com.springapp.dto.AukcjaTO;
         import com.springapp.helpers.StanAukcji;
-        import com.springapp.model.KrajEntity;
-        import com.springapp.service.KrajService;
-        import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.stereotype.Controller;
-        import org.springframework.ui.ModelMap;
         import org.springframework.web.bind.annotation.RequestMapping;
         import org.springframework.web.bind.annotation.RequestMethod;
         import org.springframework.web.servlet.ModelAndView;
 
         import javax.servlet.http.HttpServletRequest;
         import javax.servlet.http.HttpServletResponse;
-        import java.util.List;
 
 @Controller
 @RequestMapping("/checKupna")

@@ -1,20 +1,10 @@
-package com.springapp.controller;
+package com.springapp.controller.zlozenieOfertyKupTeraz;
 
-import com.springapp.builder.OfertaBuilder;
 import com.springapp.dto.AukcjaTO;
-import com.springapp.dto.OfertaTO;
 import com.springapp.dto.UzytkownikTO;
-import com.springapp.helpers.StanAukcji;
-import com.springapp.model.KrajEntity;
-import com.springapp.model.UmowaEntity;
-import com.springapp.model.UzytkownikEntity;
-import com.springapp.service.KrajService;
-import com.springapp.service.OfertaService;
 import com.springapp.service.OgolnyService;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
 
 @Controller
 @RequestMapping("/resultatKupna")

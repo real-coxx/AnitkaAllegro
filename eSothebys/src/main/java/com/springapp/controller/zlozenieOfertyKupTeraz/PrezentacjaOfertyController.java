@@ -1,10 +1,7 @@
-package com.springapp.controller;
+package com.springapp.controller.zlozenieOfertyKupTeraz;
 
 import com.springapp.dto.*;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
-import com.springapp.model.KategoriaEntity;
-import com.springapp.model.SzczegolydostawyEntity;
-import com.springapp.model.ZdjecieEntity;
 import com.springapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller

@@ -1,20 +1,13 @@
-package com.springapp.controller;
+package com.springapp.controller.zlozenieOfertyKupTeraz;
 
-import com.springapp.dto.AdresTO;
 import com.springapp.dto.AukcjaTO;
-import com.springapp.dto.SzczegolyDostawyTO;
 import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
-import com.springapp.model.AdresEntity;
-import com.springapp.model.KrajEntity;
 import com.springapp.service.AdresService;
-import com.springapp.service.KrajService;
 import com.springapp.service.SzczegolyDostawyService;
 import com.springapp.service.UzytkownikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller
 @RequestMapping("/platnosc")
