@@ -12,6 +12,10 @@ public class AdresEntity {
     private String ulicaZNumerem;
     private String kodPocztow;
     private String miejscowosc;
+    private Integer uzytkownik2ID;
+    private KrajEntity kraj;
+    private DanedowysylkiEntity daneDoWysylki;
+    private WojewodztwoEntity wojewodztwo;
 
     @Id
     @Column(name = "ID")
@@ -51,6 +55,46 @@ public class AdresEntity {
 
     public void setMiejscowosc(String miejscowosc) {
         this.miejscowosc = miejscowosc;
+    }
+
+    @Basic
+    @Column(name = "Uzytkownik2ID")
+    public Integer getUzytkownik2ID() {
+        return uzytkownik2ID;
+    }
+
+    public void setUzytkownik2ID(Integer uzytkownik2ID) {
+        this.uzytkownik2ID = uzytkownik2ID;
+    }
+
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Kraj")
+    public KrajEntity getKraj() {
+        return kraj;
+    }
+
+    public void setKraj(KrajEntity kraj) {
+        this.kraj = kraj;
+    }
+
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Wojewodztwo")
+    public WojewodztwoEntity getWojewodztwo() {
+        return wojewodztwo;
+    }
+
+    public void setWojewodztwo(WojewodztwoEntity wojewodztwo) {
+        this.wojewodztwo = wojewodztwo;
+    }
+
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="DaneDoWysylki")
+    public DanedowysylkiEntity getDaneDoWysylki() {
+        return daneDoWysylki;
+    }
+
+    public void setDaneDoWysylki(DanedowysylkiEntity daneDoWysylki) {
+        this.daneDoWysylki = daneDoWysylki;
     }
 
     @Override

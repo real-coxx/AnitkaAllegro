@@ -45,6 +45,23 @@ public class LicytacjaWOsobachISztukach {
         }
     }
 
+    public void sprawdzOdmianeSztukDlaPlatnosci() {
+        String odmiana = Integer.toString(iloscSztuk);
+        if (iloscSztuk ==  1) {
+            odmianaSztuk = "sztuka";
+        }
+        else if (Integer.parseInt(String.valueOf(odmiana.charAt(odmiana.length()-1))) == 2 && iloscSztuk != 12
+                ||
+                Integer.parseInt(String.valueOf(odmiana.charAt(odmiana.length()-1))) == 3 && iloscSztuk != 13
+                ||
+                Integer.parseInt(String.valueOf(odmiana.charAt(odmiana.length()-1))) == 4 && iloscSztuk != 14) {
+            odmianaSztuk = "sztuki";
+        }
+        else {
+            odmianaSztuk = "sztuk";
+        }
+    }
+
     public void sprawdzOdmianeOsobDlaLicytacji() {
         String odmiana = Integer.toString(iloscOsob);
         if (iloscOsob ==  1) {

@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface KrajDAO {
     public List<KrajEntity> getKraje();
+
+    public KrajEntity getKrajById(int idKraju);
+
+    public KrajEntity getKrajByNazwa(String nazwaKraju);
 }

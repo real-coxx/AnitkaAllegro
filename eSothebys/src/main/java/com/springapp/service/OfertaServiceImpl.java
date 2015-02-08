@@ -2,19 +2,21 @@ package com.springapp.service;
 
 import com.springapp.builder.AukcjaBuilder;
 import com.springapp.builder.OfertaBuilder;
-import com.springapp.dao.AukcjaDAO;
-import com.springapp.dao.OfertaDAO;
-import com.springapp.dao.UzytkownikDAO;
+import com.springapp.builder.UzytkownikBuilder;
+import com.springapp.dao.*;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.OfertaTO;
+import com.springapp.dto.UzytkownikTO;
 import com.springapp.helpers.Constants;
 import com.springapp.helpers.LicytacjaWOsobachISztukach;
-import com.springapp.model.AukcjaEntity;
-import com.springapp.model.OfertaEntity;
-import com.springapp.model.UzytkownikEntity;
+import com.springapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +35,20 @@ public class OfertaServiceImpl implements OfertaService {
     @Autowired
     UzytkownikDAO uzytkownikDAO;
 
+    @Autowired
+    DaneDoWysylkiDAO daneDoWysylkiDAO;
+
+    @Autowired
+    UmowaDAO umowaDAO;
+
     @Override
     public OfertaTO getOfertaByIdDoOfertKupna(int idOferty) {
         OfertaEntity ofertaEntity = ofertaDAO.getOfertaById(idOferty);
-        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja());
-        UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getUzytkownik());
+        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja().getId());
+        UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getKupujacy().getId());
+
+        UzytkownikBuilder uzytkownikBuilder = new UzytkownikBuilder();
+        UzytkownikTO uzytkownikTO = new UzytkownikTO(uzytkownikBuilder);
 
         AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
         aukcjaBuilder.setId(aukcjaEntity.getId())
@@ -47,8 +58,8 @@ public class OfertaServiceImpl implements OfertaService {
 
         OfertaBuilder builder = new OfertaBuilder();
         builder.setId(ofertaEntity.getId())
-                .setAukcja(aukcjaTO)
-                .setUzytkownik(uzytkownikEntity);
+                .setAukcja(aukcjaEntity)
+                .setKupujacy(uzytkownikEntity);
 
         OfertaTO ofertaTO = new OfertaTO(builder);
         return ofertaTO;
@@ -58,28 +69,22 @@ public class OfertaServiceImpl implements OfertaService {
     public List<OfertaTO> findOfertyByAukcjaDoOfertKupna(int idAukcji) {
         List<OfertaEntity> ofertaEntities = ofertaDAO.findOfertyByAukcja(idAukcji);
         List<OfertaTO> oferty = new ArrayList<OfertaTO>();
+        AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(idAukcji);
 
         for (OfertaEntity ofertaEntity : ofertaEntities) {
 
-            AukcjaEntity aukcjaEntity = aukcjaDAO.getAukcjaById(ofertaEntity.getAukcja());
-            UzytkownikEntity uzytkownikEntity = uzytkownikDAO.getUzytkownikById(ofertaEntity.getUzytkownik());
-
-            AukcjaBuilder aukcjaBuilder = new AukcjaBuilder();
-            aukcjaBuilder.setId(aukcjaEntity.getId())
-                    .setCenaKupTeraz(aukcjaEntity.getCenaKupTeraz());
-            AukcjaTO aukcjaTO = new AukcjaTO(aukcjaBuilder);
-
-            String logigKupujacego = uzytkownikEntity.getLogin();
-            String zamaskowanyUzytkownik = logigKupujacego.charAt(0)+"..."+logigKupujacego.charAt(logigKupujacego.length()-1);
-            uzytkownikEntity.setLogin(zamaskowanyUzytkownik);
+            UzytkownikEntity kupujacyEntity = ofertaEntity.getKupujacy();
+            String loginKupujacego = kupujacyEntity.getLogin();
+            String zamaskowanyUzytkownik = loginKupujacego.charAt(0)+"..."+loginKupujacego.charAt(loginKupujacego.length()-1);
+            kupujacyEntity.setLogin(zamaskowanyUzytkownik);
 
             OfertaBuilder builder = new OfertaBuilder();
             builder.setId(ofertaEntity.getId())
                     .setLiczbaSztuk(ofertaEntity.getLiczbaSztuk())
                     .setTerminZlozenia(ofertaEntity.getTerminZlozenia())
                     .setTypOferty(ofertaEntity.getTypOferty())
-                    .setAukcja(aukcjaTO)
-                    .setUzytkownik(uzytkownikEntity);
+                    .setAukcja(aukcjaEntity)
+                    .setKupujacy(kupujacyEntity);
 
             OfertaTO ofertaTO = new OfertaTO(builder);
             oferty.add(ofertaTO);
@@ -91,11 +96,14 @@ public class OfertaServiceImpl implements OfertaService {
     public LicytacjaWOsobachISztukach getKupTerazISztuki(int idAukcji) {
         List<OfertaTO> wszystkieOferty =  findOfertyByAukcjaDoOfertKupna(idAukcji);
         LicytacjaWOsobachISztukach kupTerazWLiczbach = new LicytacjaWOsobachISztukach();
+        String terminOdrzuceniaDefalt = new Timestamp(1970,01,01,01,00,01,0).toString();
 
         for (OfertaTO ofertaTO : wszystkieOferty) {
             if(ofertaTO.getTypOferty() == Constants.KUP_TERAZ) {
-                kupTerazWLiczbach.setIloscOsob(kupTerazWLiczbach.getIloscOsob() + 1);
-                kupTerazWLiczbach.setIloscSztuk(kupTerazWLiczbach.getIloscSztuk() + ofertaTO.getLiczbaSztuk());
+                if(null == ofertaTO.getTerminOdrzucenia() || ofertaTO.getTerminOdrzucenia().equals(terminOdrzuceniaDefalt)){
+                    kupTerazWLiczbach.setIloscOsob(kupTerazWLiczbach.getIloscOsob() + 1);
+                    kupTerazWLiczbach.setIloscSztuk(kupTerazWLiczbach.getIloscSztuk() + ofertaTO.getLiczbaSztuk());
+                }
             }
         }
         kupTerazWLiczbach.sprawdzOdmianeOsobDlaKupTeraz();
@@ -115,5 +123,19 @@ public class OfertaServiceImpl implements OfertaService {
         }
         licytacjaWLiczbach.sprawdzOdmianeOsobDlaLicytacji();
         return licytacjaWLiczbach;
+    }
+
+    @Override
+    public void dodajOferte(OfertaEntity ofertaEntity, AukcjaEntity aukcjaEntity, UzytkownikEntity kupujacyEntity, int liczbaSztuk) {
+        java.util.Date date= new java.util.Date();
+        Timestamp terminZlozenia = new Timestamp(date.getTime());
+
+        ofertaEntity.setAukcja(aukcjaEntity);
+        ofertaEntity.setKupujacy(kupujacyEntity);
+        ofertaEntity.setLiczbaSztuk(liczbaSztuk);
+        ofertaEntity.setTerminZlozenia(terminZlozenia);
+        ofertaEntity.setTypOferty(Constants.KUP_TERAZ);
+
+        ofertaDAO.dodajOferte(ofertaEntity);
     }
 }

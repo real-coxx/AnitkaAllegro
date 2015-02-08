@@ -1,5 +1,6 @@
 package com.springapp.dao;
 
+import com.springapp.dto.OfertaTO;
 import com.springapp.model.OfertaEntity;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class OfertaDAOImpl implements OfertaDAO {
 
     private static final String SELECT_OFERTA_BY_ID = "select o from OfertaEntity o where o.id = :id_oferty";
-    private static final String SELECT_OFERTA_BY_AUKCJA = "select o from OfertaEntity o where o.aukcja = :id_aukcji";
+    private static final String SELECT_OFERTA_BY_AUKCJA = "select o from OfertaEntity o where o.aukcja.id = :id_aukcji";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -35,5 +36,10 @@ public class OfertaDAOImpl implements OfertaDAO {
             return null;
         }
         return oferty;
+    }
+
+    @Override
+    public void dodajOferte(OfertaEntity ofertaEntity) {
+        entityManager.persist(ofertaEntity);
     }
 }

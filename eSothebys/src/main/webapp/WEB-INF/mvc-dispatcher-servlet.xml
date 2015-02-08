@@ -63,7 +63,11 @@
     <bean id="SzczegolyDostawyDAO" class="com.springapp.dao.SzczegolyDostawyDAOImpl" />
     <bean id="AdresDAO" class="com.springapp.dao.AdresDAOImpl" />
     <bean id="DaneDoWysylkiDAO" class="com.springapp.dao.DaneDoWysylkiDAOImpl" />
+<<<<<<< HEAD
 
+=======
+    <bean id="UmowaDAO" class="com.springapp.dao.UmowaDAOImpl" />
+>>>>>>> origin/master
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
     <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />
@@ -75,12 +79,16 @@
     <bean id="UzytkownikService" class="com.springapp.service.UzytkownikServiceImpl" />
     <bean id="AdresService" class="com.springapp.service.AdresServiceImpl" />
     <bean id="OgolnyService" class="com.springapp.service.OgolnyServiceImpl" />
+<<<<<<< HEAD
     <bean id="Parametr2_kategoriaService" class="com.springapp.service.Parametr2_kategoriaServiceImpl" />
     <bean id="OpcjaDodatkowaService" class="com.springapp.service.OpcjaDodatkowaServiceImpl" />
     <bean id="ParametrService" class="com.springapp.service.ParametrServiceImpl" />
     <bean id="WartosciService" class="com.springapp.service.WartosciServiceImpl" />
     <bean id="WojewodztwoService" class="com.springapp.service.WojewodztwoServiceImpl" />
     <bean id="CennikdostawService" class="com.springapp.service.CennikdostawServiceImpl" />
+=======
+    <bean id="UmowaService" class="com.springapp.service.UmowaServiceImpl" />
+>>>>>>> origin/master
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

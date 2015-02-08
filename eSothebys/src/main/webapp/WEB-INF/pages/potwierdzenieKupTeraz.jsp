@@ -41,17 +41,16 @@
                style="width: 60%; margin-left: 20%; margin-right: 20%; margin-bottom: 40px; margin-top: 20px">
             <tr>
                 <td class="tg-031e" style="width: 25%">Aukcja:</td>
-                <td class="tg-031e" style="width: 75%">ROWER CROSS MEDIA CROSSWAY 100-V SHIMANO 52cm (numer aukcji:
-                    123456)
+                <td class="tg-031e" style="width: 75%">${aukcja.tytul} (numer aukcji: ${aukcja.numer})
                 </td>
             </tr>
             <tr>
                 <th class="tg-031e">Cena Kup Teraz:</th>
-                <th class="tg-031e">539,00 zł</th>
+                <th class="tg-031e">${aukcja.cenaKupTeraz} zł</th>
             </tr>
             <tr>
                 <td class="tg-031e">Liczba sztuk, które kupujesz:</td>
-                <td class="tg-031e">2</td>
+                <td class="tg-031e">${liczbaSztuk}</td>
             </tr>
         </table>
     </div>

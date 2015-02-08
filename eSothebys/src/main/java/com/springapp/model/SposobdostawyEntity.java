@@ -11,8 +11,8 @@ public class SposobdostawyEntity {
     private int id;
     private String nazwa;
     private Integer czasDostawy;
-    private Integer rodzajPlatnosci;
-    private Boolean edytowalny;
+    private String rodzajPlatnosci;
+    private Boolean edytowalny = true;
 
     @Id
     @Column(name = "ID")
@@ -46,11 +46,11 @@ public class SposobdostawyEntity {
 
     @Basic
     @Column(name = "RodzajPlatnosci")
-    public Integer getRodzajPlatnosci() {
+    public String getRodzajPlatnosci() {
         return rodzajPlatnosci;
     }
 
-    public void setRodzajPlatnosci(Integer rodzajPlatnosci) {
+    public void setRodzajPlatnosci(String rodzajPlatnosci) {
         this.rodzajPlatnosci = rodzajPlatnosci;
     }
 

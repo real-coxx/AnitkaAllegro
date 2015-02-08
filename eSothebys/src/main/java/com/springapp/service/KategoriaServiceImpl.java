@@ -27,7 +27,7 @@ public class KategoriaServiceImpl implements KategoriaService {
 
         KategoriaBuilder builder = new KategoriaBuilder();
         builder.setNazwa(kategoriaEntity.getNazwa())
-                .setKategoria2ID(kategoriaEntity.getKategoria2ID());
+                .setNadrzedna(kategoriaEntity);
 
         KategoriaTO kategoriaTO = new KategoriaTO(builder);
         return kategoriaTO;
@@ -37,7 +37,7 @@ public class KategoriaServiceImpl implements KategoriaService {
     public List<String> getNazwyNadkategorii(int idKategorii) {
         KategoriaEntity kategoriaEntity = kategoriaDAO.getKategoriaById(idKategorii);
         KategoriaEntity biezacaNadkategoria;
-        int idBiezacejNadkategorii = kategoriaEntity.getKategoria2ID();
+        int idBiezacejNadkategorii = kategoriaEntity.getNadrzedna().getId();
         List<String> kategoriaTOList = new ArrayList<String>();
 
         if (idBiezacejNadkategorii != Constants.ID_GLOWNEJ_NADKATEGORII)
@@ -45,7 +45,7 @@ public class KategoriaServiceImpl implements KategoriaService {
             while (true) {
                 biezacaNadkategoria = kategoriaDAO.getKategoriaById(idBiezacejNadkategorii);
                 kategoriaTOList.add(biezacaNadkategoria.getNazwa());
-                idBiezacejNadkategorii = biezacaNadkategoria.getKategoria2ID();
+                idBiezacejNadkategorii = biezacaNadkategoria.getNadrzedna().getId();
                 if (idBiezacejNadkategorii == Constants.ID_GLOWNEJ_NADKATEGORII)
                 {
                     break;

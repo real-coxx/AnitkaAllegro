@@ -12,6 +12,8 @@ public class DanedowysylkiEntity {
     private String imie;
     private String nazwisko;
     private String firma;
+    private UzytkownikEntity uzytkownik;
+    private AdresEntity adresDoWysylki;
 
     @Id
     @Column(name = "ID")
@@ -51,6 +53,26 @@ public class DanedowysylkiEntity {
 
     public void setFirma(String firma) {
         this.firma = firma;
+    }
+
+    @ManyToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Uzytkownik")
+    public UzytkownikEntity getUzytkownik() {
+        return uzytkownik;
+    }
+
+    public void setUzytkownik(UzytkownikEntity uzytkownik) {
+        this.uzytkownik = uzytkownik;
+    }
+
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="AdresDoWysylki")
+    public AdresEntity getAdresDoWysylki() {
+        return adresDoWysylki;
+    }
+
+    public void setAdresDoWysylki(AdresEntity adresDoWysylki) {
+        this.adresDoWysylki = adresDoWysylki;
     }
 
     @Override

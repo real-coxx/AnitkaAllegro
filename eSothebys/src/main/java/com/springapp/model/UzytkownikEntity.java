@@ -2,6 +2,7 @@ package com.springapp.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Alicja on 2015-01-05.
@@ -22,14 +23,14 @@ public class UzytkownikEntity {
     private String drugiTelefon;
     private Date dataUrodzenia;
     private Integer wiek;
-    private Date dataUtworzenia;
-    private Date dataOstatniegoLogowania;
+    private Timestamp dataUtworzenia;
+    private Timestamp dataOstatniegoLogowania;
     private Integer punktacja;
-    private String discriminator;
-    private Integer ustawieniaSprzedazy;
-    private Integer kontoFakturowe;
-    private Integer subskrypcja;
-    private Integer wniosekRejestracyjny;
+    private UstawieniasprzedazyEntity ustawieniaSprzedazy;
+    private KontofakturoweEntity kontoFakturowe;
+    private SubskrypcjaEntity subskrypcja;
+    private WniosekrejestracyjnyEntity wniosekRejestracyjny;
+    private AdresEntity adres;
 
     @Id
     @Column(name = "ID")
@@ -163,21 +164,21 @@ public class UzytkownikEntity {
 
     @Basic
     @Column(name = "DataUtworzenia")
-    public Date getDataUtworzenia() {
+    public Timestamp getDataUtworzenia() {
         return dataUtworzenia;
     }
 
-    public void setDataUtworzenia(Date dataUtworzenia) {
+    public void setDataUtworzenia(Timestamp dataUtworzenia) {
         this.dataUtworzenia = dataUtworzenia;
     }
 
     @Basic
     @Column(name = "DataOstatniegoLogowania")
-    public Date getDataOstatniegoLogowania() {
+    public Timestamp getDataOstatniegoLogowania() {
         return dataOstatniegoLogowania;
     }
 
-    public void setDataOstatniegoLogowania(Date dataOstatniegoLogowania) {
+    public void setDataOstatniegoLogowania(Timestamp dataOstatniegoLogowania) {
         this.dataOstatniegoLogowania = dataOstatniegoLogowania;
     }
 
@@ -191,54 +192,54 @@ public class UzytkownikEntity {
         this.punktacja = punktacja;
     }
 
-    @Basic
-    @Column(name = "Discriminator")
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public void setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
-    }
-
-    @Basic
-    @Column(name = "UstawieniaSprzedazy2ID")
-    public Integer getUstawieniaSprzedazy() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="UstawieniaSprzedazy")
+    public UstawieniasprzedazyEntity getUstawieniaSprzedazy() {
         return ustawieniaSprzedazy;
     }
 
-    public void setUstawieniaSprzedazy(Integer ustawieniaSprzedazy) {
+    public void setUstawieniaSprzedazy(UstawieniasprzedazyEntity ustawieniaSprzedazy) {
         this.ustawieniaSprzedazy = ustawieniaSprzedazy;
     }
 
-    @Basic
-    @Column(name = "KontoFakturowe2ID")
-    public Integer getKontoFakturowe() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="KontoFakturowe")
+    public KontofakturoweEntity getKontoFakturowe() {
         return kontoFakturowe;
     }
 
-    public void setKontoFakturowe(Integer kontoFakturowe) {
+    public void setKontoFakturowe(KontofakturoweEntity kontoFakturowe) {
         this.kontoFakturowe = kontoFakturowe;
     }
 
-    @Basic
-    @Column(name = "Subskrypcja2ID")
-    public Integer getSubskrypcja() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Subskrypcja")
+    public SubskrypcjaEntity getSubskrypcja() {
         return subskrypcja;
     }
 
-    public void setSubskrypcja(Integer subskrypcja) {
+    public void setSubskrypcja(SubskrypcjaEntity subskrypcja) {
         this.subskrypcja = subskrypcja;
     }
 
-    @Basic
-    @Column(name = "WniosekRejestracyjny2ID")
-    public Integer getWniosekRejestracyjny() {
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="WniosekRejestracyjny")
+    public WniosekrejestracyjnyEntity getWniosekRejestracyjny() {
         return wniosekRejestracyjny;
     }
 
-    public void setWniosekRejestracyjny(Integer wniosekRejestracyjny1) {
+    public void setWniosekRejestracyjny(WniosekrejestracyjnyEntity wniosekRejestracyjny) {
         this.wniosekRejestracyjny = wniosekRejestracyjny;
+    }
+
+    @OneToOne (cascade=CascadeType.ALL)
+    @JoinColumn(name="Adres")
+    public AdresEntity getAdres() {
+        return adres;
+    }
+
+    public void setAdres(AdresEntity adres) {
+        this.adres = adres;
     }
 
     @Override
@@ -254,8 +255,6 @@ public class UzytkownikEntity {
         if (dataUrodzenia != null ? !dataUrodzenia.equals(that.dataUrodzenia) : that.dataUrodzenia != null)
             return false;
         if (dataUtworzenia != null ? !dataUtworzenia.equals(that.dataUtworzenia) : that.dataUtworzenia != null)
-            return false;
-        if (discriminator != null ? !discriminator.equals(that.discriminator) : that.discriminator != null)
             return false;
         if (drugiTelefon != null ? !drugiTelefon.equals(that.drugiTelefon) : that.drugiTelefon != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
@@ -291,7 +290,6 @@ public class UzytkownikEntity {
         result = 31 * result + (dataUtworzenia != null ? dataUtworzenia.hashCode() : 0);
         result = 31 * result + (dataOstatniegoLogowania != null ? dataOstatniegoLogowania.hashCode() : 0);
         result = 31 * result + (punktacja != null ? punktacja.hashCode() : 0);
-        result = 31 * result + (discriminator != null ? discriminator.hashCode() : 0);
         return result;
     }
 }

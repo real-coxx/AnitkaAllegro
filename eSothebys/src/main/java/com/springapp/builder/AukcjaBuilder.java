@@ -1,5 +1,6 @@
 package com.springapp.builder;
 
+import com.springapp.model.*;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class AukcjaBuilder {
     private String opisPrzedmiotu;
     private int rodzajAukcji;
     private Date terminRozpoczecia;
+    private String terminRozpoczeciaTekst;
     private int liczbaPrzedmiotow;
     private String jednostka;
     private double cenaKupTeraz;
@@ -42,8 +44,12 @@ public class AukcjaBuilder {
     private double aktualnaCena;
     private double oplata;
     private double oplataFinalna;
-    private int idKategorii;
-    private int idZdjecia;
+    private KategoriaEntity kategoria;
+    private ZdjecieEntity miniatura;
+    private String stan;
+    private CennikdostawEntity cennikDostaw;
+    private UzytkownikEntity sprzedawca;
+    private AdresEntity adres;
 
     public AukcjaBuilder setId(int id) {
         this.id = id;
@@ -190,13 +196,38 @@ public class AukcjaBuilder {
         return this;
     }
 
-    public AukcjaBuilder setIdKategorii(int idKategorii) {
-        this.idKategorii = idKategorii;
+    public AukcjaBuilder setKategoria(KategoriaEntity kategoria) {
+        this.kategoria = kategoria;
         return this;
     }
 
-    public AukcjaBuilder setIdZdjecia(int idZdjecia) {
-        this.idZdjecia = idZdjecia;
+    public AukcjaBuilder setMiniatura(ZdjecieEntity miniatura) {
+        this.miniatura = miniatura;
+        return this;
+    }
+
+    public AukcjaBuilder setStan(String stan) {
+        this.stan = stan;
+        return this;
+    }
+
+    public AukcjaBuilder setCennikDostaw(CennikdostawEntity cennikDostaw) {
+        this.cennikDostaw = cennikDostaw;
+        return this;
+    }
+
+    public AukcjaBuilder setSprzedawca(UzytkownikEntity sprzedawca) {
+        this.sprzedawca = sprzedawca;
+        return this;
+    }
+
+    public AukcjaBuilder setAdres(AdresEntity adres) {
+        this.adres = adres;
+        return this;
+    }
+
+    public AukcjaBuilder setTerminRozpoczeciaTekst(String terminRozpoczeciaTekst) {
+        this.terminRozpoczeciaTekst = terminRozpoczeciaTekst;
         return this;
     }
 
@@ -314,11 +345,31 @@ public class AukcjaBuilder {
         return oplataFinalna;
     }
 
-    public int getIdKategorii() {
-        return idKategorii;
+    public KategoriaEntity getKategoria() {
+        return kategoria;
     }
 
-    public int getIdZdjecia() {
-        return idZdjecia;
+    public ZdjecieEntity getMiniatura() {
+        return miniatura;
+    }
+
+    public String getStan() {
+        return stan;
+    }
+
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
+    }
+
+    public UzytkownikEntity getSprzeawca() {
+        return sprzedawca;
+    }
+
+    public AdresEntity getAdres() {
+        return adres;
+    }
+
+    public String getTerminRozpoczeciaTekst() {
+        return terminRozpoczeciaTekst;
     }
 }
