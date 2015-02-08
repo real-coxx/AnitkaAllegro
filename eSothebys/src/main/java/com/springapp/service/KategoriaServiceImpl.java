@@ -54,4 +54,9 @@ public class KategoriaServiceImpl implements KategoriaService {
         }
         return kategoriaTOList;
     }
+
+    @Override
+    public List<KategoriaTO> getKategorieGlowne() {
+        return null;
+    }
 }

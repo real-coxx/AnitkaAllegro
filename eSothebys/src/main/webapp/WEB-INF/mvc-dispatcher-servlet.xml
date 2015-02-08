@@ -39,7 +39,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/esothebys_db" />
         <property name="username" value="root" />
-        <property name="password" value="mojrootek321" />
+        <property name="password" value="haselko12" />
     </bean>
 
     <bean id="jpaVendorAdapter"
@@ -59,12 +59,28 @@
     <bean id="OfertaDAO" class="com.springapp.dao.OfertaDAOImpl" />
     <bean id="UzytkownikDAO" class="com.springapp.dao.UzytkownikDAOImpl" />
     <bean id="ZdjecieDAO" class="com.springapp.dao.ZdjecieDAOImpl" />
+    <bean id="SposobDostawyDAO" class="com.springapp.dao.SposobDostawyDAOImpl" />
+    <bean id="SzczegolyDostawyDAO" class="com.springapp.dao.SzczegolyDostawyDAOImpl" />
+    <bean id="AdresDAO" class="com.springapp.dao.AdresDAOImpl" />
+    <bean id="DaneDoWysylkiDAO" class="com.springapp.dao.DaneDoWysylkiDAOImpl" />
+
 
     <bean id="KrajService" class="com.springapp.service.KrajServiceImpl" />
     <bean id="AukcjaService" class="com.springapp.service.AukcjaServiceImpl" />
     <bean id="KategoriaService" class="com.springapp.service.KategoriaServiceImpl" />
     <bean id="OfertaService" class="com.springapp.service.OfertaServiceImpl" />
     <bean id="ZdjecieService" class="com.springapp.service.ZdjecieServiceImpl" />
+    <bean id="SposobDostawyService" class="com.springapp.service.SposobDostawyServiceImpl" />
+    <bean id="SzczegolyDostawyService" class="com.springapp.service.SzczegolyDostawyServiceImpl" />
+    <bean id="UzytkownikService" class="com.springapp.service.UzytkownikServiceImpl" />
+    <bean id="AdresService" class="com.springapp.service.AdresServiceImpl" />
+    <bean id="OgolnyService" class="com.springapp.service.OgolnyServiceImpl" />
+    <bean id="Parametr2_kategoriaService" class="com.springapp.service.Parametr2_kategoriaServiceImpl" />
+    <bean id="OpcjaDodatkowaService" class="com.springapp.service.OpcjaDodatkowaServiceImpl" />
+    <bean id="ParametrService" class="com.springapp.service.ParametrServiceImpl" />
+    <bean id="WartosciService" class="com.springapp.service.WartosciServiceImpl" />
+    <bean id="WojewodztwoService" class="com.springapp.service.WojewodztwoServiceImpl" />
+    <bean id="CennikdostawService" class="com.springapp.service.CennikdostawServiceImpl" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>

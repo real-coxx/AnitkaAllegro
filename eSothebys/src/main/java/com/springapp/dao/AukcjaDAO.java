@@ -8,4 +8,6 @@ import com.springapp.model.AukcjaEntity;
 public interface AukcjaDAO {
 
     public AukcjaEntity getAukcjaById(int idAukcji);
+
+    public void addAukcja(AukcjaEntity aukcja);
 }

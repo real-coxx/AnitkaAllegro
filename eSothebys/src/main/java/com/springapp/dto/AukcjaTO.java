@@ -1,12 +1,9 @@
 package com.springapp.dto;
 
 import com.springapp.builder.AukcjaBuilder;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Alicja on 2015-01-19.

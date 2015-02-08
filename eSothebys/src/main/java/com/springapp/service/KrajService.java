@@ -1,5 +1,6 @@
 package com.springapp.service;
 
+import com.springapp.dto.KrajTO;
 import com.springapp.model.KrajEntity;
 
 import java.util.List;
@@ -9,4 +10,7 @@ import java.util.List;
  */
 public interface KrajService {
     public List<KrajEntity> getKraje();
+
+    public List<KrajEntity> getKrajeBezWojewodztw();
+
 }

@@ -13,4 +13,6 @@ public interface KategoriaService {
     public KategoriaTO getKategoriaById(int idKategorii);
 
     public List<String> getNazwyNadkategorii(int idKategorii);
+
+    public List<KategoriaTO> getKategorieGlowne();
 }

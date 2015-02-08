@@ -1,6 +1,7 @@
 package com.springapp.dao;
 
 import com.springapp.model.AukcjaEntity;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ public class AukcjaDAOImpl implements AukcjaDAO {
 
     private static final String SELECT_AUKCJA_BY_ID = "select a from AukcjaEntity a where a.id = :id_aukcji";
 
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -26,5 +28,10 @@ public class AukcjaDAOImpl implements AukcjaDAO {
             return null;
         }
         return aukcja.get(0);
+    }
+
+    @Override
+    public void addAukcja(AukcjaEntity aukcja) {
+        entityManager.persist(aukcja);
     }
 }

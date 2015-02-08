@@ -21,4 +21,9 @@ public class KrajServiceImpl implements KrajService{
     public List<KrajEntity> getKraje() {
         return krajDAO.getKraje();
     }
+
+    @Override
+    public List<KrajEntity> getKrajeBezWojewodztw() {
+        return null;
+    }
 }
