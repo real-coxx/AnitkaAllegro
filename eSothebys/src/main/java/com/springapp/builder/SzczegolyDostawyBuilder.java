@@ -1,34 +1,72 @@
 package com.springapp.builder;
 
 import com.springapp.dto.SposobDostawyTO;
+import com.springapp.model.CennikdostawEntity;
+import com.springapp.model.SposobdostawyEntity;
 
 /**
- * Created by Internet on 2015-02-08.
+ * Created by Alicja on 2015-02-01.
  */
 public class SzczegolyDostawyBuilder {
-    private SposobDostawyTO sposobDostawy;
+
+    private int id;
     private Double kosztPierwszejSztuki;
-    private double kosztKolejnejSztuki;
-    private int liczbaWPaczce;
-    private long id;
+    private Double kosztKolejnejSztuki;
+    private Integer liczbaWPaczce;
+    private SposobdostawyEntity sposobDostawy;
+    private CennikdostawEntity cennikDostaw;
 
-    public void setSposobDostawy(SposobDostawyTO sposobDostawy) {
-        this.sposobDostawy = sposobDostawy;
-    }
-
-    public void setKosztPierwszejSztuki(double kosztPierwszejSztuki) {
-        this.kosztPierwszejSztuki = kosztPierwszejSztuki;
-    }
-
-    public void setKosztKolejnejSztuki(double kosztKolejnejSztuki) {
-        this.kosztKolejnejSztuki = kosztKolejnejSztuki;
-    }
-
-    public void setLiczbaWPaczce(int liczbaWPaczce) {
-        this.liczbaWPaczce = liczbaWPaczce;
-    }
-
-    public void setId(long id) {
+    public SzczegolyDostawyBuilder setId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public SzczegolyDostawyBuilder setKosztPierwszejSztuki(Double kosztPierwszejSztuki) {
+        this.kosztPierwszejSztuki = kosztPierwszejSztuki;
+        return this;
+    }
+
+    public SzczegolyDostawyBuilder setKosztKolejnejSztuki(Double kosztKolejnejSztuki) {
+        this.kosztKolejnejSztuki = kosztKolejnejSztuki;
+        return this;
+    }
+
+    public SzczegolyDostawyBuilder setLiczbaWPaczce(Integer liczbaWPaczce) {
+        this.liczbaWPaczce = liczbaWPaczce;
+        return this;
+    }
+
+    public SzczegolyDostawyBuilder setSposobDostawy(SposobdostawyEntity sposobDostawy) {
+        this.sposobDostawy = sposobDostawy;
+        return this;
+    }
+
+    public SzczegolyDostawyBuilder setCennikDostaw(CennikdostawEntity cennikDostaw) {
+        this.cennikDostaw = cennikDostaw;
+        return this;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Double getKosztPierwszejSztuki() {
+        return kosztPierwszejSztuki;
+    }
+
+    public Double getKosztKolejnejSztuki() {
+        return kosztKolejnejSztuki;
+    }
+
+    public Integer getLiczbaWPaczce() {
+        return liczbaWPaczce;
+    }
+
+    public SposobdostawyEntity getSposobDostawy() {
+        return sposobDostawy;
+    }
+
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
     }
 }

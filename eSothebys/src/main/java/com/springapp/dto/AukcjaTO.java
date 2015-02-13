@@ -1,9 +1,13 @@
 package com.springapp.dto;
 
 import com.springapp.builder.AukcjaBuilder;
+import com.springapp.model.*;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Alicja on 2015-01-19.
@@ -16,6 +20,7 @@ public class AukcjaTO {
     private final String opisPrzedmiotu;
     private final int rodzajAukcji;
     private final Date terminRozpoczecia;
+    private final String terminRozpoczeciaTekst;
     private final int liczbaPrzedmiotow;
     private final String jednostka;
     private final double cenaKupTeraz;
@@ -39,8 +44,12 @@ public class AukcjaTO {
     private final double aktualnaCena;
     private final double oplata;
     private final double oplataFinalna;
-    private final int idKategorii;
-    private final int idZdjecia;
+    private final KategoriaEntity kategoria;
+    private final ZdjecieEntity miniatura;
+    private final String stan;
+    private final CennikdostawEntity cennikDostaw;
+    private final UzytkownikEntity sprzedawca;
+    private final AdresEntity adres;
 
 
     public AukcjaTO(AukcjaBuilder builder) {
@@ -73,8 +82,21 @@ public class AukcjaTO {
         this.aktualnaCena = builder.getAktualnaCena();
         this.oplata = builder.getOplata();
         this.oplataFinalna = builder.getOplataFinalna();
-        this.idKategorii = builder.getIdKategorii();
-        this.idZdjecia = builder.getIdZdjecia();
+        this.kategoria = builder.getKategoria();
+        this.miniatura = builder.getMiniatura();
+        this.stan = builder.getStan();
+        this.cennikDostaw = builder.getCennikDostaw();
+        this.sprzedawca = builder.getSprzeawca();
+        this.adres = builder.getAdres();
+        this.terminRozpoczeciaTekst = builder.getTerminRozpoczeciaTekst();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTerminZakonczeniaTekst() {
+        return terminZakonczeniaTekst;
     }
 
     public int getNumer() {
@@ -185,11 +207,31 @@ public class AukcjaTO {
         return oplataFinalna;
     }
 
-    public int getIdKategorii() {
-        return idKategorii;
+    public KategoriaEntity getKategoria() {
+        return kategoria;
     }
 
-    public int getIdZdjecia() {
-        return idZdjecia;
+    public ZdjecieEntity getMiniatura() {
+        return miniatura;
+    }
+
+    public String getStan() {
+        return stan;
+    }
+
+    public CennikdostawEntity getCennikDostaw() {
+        return cennikDostaw;
+    }
+
+    public UzytkownikEntity getSprzedawca() {
+        return sprzedawca;
+    }
+
+    public AdresEntity getAdres() {
+        return adres;
+    }
+
+    public String getTerminRozpoczeciaTekst() {
+        return terminRozpoczeciaTekst;
     }
 }

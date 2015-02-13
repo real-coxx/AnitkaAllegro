@@ -1,11 +1,15 @@
 package com.springapp.service;
 
-import com.springapp.dto.SposobDostawyTO;
 import com.springapp.dto.SzczegolyDostawyTO;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
- * Created by Internet on 2015-02-08.
+ * Created by Alicja on 2015-02-01.
  */
 public interface SzczegolyDostawyService {
-    SzczegolyDostawyTO getSzczegolyDostawyBySposobDostawy(long sposobDostawyId);
+
+    public List<SzczegolyDostawyTO> getSzczegolyDostawyByCennikDostaw(int idCennikDostaw);
+    public HashMap<String, Double> getMenuWyboruSposobuDostawy (int idCennikDostaw, int iloscSztuk);
 }

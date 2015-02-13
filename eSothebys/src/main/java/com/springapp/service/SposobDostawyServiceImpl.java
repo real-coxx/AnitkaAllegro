@@ -1,16 +1,33 @@
 package com.springapp.service;
 
+import com.springapp.builder.SposobDostawyBuilder;
+import com.springapp.dao.SposobDostawyDAO;
 import com.springapp.dto.SposobDostawyTO;
-
-import java.util.Map;
+import com.springapp.model.SposobdostawyEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * Created by Internet on 2015-02-08.
+ * Created by Alicja on 2015-02-01.
  */
+@Service
 public class SposobDostawyServiceImpl implements SposobDostawyService {
 
+    @Autowired
+    SposobDostawyDAO sposobDostawyDAO;
+
     @Override
-    public Map<Long, SposobDostawyTO> getAllSposobyDostawy() {
-        return null;
+    public SposobDostawyTO getSposobDostawyById(int idSposobDostawy) {
+
+        SposobdostawyEntity sposobdostawyEntity = sposobDostawyDAO.getSposobDostawyById(idSposobDostawy);
+
+        SposobDostawyBuilder builder = new SposobDostawyBuilder();
+        builder.setNazwa(sposobdostawyEntity.getNazwa())
+                .setCzasDostawy(sposobdostawyEntity.getCzasDostawy())
+                .setRodzajPlatnosci(sposobdostawyEntity.getRodzajPlatnosci());
+
+        SposobDostawyTO sposobDostawyTO = new SposobDostawyTO(builder);
+
+        return sposobDostawyTO;
     }
 }

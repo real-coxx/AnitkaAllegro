@@ -1,22 +1,43 @@
 package com.springapp.dto;
 
+import com.springapp.builder.SposobDostawyBuilder;
+
 /**
- * Created by Internet on 2015-02-08.
+ * Created by Alicja on 2015-02-01.
  */
 public class SposobDostawyTO {
-    private String name;
-    private boolean edytowalny;
-    private long id;
 
-    public String getName() {
-        return name;
+    private int id;
+    private String nazwa;
+    private Integer czasDostawy;
+    private String rodzajPlatnosci;
+    private Boolean edytowalny;
+
+    public SposobDostawyTO(SposobDostawyBuilder builder) {
+        this.id = builder.getId();
+        this.nazwa= builder.getNazwa();
+        this.czasDostawy = builder.getCzasDostawy();
+        this.rodzajPlatnosci = builder.getRodzajPlatnosci();
+        this.edytowalny = builder.getEdytowalny();
     }
 
-    public boolean getEdytowalny() {
-        return edytowalny;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public String getNazwa() {
+        return nazwa;
+    }
+
+    public Integer getCzasDostawy() {
+        return czasDostawy;
+    }
+
+    public String getRodzajPlatnosci() {
+        return rodzajPlatnosci;
+    }
+
+    public Boolean getEdytowalny() {
+        return edytowalny;
     }
 }
