@@ -10,6 +10,7 @@ public class SzczegolyDostawyBuilder {
     private Double kosztPierwszejSztuki;
     private double kosztKolejnejSztuki;
     private int liczbaWPaczce;
+    private long id;
 
     public void setSposobDostawy(SposobDostawyTO sposobDostawy) {
         this.sposobDostawy = sposobDostawy;
@@ -25,5 +26,9 @@ public class SzczegolyDostawyBuilder {
 
     public void setLiczbaWPaczce(int liczbaWPaczce) {
         this.liczbaWPaczce = liczbaWPaczce;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

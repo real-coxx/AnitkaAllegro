@@ -1,6 +1,6 @@
 package com.springapp.service;
 
-import com.springapp.dao.KrajDAO;
+import com.springapp.dao.specificDAO.KrajDAO;
 import com.springapp.model.KrajEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +25,10 @@ public class KrajServiceImpl implements KrajService{
     @Override
     public List<KrajEntity> getKrajeBezWojewodztw() {
         return null;
+    }
+
+    @Override
+    public boolean czyKrajMaWojewodztwa(long krajId) {
+        return false;
     }
 }

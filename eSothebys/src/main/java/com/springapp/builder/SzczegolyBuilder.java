@@ -13,11 +13,11 @@ public class SzczegolyBuilder {
     private ParametrTO parametr;
     private String wprowadzonaWartosc;
 
-    public void setWybraneWartosci(List<WartoscTO> wybraneWartosci) {
+    public void setWybraneWartosci(String[] wybraneWartosci) {
         this.wybraneWartosci = wybraneWartosci;
     }
 
-    public void setParametr(ParametrTO parametr) {
+    public void setParametr(Long parametr) {
         this.parametr = parametr;
     }
 

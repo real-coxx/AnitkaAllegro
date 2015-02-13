@@ -1,7 +1,7 @@
 package com.springapp.service;
 
 import com.springapp.builder.KategoriaBuilder;
-import com.springapp.dao.KategoriaDAO;
+import com.springapp.dao.specificDAO.KategoriaDAO;
 import com.springapp.dto.KategoriaTO;
 import com.springapp.helpers.Constants;
 import com.springapp.model.KategoriaEntity;

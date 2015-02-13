@@ -13,4 +13,5 @@ public interface KrajService {
 
     public List<KrajEntity> getKrajeBezWojewodztw();
 
+    boolean czyKrajMaWojewodztwa(long krajId);
 }

@@ -1,5 +1,7 @@
 package com.springapp.dto;
 
+import com.springapp.model.Enums.TypParametruEnum;
+
 import java.nio.channels.SeekableByteChannel;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 public class ParametrTO {
     private List<WartoscTO> mozliweWartosci;
-    private String typParametru;
+    private TypParametruEnum typParametru;
     private boolean obligatoryjny;
     private String nazwa;
 
@@ -16,7 +18,7 @@ public class ParametrTO {
         return mozliweWartosci;
     }
 
-    public String getTyp() {
+    public TypParametruEnum getTyp() {
         return typParametru;
     }
 

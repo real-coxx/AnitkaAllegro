@@ -6,6 +6,7 @@ package com.springapp.dto;
 public class OpcjadodatkowaTO {
     private String ograniczeniaCenyUzytkownika;
     private String nazwa;
+    private long id;
 
     public String getOgraniczeniaCenyUzytkownika() {
 
@@ -21,5 +22,9 @@ public class OpcjadodatkowaTO {
 
     public String getNazwa() {
         return nazwa;
+    }
+
+    public long getId() {
+        return id;
     }
 }

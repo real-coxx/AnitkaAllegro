@@ -10,6 +10,8 @@ public interface AukcjaService {
 
     public AukcjaTO getAukcjaByIdForSkladanieOferty(int idAukcji);
 
+    public void createAukcja(AukcjaTO aukcja);
+
     public void modyfikujAukcjePoKupnie(AukcjaEntity aukcjaEntity, int liczbaSztuk);
 
     public void zwiekszLiczbeOdwiedzin(int idAukcji);

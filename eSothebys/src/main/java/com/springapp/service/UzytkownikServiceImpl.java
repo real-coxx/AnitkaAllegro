@@ -1,7 +1,7 @@
 package com.springapp.service;
 
 import com.springapp.builder.UzytkownikBuilder;
-import com.springapp.dao.UzytkownikDAO;
+import com.springapp.dao.specificDAO.UzytkownikDAO;
 import com.springapp.dto.UzytkownikTO;
 import com.springapp.model.UzytkownikEntity;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -62,7 +62,14 @@ public class KategoriaTO {
         return formulaWyliczaniaOplatyPodstawowej;
     }
 
-    public KategoriaEntity getNadrzedna() {
+    public KategoriaTO getNadrzedna() {
+        KategoriaTO result;
+
+        KategoriaBuilder kb = new KategoriaBuilder();
+
+        if()
+        kb.setId()
+
         return nadrzedna;
     }
 }

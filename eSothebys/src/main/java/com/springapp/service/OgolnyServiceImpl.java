@@ -1,8 +1,8 @@
 package com.springapp.service;
-import com.springapp.dao.AdresDAO;
-import com.springapp.dao.AukcjaDAO;
-import com.springapp.dao.DaneDoWysylkiDAO;
-import com.springapp.dao.UzytkownikDAO;
+import com.springapp.dao.specificDAO.AdresDAO;
+import com.springapp.dao.specificDAO.AukcjaDAO;
+import com.springapp.dao.specificDAO.DaneDoWysylkiDAO;
+import com.springapp.dao.specificDAO.UzytkownikDAO;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.dto.UzytkownikTO;
 import com.springapp.model.*;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import java.sql.Timestamp;
+
 /**
  * Created by Alicja on 2015-02-06.
  */

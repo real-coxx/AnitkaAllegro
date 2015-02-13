@@ -1,7 +1,7 @@
 package com.springapp.service;
 
 import com.springapp.builder.AukcjaBuilder;
-import com.springapp.dao.AukcjaDAO;
+import com.springapp.dao.specificDAO.AukcjaDAO;
 import com.springapp.dto.AukcjaTO;
 import com.springapp.helpers.StanAukcji;
 import com.springapp.model.AukcjaEntity;
@@ -51,6 +51,13 @@ public class AukcjaServiceImpl implements AukcjaService {
 
         AukcjaTO aukcjaTO = new AukcjaTO(builder);
         return aukcjaTO;
+    }
+
+    @Override
+    public void createAukcja(AukcjaTO aukcja) {
+
+
+        aukcjaDAO.addAukcja();
     }
 
     @Override

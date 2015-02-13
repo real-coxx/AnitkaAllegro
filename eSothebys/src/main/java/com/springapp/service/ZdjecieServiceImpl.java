@@ -1,7 +1,7 @@
 package com.springapp.service;
 
 import com.springapp.builder.ZdjecieBuilder;
-import com.springapp.dao.ZdjecieDAO;
+import com.springapp.dao.specificDAO.ZdjecieDAO;
 import com.springapp.dto.ZdjecieTO;
 import com.springapp.model.ZdjecieEntity;
 import org.springframework.beans.factory.annotation.Autowired;
